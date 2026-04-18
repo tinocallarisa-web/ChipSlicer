@@ -1,0 +1,20 @@
+{
+  "All": "All",
+  "UpgradePro": "Upgrade to Pro for more items",
+  "chipSettings": "Chip Style",
+  "multiSelect": "Multi-select",
+  "layout": "Layout",
+  "chipHeight": "Chip height",
+  "chipRadius": "Border radius",
+  "fontSize": "Font size",
+  "chipGap": "Gap between chips",
+  "chipPaddingH": "Horizontal padding",
+  "defaultBg": "Inactive background",
+  "defaultBorder": "Inactive border",
+  "defaultText": "Inactive text",
+  "activeBg": "Active background",
+  "activeBorder": "Active border",
+  "activeText": "Active text",
+  "showSelectAll": "Show 'All' button",
+  "selectAllLabel": "'All' button text"
+}

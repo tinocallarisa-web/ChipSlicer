@@ -1,0 +1,20 @@
+{
+  "All": "Todo",
+  "UpgradePro": "Pásate a Pro para ver más elementos",
+  "chipSettings": "Estilo de Pastilla",
+  "multiSelect": "Selección múltiple",
+  "layout": "Orientación",
+  "chipHeight": "Altura de pastilla",
+  "chipRadius": "Radio del borde",
+  "fontSize": "Tamaño de fuente",
+  "chipGap": "Espacio entre pastillas",
+  "chipPaddingH": "Margen horizontal",
+  "defaultBg": "Fondo inactivo",
+  "defaultBorder": "Borde inactivo",
+  "defaultText": "Texto inactivo",
+  "activeBg": "Fondo activo",
+  "activeBorder": "Borde activo",
+  "activeText": "Texto activo",
+  "showSelectAll": "Mostrar botón 'Todo'",
+  "selectAllLabel": "Texto del botón 'Todo'"
+}

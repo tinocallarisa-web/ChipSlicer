@@ -1,0 +1,26 @@
+.chip-slicer-container {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    .chip-item {
+        &:hover {
+            filter: brightness(0.95);
+            transform: scale(1.02);
+        }
+        &:active {
+            transform: scale(0.98);
+        }
+
+        &.active {
+            font-weight: bold;
+        }
+    }
+
+    .slicer-watermark {
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
+        font-style: italic;
+    }
+}
