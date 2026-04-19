@@ -9,31 +9,17 @@ import DataView = powerbi.DataView;
 import IVisualHost = powerbi.extensibility.visual.IVisualHost;
 import ILocalizationManager = powerbi.extensibility.ILocalizationManager;
 import FilterAction = powerbi.FilterAction;
+import ISelectionManager = powerbi.extensibility.ISelectionManager;
+import ISelectionId = powerbi.visuals.ISelectionId;
 import * as models from "powerbi-models";
+
+// Formatting Model
+import { formattingSettings, FormattingSettingsService } from "powerbi-visuals-utils-formattingmodel";
+import { VisualSettingsModel } from "./settings";
 
 // Licensing
 import IVisualLicenseManager = powerbi.extensibility.IVisualLicenseManager;
 import ServicePlanState = powerbi.ServicePlanState;
-
-interface VisualSettings {
-    chipSettings: {
-        multiSelect: boolean;
-        layout: string;
-        chipHeight: number;
-        chipRadius: number;
-        fontSize: number;
-        chipGap: number;
-        chipPaddingH: number;
-        defaultBg: string;
-        defaultBorder: string;
-        defaultText: string;
-        activeBg: string;
-        activeBorder: string;
-        activeText: string;
-        showSelectAll: boolean;
-        selectAllLabel: string;
-    };
-}
 
 export class Visual implements IVisual {
     private target: HTMLElement;
@@ -41,9 +27,12 @@ export class Visual implements IVisual {
     private container: HTMLElement;
     private localizationManager: ILocalizationManager;
     private licenseManager: IVisualLicenseManager;
+    private formattingSettingsService: FormattingSettingsService;
+    private formattingSettings: VisualSettingsModel;
+    private selectionManager: ISelectionManager;
+    
     private isPro: boolean = false;
     private selectedValues: Set<string> = new Set();
-    private settings: VisualSettings;
     private dataView: DataView;
     private table: string;
     private column: string;
@@ -53,6 +42,8 @@ export class Visual implements IVisual {
         this.target = options.element;
         this.localizationManager = options.host.createLocalizationManager();
         this.licenseManager = options.host.licenseManager;
+        this.formattingSettingsService = new FormattingSettingsService();
+        this.selectionManager = options.host.createSelectionManager();
 
         this.container = document.createElement("div");
         this.container.className = "chip-slicer-container";
@@ -69,49 +60,16 @@ export class Visual implements IVisual {
 
         this.dataView = options.dataViews[0];
         if (!this.dataView || !this.dataView.categorical || !this.dataView.categorical.categories) {
-            this.container.innerHTML = "";
+            this.container.replaceChildren();
             return;
         }
 
-        this.updateSettings(this.dataView);
+        this.formattingSettings = this.formattingSettingsService.populateFormattingSettingsModel(VisualSettingsModel, this.dataView);
         this.render(options);
     }
 
-    private updateSettings(dataView: DataView) {
-        const objects = dataView.metadata.objects;
-        const getValue = <T>(obj: any, prop: string, def: T): T => {
-            if (obj && obj[prop] !== undefined) {
-                const val = obj[prop];
-                if (typeof val === "object" && val.solid) return val.solid.color;
-                return val;
-            }
-            return def;
-        };
-
-        const cS = objects?.chipSettings;
-        this.settings = {
-            chipSettings: {
-                multiSelect: getValue(cS, "multiSelect", false),
-                layout: getValue(cS, "layout", "horizontal"),
-                chipHeight: getValue(cS, "chipHeight", 34),
-                chipRadius: getValue(cS, "chipRadius", 17),
-                fontSize: getValue(cS, "fontSize", 12),
-                chipGap: getValue(cS, "chipGap", 8),
-                chipPaddingH: getValue(cS, "chipPaddingH", 16),
-                defaultBg: getValue(cS, "defaultBg", "#F3F4F6"),
-                defaultBorder: getValue(cS, "defaultBorder", "#E5E7EB"),
-                defaultText: getValue(cS, "defaultText", "#374151"),
-                activeBg: getValue(cS, "activeBg", "#378ADD"),
-                activeBorder: getValue(cS, "activeBorder", "#378ADD"),
-                activeText: getValue(cS, "activeText", "#FFFFFF"),
-                showSelectAll: getValue(cS, "showSelectAll", true),
-                selectAllLabel: getValue(cS, "selectAllLabel", this.localizationManager.getDisplayName("All"))
-            }
-        };
-    }
-
     private render(options: VisualUpdateOptions) {
-        this.container.innerHTML = "";
+        this.container.replaceChildren();
         const category = this.dataView.categorical.categories[0];
         const values = category.values;
         
@@ -132,40 +90,49 @@ export class Visual implements IVisual {
             }
         }
 
-        const settings = this.settings.chipSettings;
+        const settings = this.formattingSettings.chipSettingsCard;
         
         // CSS Variables for styling
         this.container.style.display = "flex";
-        this.container.style.flexWrap = settings.layout === "horizontal" ? "wrap" : "nowrap";
-        this.container.style.flexDirection = settings.layout === "horizontal" ? "row" : "column";
-        this.container.style.gap = `${settings.chipGap}px`;
+        this.container.style.flexWrap = settings.layout.value.value === "horizontal" ? "wrap" : "nowrap";
+        this.container.style.flexDirection = settings.layout.value.value === "horizontal" ? "row" : "column";
+        this.container.style.gap = `${settings.chipGap.value}px`;
         this.container.style.padding = "8px";
         this.container.style.overflowY = "auto";
         this.container.style.height = "100%";
 
-        // Freemium Limit
+        // Freemium Limit: free users see up to 12 values
         let displayValues = values;
         const isLimited = !this.isPro && values.length > 12;
         if (isLimited) displayValues = values.slice(0, 12);
 
         // Select All Chip
-        if (settings.showSelectAll) {
+        if (settings.showSelectAll.value) {
             const isActive = this.selectedValues.size === 0;
-            this.container.appendChild(this.createChip(settings.selectAllLabel, null, isActive, true));
+            const label = settings.selectAllLabel.value || this.localizationManager.getDisplayName("All");
+            this.container.appendChild(this.createChip(label, null, isActive, true, null));
         }
 
         // Category Chips
         displayValues.forEach((val, i) => {
             const strVal = String(val);
             const isActive = this.selectedValues.has(strVal);
-            this.container.appendChild(this.createChip(strVal, val, isActive, false));
+            
+            // Create SelectionId for context menu and filtering
+            const selectionId = this.host.createSelectionIdBuilder()
+                .withCategory(category, i)
+                .createSelectionId();
+
+            this.container.appendChild(this.createChip(strVal, val, isActive, false, selectionId));
         });
 
-        // Watermark if limited
-        if (isLimited || !this.isPro) {
+        // FIXED: Watermark only shown when free tier limit is actually reached.
+        // Previously showed "tcviz.com" even when no limit was applied, which
+        // Microsoft AppSource reviewers flag as intrusive advertising.
+        if (isLimited) {
             const wm = document.createElement("div");
             wm.className = "slicer-watermark";
-            wm.innerText = isLimited ? this.localizationManager.getDisplayName("UpgradePro") : "tcviz.com";
+            wm.innerText = this.localizationManager.getDisplayName("UpgradePro");
             wm.style.fontSize = "10px";
             wm.style.color = "#FF4081";
             wm.style.fontWeight = "bold";
@@ -175,17 +142,17 @@ export class Visual implements IVisual {
         }
     }
 
-    private createChip(label: string, value: any, isActive: boolean, isAll: boolean): HTMLElement {
-        const settings = this.settings.chipSettings;
+    private createChip(label: string, value: any, isActive: boolean, isAll: boolean, selectionId: powerbi.visuals.ISelectionId): HTMLElement {
+        const settings = this.formattingSettings.chipSettingsCard;
         const chip = document.createElement("div");
         chip.className = "chip-item";
         chip.innerText = label;
 
         Object.assign(chip.style, {
-            height: `${settings.chipHeight}px`,
-            borderRadius: `${settings.chipRadius}px`,
-            padding: `0 ${settings.chipPaddingH}px`,
-            fontSize: `${settings.fontSize}px`,
+            height: `${settings.chipHeight.value}px`,
+            borderRadius: `${settings.chipRadius.value}px`,
+            padding: `0 ${settings.chipPaddingH.value}px`,
+            fontSize: `${settings.fontSize.value}px`,
             display: "inline-flex",
             alignItems: "center",
             justifyContent: "center",
@@ -193,18 +160,18 @@ export class Visual implements IVisual {
             userSelect: "none",
             transition: "all 0.2s ease",
             border: "1.5px solid",
-            backgroundColor: isActive ? settings.activeBg : settings.defaultBg,
-            borderColor: isActive ? settings.activeBorder : settings.defaultBorder,
-            color: isActive ? settings.activeText : settings.defaultText,
+            backgroundColor: isActive ? settings.activeBg.value.value : settings.defaultBg.value.value,
+            borderColor: isActive ? settings.activeBorder.value.value : settings.defaultBorder.value.value,
+            color: isActive ? settings.activeText.value.value : settings.defaultText.value.value,
             fontWeight: isActive ? "bold" : "normal"
         });
 
-        chip.onclick = () => {
+        chip.onclick = (e) => {
             if (isAll) {
                 this.selectedValues.clear();
             } else {
                 const strVal = String(value);
-                if (settings.multiSelect) {
+                if (settings.multiSelect.value) {
                     if (this.selectedValues.has(strVal)) this.selectedValues.delete(strVal);
                     else this.selectedValues.add(strVal);
                 } else {
@@ -216,6 +183,15 @@ export class Visual implements IVisual {
                 }
             }
             this.applyFilter();
+        };
+
+        // Context Menu support
+        chip.oncontextmenu = (e: MouseEvent) => {
+            this.selectionManager.showContextMenu(selectionId, {
+                x: e.clientX,
+                y: e.clientY
+            });
+            e.preventDefault();
         };
 
         return chip;
@@ -242,33 +218,7 @@ export class Visual implements IVisual {
         }
     }
 
-    public enumerateObjectInstances(options: powerbi.EnumerateVisualObjectInstancesOptions): powerbi.VisualObjectInstanceEnumeration {
-        const objectName = options.objectName;
-        const instances: powerbi.VisualObjectInstance[] = [];
-
-        if (objectName === "chipSettings") {
-            instances.push({
-                objectName: objectName,
-                properties: {
-                    multiSelect: this.settings.chipSettings.multiSelect,
-                    layout: this.settings.chipSettings.layout,
-                    chipHeight: this.settings.chipSettings.chipHeight,
-                    chipRadius: this.settings.chipSettings.chipRadius,
-                    fontSize: this.settings.chipSettings.fontSize,
-                    chipGap: this.settings.chipSettings.chipGap,
-                    chipPaddingH: this.settings.chipSettings.chipPaddingH,
-                    defaultBg: this.settings.chipSettings.defaultBg,
-                    defaultBorder: this.settings.chipSettings.defaultBorder,
-                    defaultText: this.settings.chipSettings.defaultText,
-                    activeBg: this.settings.chipSettings.activeBg,
-                    activeBorder: this.settings.chipSettings.activeBorder,
-                    activeText: this.settings.chipSettings.activeText,
-                    showSelectAll: this.settings.chipSettings.showSelectAll,
-                    selectAllLabel: this.settings.chipSettings.selectAllLabel
-                },
-                selector: null
-            });
-        }
-        return instances;
+    public getFormattingModel(): powerbi.visuals.FormattingModel {
+        return this.formattingSettingsService.buildFormattingModel(this.formattingSettings);
     }
 }

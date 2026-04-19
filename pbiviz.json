@@ -14,7 +14,7 @@
     "email": "support@tcviz.com"
   },
   "assets": {
-    "icon": "assets/icon.png"
+    "icon": "assets/icon.svg"
   },
   "apiVersion": "5.3.0",
   "style": "style/visual.less",
