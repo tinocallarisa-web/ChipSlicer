@@ -2,7 +2,7 @@
   "visual": {
     "name": "chipSlicerPro",
     "displayName": "Chip Slicer Pro",
-    "guid": "chipSlicerPro98877665544332211",
+    "guid": "chipSlicerPro",
     "visualClassName": "Visual",
     "version": "1.0.0.0",
     "description": "A modern chip/pill style slicer with page-level filtering, multi-select, and professional customization.",
@@ -16,7 +16,7 @@
   "assets": {
     "icon": "assets/icon.svg"
   },
-  "apiVersion": "5.3.0",
+  "apiVersion": "5.10.0",
   "style": "style/visual.less",
   "capabilities": "capabilities.json",
   "dependencies": null,
