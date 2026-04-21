@@ -101,7 +101,7 @@ export class Visual implements IVisual {
         this.container.style.overflowY = "auto";
         this.container.style.height = "100%";
 
-        // Freemium Limit: free users see up to 12 values
+        // Freemium Limit: free users see up to 5 values
         let displayValues = values;
         const isLimited = !this.isPro && values.length > 12;
         if (isLimited) displayValues = values.slice(0, 12);
