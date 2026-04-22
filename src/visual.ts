@@ -30,7 +30,7 @@ export class Visual implements IVisual {
     private formattingSettingsService: FormattingSettingsService;
     private formattingSettings: VisualSettingsModel;
     private selectionManager: ISelectionManager;
-    
+
     private isPro: boolean = false;
     private selectedValues: Set<string> = new Set();
     private dataView: DataView;
@@ -72,7 +72,7 @@ export class Visual implements IVisual {
         this.container.replaceChildren();
         const category = this.dataView.categorical.categories[0];
         const values = category.values;
-        
+
         // Target extraction
         const queryName = category.source.queryName || "";
         const dotIndex = queryName.indexOf(".");
@@ -91,7 +91,7 @@ export class Visual implements IVisual {
         }
 
         const settings = this.formattingSettings.chipSettingsCard;
-        
+
         // CSS Variables for styling
         this.container.style.display = "flex";
         this.container.style.flexWrap = settings.layout.value.value === "horizontal" ? "wrap" : "nowrap";
@@ -100,6 +100,16 @@ export class Visual implements IVisual {
         this.container.style.padding = "8px";
         this.container.style.overflowY = "auto";
         this.container.style.height = "100%";
+
+        // Context menu on empty space
+        this.container.oncontextmenu = (e: MouseEvent) => {
+            const position: powerbi.extensibility.IPoint = {
+                x: e.clientX,
+                y: e.clientY
+            };
+            this.selectionManager.showContextMenu(null, position);
+            e.preventDefault();
+        };
 
         // Freemium Limit: free users see up to 5 values
         let displayValues = values;
@@ -117,7 +127,7 @@ export class Visual implements IVisual {
         displayValues.forEach((val, i) => {
             const strVal = String(val);
             const isActive = this.selectedValues.has(strVal);
-            
+
             // Create SelectionId for context menu and filtering
             const selectionId = this.host.createSelectionIdBuilder()
                 .withCategory(category, i)
@@ -147,6 +157,7 @@ export class Visual implements IVisual {
         const chip = document.createElement("div");
         chip.className = "chip-item";
         chip.innerText = label;
+        chip.title = label;
 
         Object.assign(chip.style, {
             height: `${settings.chipHeight.value}px`,

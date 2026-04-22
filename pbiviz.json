@@ -4,7 +4,7 @@
     "displayName": "Chip Slicer Pro",
     "guid": "chipSlicerPro",
     "visualClassName": "Visual",
-    "version": "1.1.0.0",
+    "version": "1.2.0.0",
     "description": "A modern chip/pill style slicer with page-level filtering, multi-select, and professional customization.",
     "supportUrl": "https://tcviz.com/support",
     "gitHubUrl": ""
