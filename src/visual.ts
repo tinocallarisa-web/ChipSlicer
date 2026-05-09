@@ -14,24 +14,18 @@ import ISelectionId = powerbi.visuals.ISelectionId;
 import * as models from "powerbi-models";
 
 // Formatting Model
-import { formattingSettings, FormattingSettingsService } from "powerbi-visuals-utils-formattingmodel";
+import { FormattingSettingsService } from "powerbi-visuals-utils-formattingmodel";
 import { VisualSettingsModel } from "./settings";
-
-// Licensing
-import IVisualLicenseManager = powerbi.extensibility.IVisualLicenseManager;
-import ServicePlanState = powerbi.ServicePlanState;
 
 export class Visual implements IVisual {
     private target: HTMLElement;
     private host: IVisualHost;
     private container: HTMLElement;
     private localizationManager: ILocalizationManager;
-    private licenseManager: IVisualLicenseManager;
     private formattingSettingsService: FormattingSettingsService;
     private formattingSettings: VisualSettingsModel;
     private selectionManager: ISelectionManager;
 
-    private isPro: boolean = false;
     private selectedValues: Set<string> = new Set();
     private dataView: DataView;
     private table: string;
@@ -41,7 +35,6 @@ export class Visual implements IVisual {
         this.host = options.host;
         this.target = options.element;
         this.localizationManager = options.host.createLocalizationManager();
-        this.licenseManager = options.host.licenseManager;
         this.formattingSettingsService = new FormattingSettingsService();
         this.selectionManager = options.host.createSelectionManager();
 
@@ -50,14 +43,7 @@ export class Visual implements IVisual {
         this.target.appendChild(this.container);
     }
 
-    public async update(options: VisualUpdateOptions) {
-        try {
-            const licenseResult = await this.licenseManager.getAvailableServicePlans();
-            this.isPro = licenseResult.plans && licenseResult.plans.some(plan => plan.state === ServicePlanState.Active);
-        } catch (e) {
-            this.isPro = false;
-        }
-
+    public update(options: VisualUpdateOptions) {
         this.dataView = options.dataViews[0];
         if (!this.dataView || !this.dataView.categorical || !this.dataView.categorical.categories) {
             this.container.replaceChildren();
@@ -111,11 +97,6 @@ export class Visual implements IVisual {
             e.preventDefault();
         };
 
-        // Freemium Limit: free users see up to 5 values
-        let displayValues = values;
-        const isLimited = !this.isPro && values.length > 12;
-        if (isLimited) displayValues = values.slice(0, 12);
-
         // Select All Chip
         if (settings.showSelectAll.value) {
             const isActive = this.selectedValues.size === 0;
@@ -123,33 +104,17 @@ export class Visual implements IVisual {
             this.container.appendChild(this.createChip(label, null, isActive, true, null));
         }
 
-        // Category Chips
-        displayValues.forEach((val, i) => {
+        // Category Chips — all values shown (free, no limit)
+        values.forEach((val, i) => {
             const strVal = String(val);
             const isActive = this.selectedValues.has(strVal);
 
-            // Create SelectionId for context menu and filtering
             const selectionId = this.host.createSelectionIdBuilder()
                 .withCategory(category, i)
                 .createSelectionId();
 
             this.container.appendChild(this.createChip(strVal, val, isActive, false, selectionId));
         });
-
-        // FIXED: Watermark only shown when free tier limit is actually reached.
-        // Previously showed "tcviz.com" even when no limit was applied, which
-        // Microsoft AppSource reviewers flag as intrusive advertising.
-        if (isLimited) {
-            const wm = document.createElement("div");
-            wm.className = "slicer-watermark";
-            wm.innerText = this.localizationManager.getDisplayName("UpgradePro");
-            wm.style.fontSize = "10px";
-            wm.style.color = "#FF4081";
-            wm.style.fontWeight = "bold";
-            wm.style.marginTop = "10px";
-            wm.style.opacity = "0.7";
-            this.container.appendChild(wm);
-        }
     }
 
     private createChip(label: string, value: any, isActive: boolean, isAll: boolean, selectionId: powerbi.visuals.ISelectionId): HTMLElement {
@@ -196,7 +161,7 @@ export class Visual implements IVisual {
             this.applyFilter();
         };
 
-        // Context Menu support
+        // Context Menu on chip
         chip.oncontextmenu = (e: MouseEvent) => {
             this.selectionManager.showContextMenu(selectionId, {
                 x: e.clientX,
