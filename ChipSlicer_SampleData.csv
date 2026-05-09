@@ -1,0 +1,61 @@
+Country,Channel,Category,Year,Region
+United States,Bar,Beverages,2022,Northeast
+United States,Restaurant,Food,2023,Southeast
+United States,Hotel,Alcohol,2024,Midwest
+United States,Cafeteria,Beverages,2022,West
+United States,Discoteca,Food,2023,Southwest
+Canada,Bar,Beverages,2022,Northeast
+Canada,Restaurant,Alcohol,2023,Southeast
+Canada,Hotel,Food,2024,Midwest
+Canada,Cafeteria,Beverages,2022,West
+Canada,Discoteca,Alcohol,2023,Southwest
+Mexico,Bar,Food,2022,Northeast
+Mexico,Restaurant,Beverages,2023,Southeast
+Mexico,Hotel,Alcohol,2024,Midwest
+Mexico,Cafeteria,Food,2022,West
+Mexico,Discoteca,Beverages,2023,Southwest
+United Kingdom,Bar,Alcohol,2022,Northeast
+United Kingdom,Restaurant,Food,2023,Southeast
+United Kingdom,Hotel,Beverages,2024,Midwest
+United Kingdom,Cafeteria,Alcohol,2022,West
+United Kingdom,Discoteca,Food,2023,Southwest
+Germany,Bar,Beverages,2022,Northeast
+Germany,Restaurant,Alcohol,2023,Southeast
+Germany,Hotel,Food,2024,Midwest
+Germany,Cafeteria,Beverages,2022,West
+Germany,Discoteca,Alcohol,2023,Southwest
+France,Bar,Food,2022,Northeast
+France,Restaurant,Beverages,2023,Southeast
+France,Hotel,Alcohol,2024,Midwest
+France,Cafeteria,Food,2022,West
+France,Discoteca,Beverages,2023,Southwest
+Spain,Bar,Alcohol,2022,Northeast
+Spain,Restaurant,Food,2023,Southeast
+Spain,Hotel,Beverages,2024,Midwest
+Spain,Cafeteria,Alcohol,2022,West
+Spain,Discoteca,Food,2023,Southwest
+Italy,Bar,Beverages,2022,Northeast
+Italy,Restaurant,Alcohol,2023,Southeast
+Italy,Hotel,Food,2024,Midwest
+Italy,Cafeteria,Beverages,2022,West
+Italy,Discoteca,Alcohol,2023,Southwest
+Australia,Bar,Food,2022,Northeast
+Australia,Restaurant,Beverages,2023,Southeast
+Australia,Hotel,Alcohol,2024,Midwest
+Australia,Cafeteria,Food,2022,West
+Australia,Discoteca,Beverages,2023,Southwest
+Japan,Bar,Alcohol,2022,Northeast
+Japan,Restaurant,Food,2023,Southeast
+Japan,Hotel,Beverages,2024,Midwest
+Japan,Cafeteria,Alcohol,2022,West
+Japan,Discoteca,Food,2023,Southwest
+Brazil,Bar,Beverages,2022,Northeast
+Brazil,Restaurant,Alcohol,2023,Southeast
+Brazil,Hotel,Food,2024,Midwest
+Brazil,Cafeteria,Beverages,2022,West
+Brazil,Discoteca,Alcohol,2023,Southwest
+Argentina,Bar,Food,2022,Northeast
+Argentina,Restaurant,Beverages,2023,Southeast
+Argentina,Hotel,Alcohol,2024,Midwest
+Argentina,Cafeteria,Food,2022,West
+Argentina,Discoteca,Beverages,2023,Southwest
