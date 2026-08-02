@@ -23,9 +23,7 @@
         "multiSelect": {
           "displayName": "Multi-select",
           "displayNameKey": "multiSelect",
-          "type": {
-            "bool": true
-          }
+          "type": { "bool": true }
         },
         "layout": {
           "displayName": "Layout",
@@ -116,7 +114,9 @@
       }
     }
   ],
-  "supportsKeyboardFocus": true,
   "supportsHighlight": true,
+  "supportsSynchronizingFilterState": true,
+  "supportsLandingPage": true,
+  "supportsKeyboardFocus": true,
   "supportsMultiVisualSelection": true
 }

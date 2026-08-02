@@ -1,0 +1,86 @@
+YOUTUBE DESCRIPTION — LONG VERSION
+Chip Slicer for Power BI | v1.4.0.0 | Free Custom Visual
+===========================================================
+
+Replace the default Power BI list slicer with a modern chip/pill-style filter.
+Chip Slicer is 100% free, Microsoft certified, and takes 30 seconds to set up.
+
+📌 CHAPTERS
+0:00 Introduction
+0:00 What is Chip Slicer?
+0:00 Installing from AppSource
+0:00 Adding to the report canvas
+0:00 Dropping a field — chips appear instantly
+0:00 Single-select mode
+0:00 Multi-select mode
+0:00 The "Select All" button
+0:00 Layout: Horizontal vs Vertical
+0:00 Customizing colors in the Format Pane
+0:00 Chip dimensions (height, radius, padding, gap)
+0:00 Slicer sync across pages
+0:00 High contrast mode
+0:00 Keyboard navigation
+0:00 Tips & best practices
+0:00 Wrap-up
+
+─────────────────────────────────────────────────────────
+
+🔗 LINKS
+→ AppSource: https://appsource.microsoft.com  (search "Chip Slicer TCViz")
+→ Support docs: https://tinocallarisa-web.github.io/chip-slicer/support.html
+→ Privacy Policy: https://tinocallarisa-web.github.io/chip-slicer/privacy.html
+→ Terms of Use: https://tinocallarisa-web.github.io/chip-slicer/terms.html
+→ GitHub: https://github.com/tinocallarisa-web/chip-slicer
+→ Report a bug: https://github.com/tinocallarisa-web/chip-slicer/issues
+
+─────────────────────────────────────────────────────────
+
+✨ WHAT CHIP SLICER DOES
+The built-in Power BI list slicer is functional but takes up a lot of space and
+hides the context of what's selected. Chip Slicer renders each category value as
+a clickable chip — you can see every option and every selection at a glance,
+without scrolling or expanding a dropdown.
+
+🔑 KEY FEATURES
+→ Single-select and multi-select modes
+→ Horizontal (wrapping) and vertical (stacked) layout
+→ Full color control: background, border, and text for active + inactive states
+→ Configurable chip height, border radius, font size, padding, and gap
+→ Optional "Select All" button with customizable label
+→ Slicer sync across report pages
+→ High contrast mode support
+→ Full keyboard accessibility (Tab, Enter, Space)
+→ Landing page when no field is assigned
+→ Up to 1,000 values per slicer
+→ Zero external dependencies — no network calls, no telemetry
+→ Microsoft certified
+
+💸 PRICING
+Chip Slicer is completely free. No license, no subscription, no hidden limits.
+
+🔒 PRIVACY
+Chip Slicer does not collect or transmit any data outside your Power BI environment.
+Full privacy policy: https://tinocallarisa-web.github.io/chip-slicer/privacy.html
+
+─────────────────────────────────────────────────────────
+
+#PowerBI #PowerBIVisuals #ChipSlicer #CustomVisual #DataVisualization
+#BusinessIntelligence #PowerBITips #MicrosoftPowerBI #DataAnalytics #Dashboard
+
+─────────────────────────────────────────────────────────
+
+SHORT VERSION (for Shorts / LinkedIn)
+======================================
+Replace your Power BI list slicer with beautiful, clickable chips.
+Chip Slicer is free, Microsoft certified, and takes 30 seconds to set up.
+↓ Full tutorial in the video ↓
+
+─────────────────────────────────────────────────────────
+
+5 ALTERNATIVE TITLES
+====================
+1. Chip Slicer for Power BI — Free Modern Slicer Visual (Full Tutorial)
+2. Replace Your Power BI List Slicer with Chips | Free Custom Visual
+3. Chip/Pill Style Filter for Power BI | Chip Slicer Tutorial
+4. Power BI Custom Slicer — Chip Slicer Setup & Customization Guide
+5. How to Add a Chip Slicer to Power BI | 100% Free Custom Visual

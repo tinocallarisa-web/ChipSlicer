@@ -1,8 +1,8 @@
 {
   "visual": {
     "name": "chipSlicerFree",
-    "displayName": "Chip Slicer [TEST]",
-    "guid": "chipSlicerFree_test",
+    "displayName": "Chip Slicer",
+    "guid": "chipSlicerFree",
     "visualClassName": "Visual",
     "version": "1.4.0.0",
     "description": "A modern chip/pill style slicer with page-level filtering, multi-select, and professional customization.",

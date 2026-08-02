@@ -1,0 +1,112 @@
+CHIP SLICER — TIPS & HINTS
+Version 1.4.0.0 · 100% Free · tcviz.com
+________________________________________
+
+GETTING STARTED
+---------------
+1. Install — Import from AppSource or .pbiviz file (Visualizations panel > ... > Import a visual from a file).
+2. Add to canvas — Click the Chip Slicer icon in the Visualizations panel.
+3. Drop a field — Drag any categorical column into the Category field well. Chips appear immediately.
+4. Filter — Click any chip to filter all visuals on the page. Click again (or click "All") to clear.
+
+________________________________________
+
+FIELD WELLS
+-----------
+· Category ......... Any categorical column (text, number, date, boolean)
+· Limit ............. 1,000 distinct values
+· Note .............. One field at a time. Remove the field to show the landing page.
+
+________________________________________
+
+FORMAT PANE — CHIP STYLE
+-------------------------
+
+BEHAVIOUR
+· Multi-select .............. Off by default. On = multiple chips active at once.
+· Show "All" button ........ On by default. Adds a chip that clears all filters instantly.
+· "All" button text ........ Default: "All". Change to any label you like.
+· Layout .................... Horizontal (chips wrap into rows) or Vertical (chips stack).
+
+DIMENSIONS
+· Chip height (px) .......... Default: 34
+· Border radius (px) ........ Default: 17 (= half height for full pill shape)
+· Font size ................. Default: 12
+· Gap (px) .................. Default: 8
+· Horizontal padding (px) ... Default: 16
+
+COLORS — INACTIVE STATE (unselected chips)
+· Inactive background ....... Default: #F3F4F6
+· Inactive border ........... Default: #E5E7EB
+· Inactive text ............. Default: #374151
+
+COLORS — ACTIVE STATE (selected chips)
+· Active background ......... Default: #378ADD
+· Active border ............. Default: #378ADD
+· Active text ............... Default: #FFFFFF
+
+________________________________________
+
+TIPS & BEST PRACTICES
+---------------------
+· Header slicers — Use Horizontal layout in report headers for a navigation-bar look.
+· Sidebar slicers — Use Vertical layout in a narrow side panel; chips stack cleanly.
+· Short labels — Chip width adapts to label length; keep values concise.
+· Brand colors — Set Active background to your report's accent color for consistency.
+· Full pill look — Set Border radius to half of Chip height (e.g., height 34 = radius 17).
+· Guided analysis — Keep Multi-select off to force single-value selection.
+· Exploratory dashboards — Turn Multi-select on to let users combine values freely.
+· Slicer sync — Use View > Sync Slicers to share state across all report pages.
+· Custom "All" label — Change to "Show all", "Reset", or your language equivalent.
+· Match theme — Override Active colors to match Power BI theme accent colors.
+
+________________________________________
+
+EXAMPLE CONFIGURATIONS
+----------------------
+
+Classic pill slicer (single-select)
+  Layout: Horizontal  Height: 34  Radius: 17  Gap: 8  H-Padding: 16
+  Multi-select: Off  Show "All": On
+
+Compact tag filter (multi-select)
+  Layout: Horizontal  Height: 28  Radius: 6  Gap: 6  H-Padding: 12  Font: 11
+  Multi-select: On  Active bg: your report accent color
+
+Sidebar navigation
+  Layout: Vertical  Height: 40  Radius: 8  Gap: 4  H-Padding: 20  Font: 13
+  Multi-select: Off  Show "All": On
+
+Minimal / borderless look
+  Set Inactive border = Inactive background
+  Set Active border = Active background
+
+________________________________________
+
+TROUBLESHOOTING
+---------------
+· Chips don't appear
+  > Add a field to the Category well.
+
+· Filter doesn't affect other visuals
+  > Check Format > Edit interactions for those visuals.
+
+· "All" chip is missing
+  > Enable Show "All" button in Format Pane > Chip Style.
+
+· Can only select one chip
+  > Enable Multi-select in Format Pane > Chip Style.
+
+· Colors look wrong in high contrast
+  > Expected behavior — Chip Slicer auto-adapts to the high contrast theme.
+
+· Chips still filtered after switching pages
+  > Use Sync Slicers (View > Sync Slicers) to share state across pages.
+
+· Visual appears blank after import
+  > Remove from canvas and re-add it; reload Power BI Desktop if needed.
+
+________________________________________
+
+Chip Slicer is 100% free — all features available with no license required.
+Support: https://tinocallarisa-web.github.io/chip-slicer/support.html

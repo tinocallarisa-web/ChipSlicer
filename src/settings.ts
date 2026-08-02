@@ -4,7 +4,7 @@ import FormattingSettingsCard = formattingSettings.SimpleCard;
 import FormattingSettingsSlice = formattingSettings.Slice;
 import FormattingSettingsModel = formattingSettings.Model;
 
-class ChipSettingsCard extends FormattingSettingsCard {
+export class ChipSettingsCard extends FormattingSettingsCard {
     public multiSelect = new formattingSettings.ToggleSwitch({
         name: "multiSelect",
         displayName: "Multi-select",

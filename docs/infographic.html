@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=1366"/>
+<title>Chip Slicer — TCViz Infographic</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #888;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    padding: 24px 0;
+  }
+
+  /* ── Download button ─────────────────────────────────────────────── */
+  #download-btn {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 9999;
+    background: #C96442;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  #download-btn:hover { background: #B05730; }
+
+  /* ── Infographic wrapper ─────────────────────────────────────────── */
+  #infographic {
+    width: 1366px;
+    background: #FAF9F5;
+    color: #3D3929;
+    overflow: hidden;
+  }
+
+  /* ── 1. HEADER ───────────────────────────────────────────────────── */
+  .header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 32px;
+    padding: 28px 48px 24px;
+    background: #FAF9F5;
+    border-bottom: 2px solid #DAD9D4;
+  }
+  .header-text h1 {
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #3D3929;
+    letter-spacing: -0.5px;
+  }
+  .header-text h1 span { color: #C96442; }
+  .header-text p {
+    margin-top: 6px;
+    font-size: 15px;
+    color: #535146;
+    max-width: 520px;
+    line-height: 1.5;
+  }
+  .header-badge {
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #C96442;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── 2. USE CASES STRIP ──────────────────────────────────────────── */
+  .use-cases {
+    background: #EDE9DE;
+    border-bottom: 1px solid #DAD9D4;
+    padding: 18px 48px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .use-cases-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #83827D;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin-right: 28px;
+  }
+  .use-cases-list {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+  .use-case-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #FAF9F5;
+    border: 1px solid #DAD9D4;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 12px;
+    color: #535146;
+    white-space: nowrap;
+  }
+  .use-case-chip i { color: #C96442; font-size: 15px; }
+  .callout-box {
+    background: #C96442;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    max-width: 210px;
+    line-height: 1.4;
+    margin-left: 16px;
+    flex-shrink: 0;
+  }
+  .callout-box span { font-size: 18px; font-weight: 700; display: block; }
+
+  /* ── 3. BODY — FEATURES ──────────────────────────────────────────── */
+  .body-section {
+    display: grid;
+    grid-template-columns: 1fr 220px 1fr;
+    gap: 0;
+    padding: 36px 48px;
+    background: #FAF9F5;
+    border-bottom: 1px solid #DAD9D4;
+  }
+
+  .features-col {
+    padding-right: 32px;
+  }
+  .features-col-right {
+    padding-left: 32px;
+  }
+  .col-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #83827D;
+    margin-bottom: 14px;
+  }
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 11px;
+  }
+  .feature-item i {
+    font-size: 18px;
+    color: #C96442;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .feature-item-text strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #3D3929;
+  }
+  .feature-item-text span {
+    font-size: 11.5px;
+    color: #535146;
+    line-height: 1.4;
+  }
+
+  /* center column */
+  .center-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    border-left: 1px solid #DAD9D4;
+    border-right: 1px solid #DAD9D4;
+    padding: 0 24px;
+  }
+  .free-circle {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #C96442, #9C87F5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(201, 100, 66, 0.35);
+  }
+  .free-circle .circle-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .free-circle .circle-main {
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .free-circle .circle-sub {
+    font-size: 10px;
+    opacity: 0.8;
+  }
+  .stat-pill {
+    background: #EDE9DE;
+    border: 1px solid #DAD9D4;
+    border-radius: 20px;
+    padding: 7px 16px;
+    text-align: center;
+    width: 100%;
+  }
+  .stat-pill .stat-num {
+    font-size: 20px;
+    font-weight: 700;
+    color: #C96442;
+    display: block;
+    line-height: 1.1;
+  }
+  .stat-pill .stat-desc {
+    font-size: 10px;
+    color: #83827D;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── 4. WORKFLOW ─────────────────────────────────────────────────── */
+  .workflow-section {
+    background: #EDE9DE;
+    border-bottom: 1px solid #DAD9D4;
+    padding: 28px 48px;
+  }
+  .workflow-section .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #83827D;
+    margin-bottom: 16px;
+  }
+  .workflow-steps {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .workflow-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+  .workflow-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: -12px;
+    width: 24px;
+    height: 2px;
+    background: #C96442;
+  }
+  .step-num {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #C96442;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+  }
+  .step-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #3D3929;
+    margin-bottom: 4px;
+  }
+  .step-desc {
+    font-size: 11px;
+    color: #535146;
+    line-height: 1.4;
+    padding: 0 8px;
+  }
+  .workflow-tagline {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 13px;
+    font-style: italic;
+    color: #83827D;
+  }
+
+  /* ── 5. BOTTOM GRID ──────────────────────────────────────────────── */
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid #DAD9D4;
+  }
+  .bottom-card {
+    padding: 28px 32px;
+    border-right: 1px solid #DAD9D4;
+  }
+  .bottom-card:last-child { border-right: none; }
+  .bottom-card-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #83827D;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .bottom-card-title i { font-size: 16px; color: #C96442; }
+  .bottom-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .bottom-card ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: #535146;
+    line-height: 1.4;
+  }
+  .bottom-card ul li::before {
+    content: '→';
+    color: #C96442;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .format-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid #F5F3ED;
+    font-size: 12px;
+    color: #535146;
+  }
+  .format-row:last-child { border-bottom: none; }
+  .format-row i { color: #9C87F5; font-size: 15px; width: 18px; text-align: center; }
+
+  /* ── 6. FOOTER ───────────────────────────────────────────────────── */
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 48px;
+    background: #EDE9DE;
+    border-top: 1px solid #DAD9D4;
+  }
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+  .footer-links a {
+    font-size: 12px;
+    color: #535146;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .footer-links a i { color: #C96442; font-size: 14px; }
+  .footer-copy {
+    font-size: 11px;
+    color: #83827D;
+  }
+
+  @page { size: A4 landscape; margin: 0; }
+  @media print {
+    body { background: #FAF9F5; padding: 0; }
+    #download-btn { display: none; }
+    #infographic { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<button id="download-btn" onclick="downloadPng()">
+  <i class="ti ti-download"></i> Download PNG
+</button>
+
+<div id="infographic">
+
+  <!-- ── 1. HEADER ───────────────────────────────────────────────── -->
+  <div class="header">
+    <!-- Logo -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 828 362" width="150" height="65">
+      <defs>
+        <linearGradient id="g" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stop-color="#B05730"/>
+          <stop offset="0.55" stop-color="#C96442"/>
+          <stop offset="1" stop-color="#9C87F5"/>
+        </linearGradient>
+      </defs>
+      <g transform="translate(40,46)">
+        <rect x="22" y="20" width="150" height="150" rx="30" fill="none" stroke="url(#g)" stroke-width="11"/>
+        <g fill="url(#g)">
+          <rect x="42" y="110" width="20" height="58" rx="5"/>
+          <rect x="70" y="86" width="20" height="82" rx="5"/>
+          <rect x="98" y="62" width="20" height="106" rx="5"/>
+          <rect x="126" y="38" width="20" height="130" rx="5"/>
+        </g>
+      </g>
+      <text x="258" y="246" font-family="Poppins,sans-serif" font-weight="700" font-size="196" letter-spacing="-4">
+        <tspan fill="url(#g)">tc</tspan><tspan fill="#3D3929">viz</tspan>
+      </text>
+      <text x="264" y="306" font-family="Poppins,sans-serif" font-weight="500" font-size="31" letter-spacing="6.5" fill="#83827D">VISUALS TO POWER BI</text>
+    </svg>
+
+    <!-- Text -->
+    <div class="header-text">
+      <h1><span>Chip Slicer</span> for Power BI</h1>
+      <p>A modern chip/pill style slicer that replaces the default list slicer with a compact, beautiful, and fully customizable filtering experience.</p>
+      <div class="header-badge"><i class="ti ti-infinity"></i> 100% FREE — No license required</div>
+    </div>
+
+    <!-- Illustration -->
+    <svg width="190" height="110" viewBox="0 0 190 110" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="6" width="52" height="28" rx="14" fill="#C96442"/>
+      <text x="30" y="25" text-anchor="middle" font-family="Segoe UI" font-size="11" fill="white" font-weight="700">All</text>
+      <rect x="62" y="6" width="88" height="28" rx="14" fill="#EDE9DE" stroke="#DAD9D4" stroke-width="1.5"/>
+      <text x="106" y="25" text-anchor="middle" font-family="Segoe UI" font-size="10" fill="#535146">North Region</text>
+      <rect x="156" y="6" width="30" height="28" rx="14" fill="#EDE9DE" stroke="#DAD9D4" stroke-width="1.5"/>
+      <text x="171" y="25" text-anchor="middle" font-family="Segoe UI" font-size="10" fill="#535146">…</text>
+
+      <rect x="4" y="42" width="96" height="28" rx="14" fill="#9C87F5"/>
+      <text x="52" y="61" text-anchor="middle" font-family="Segoe UI" font-size="10" fill="white" font-weight="600">South Region</text>
+      <rect x="106" y="42" width="80" height="28" rx="14" fill="#EDE9DE" stroke="#DAD9D4" stroke-width="1.5"/>
+      <text x="146" y="61" text-anchor="middle" font-family="Segoe UI" font-size="10" fill="#535146">East Region</text>
+
+      <rect x="4" y="78" width="70" height="28" rx="14" fill="#EDE9DE" stroke="#DAD9D4" stroke-width="1.5"/>
+      <text x="39" y="97" text-anchor="middle" font-family="Segoe UI" font-size="10" fill="#535146">Central</text>
+      <rect x="80" y="78" width="72" height="28" rx="14" fill="#EDE9DE" stroke="#DAD9D4" stroke-width="1.5"/>
+      <text x="116" y="97" text-anchor="middle" font-family="Segoe UI" font-size="10" fill="#535146">West</text>
+      <rect x="158" y="78" width="28" height="28" rx="14" fill="#EDE9DE" stroke="#DAD9D4" stroke-width="1.5"/>
+      <text x="172" y="97" text-anchor="middle" font-family="Segoe UI" font-size="10" fill="#535146">…</text>
+    </svg>
+  </div>
+
+  <!-- ── 2. USE CASES ─────────────────────────────────────────────── -->
+  <div class="use-cases">
+    <div class="use-cases-label">Use Cases</div>
+    <div class="use-cases-list">
+      <div class="use-case-chip"><i class="ti ti-map-pin"></i> Region Filter</div>
+      <div class="use-case-chip"><i class="ti ti-tag"></i> Product Category</div>
+      <div class="use-case-chip"><i class="ti ti-calendar"></i> Time Period</div>
+      <div class="use-case-chip"><i class="ti ti-users"></i> Customer Segment</div>
+      <div class="use-case-chip"><i class="ti ti-building"></i> Department</div>
+      <div class="use-case-chip"><i class="ti ti-activity"></i> Status / Stage</div>
+      <div class="use-case-chip"><i class="ti ti-chart-bar"></i> KPI Dimension</div>
+      <div class="use-case-chip"><i class="ti ti-filter"></i> Any Categorical Field</div>
+    </div>
+    <div class="callout-box">
+      <span>1,000</span>
+      values per slicer — no limits, no paywall
+    </div>
+  </div>
+
+  <!-- ── 3. BODY — FEATURES ──────────────────────────────────────── -->
+  <div class="body-section">
+
+    <!-- Left: Interaction features -->
+    <div class="features-col">
+      <div class="col-title">Interaction</div>
+
+      <div class="feature-item">
+        <i class="ti ti-toggle-right"></i>
+        <div class="feature-item-text">
+          <strong>Single &amp; Multi-select</strong>
+          <span>Toggle between modes in the Format Pane. Multi-select lets users combine values freely.</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <i class="ti ti-circle-check"></i>
+        <div class="feature-item-text">
+          <strong>"Select All" Button</strong>
+          <span>Optional chip that clears all filters instantly. Label is fully customizable.</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <i class="ti ti-refresh"></i>
+        <div class="feature-item-text">
+          <strong>Slicer Sync</strong>
+          <span>State is preserved when navigating between report pages via the Sync Slicers panel.</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <i class="ti ti-keyboard"></i>
+        <div class="feature-item-text">
+          <strong>Keyboard Navigation</strong>
+          <span>Full Tab, Enter, and Space support. Accessible focus ring for screen reader users.</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <i class="ti ti-contrast"></i>
+        <div class="feature-item-text">
+          <strong>High Contrast Mode</strong>
+          <span>Automatically adapts colors when Power BI's high contrast theme is active.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center: stats -->
+    <div class="center-col">
+      <div class="free-circle">
+        <span class="circle-label">Always</span>
+        <span class="circle-main">FREE</span>
+        <span class="circle-sub">All features included</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-num">1,000</span>
+        <span class="stat-desc">Max values</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-num">2</span>
+        <span class="stat-desc">Layout modes</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-num">6+</span>
+        <span class="stat-desc">Color settings</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-num">0</span>
+        <span class="stat-desc">External calls</span>
+      </div>
+    </div>
+
+    <!-- Right: Appearance features -->
+    <div class="features-col-right">
+      <div class="col-title">Appearance</div>
+
+      <div class="feature-item">
+        <i class="ti ti-layout-rows"></i>
+        <div class="feature-item-text">
+          <strong>Horizontal &amp; Vertical Layout</strong>
+          <span>Chips wrap horizontally for dashboard headers, or stack vertically for sidebars.</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <i class="ti ti-palette"></i>
+        <div class="feature-item-text">
+          <strong>Full Color Control</strong>
+          <span>Set background, border, and text color for both active and inactive states independently.</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <i class="ti ti-resize"></i>
+        <div class="feature-item-text">
+          <strong>Chip Dimensions</strong>
+          <span>Control height, border radius, font size, horizontal padding, and gap between chips.</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <i class="ti ti-eye"></i>
+        <div class="feature-item-text">
+          <strong>Landing Page</strong>
+          <span>Displays a clean placeholder when no data field is assigned — no blank white box.</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <i class="ti ti-device-analytics"></i>
+        <div class="feature-item-text">
+          <strong>Theme Friendly</strong>
+          <span>Default colors work with any Power BI theme out of the box. Override as needed.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── 4. WORKFLOW ──────────────────────────────────────────────── -->
+  <div class="workflow-section">
+    <div class="section-label">How it works</div>
+    <div class="workflow-steps">
+      <div class="workflow-step">
+        <div class="step-num">1</div>
+        <div class="step-title">Add the Visual</div>
+        <div class="step-desc">Import from AppSource or .pbiviz file. Appears in your Visualizations panel.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">2</div>
+        <div class="step-title">Drop a Field</div>
+        <div class="step-desc">Drag any categorical column into the Category well. Chips render instantly.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">3</div>
+        <div class="step-title">Click to Filter</div>
+        <div class="step-desc">Click any chip to apply a filter to all visuals on the page.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">4</div>
+        <div class="step-title">Combine Values</div>
+        <div class="step-desc">Enable Multi-select in Format Pane to filter by multiple values at once.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">5</div>
+        <div class="step-title">Style It</div>
+        <div class="step-desc">Open the Format Pane to match your report's theme and branding.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">6</div>
+        <div class="step-title">Sync Pages</div>
+        <div class="step-desc">Use Power BI's Sync Slicers panel to keep filters consistent across pages.</div>
+      </div>
+    </div>
+    <div class="workflow-tagline">
+      "Replace cluttered dropdown slicers with a modern, space-efficient chip experience."
+    </div>
+  </div>
+
+  <!-- ── 5. BOTTOM GRID ───────────────────────────────────────────── -->
+  <div class="bottom-grid">
+    <div class="bottom-card">
+      <div class="bottom-card-title"><i class="ti ti-stars"></i> Key Benefits</div>
+      <ul>
+        <li>Compact layout — fits more filters in the same space as a single dropdown</li>
+        <li>Instant visual feedback — active state is always clear at a glance</li>
+        <li>No learning curve — users already know how to click chips</li>
+        <li>Accessible — keyboard and screen reader friendly out of the box</li>
+        <li>Zero performance overhead — no external libraries or network calls</li>
+      </ul>
+    </div>
+    <div class="bottom-card">
+      <div class="bottom-card-title"><i class="ti ti-bulb"></i> Tips &amp; Best Practices</div>
+      <ul>
+        <li>Use horizontal layout in report headers for a navigation-bar feel</li>
+        <li>Keep labels short — chips are designed for concise category names</li>
+        <li>Match Active Background to your report's accent color for brand consistency</li>
+        <li>Enable Multi-select for exploratory dashboards, disable it for guided analysis</li>
+        <li>Use the Sync Slicers panel to share state across all report pages</li>
+        <li>Increase Border Radius to 50% for the classic pill/lozenge look</li>
+      </ul>
+    </div>
+    <div class="bottom-card">
+      <div class="bottom-card-title"><i class="ti ti-adjustments"></i> Format Pane</div>
+      <div class="format-row"><i class="ti ti-toggle-right"></i> Multi-select on / off</div>
+      <div class="format-row"><i class="ti ti-layout-rows"></i> Layout: Horizontal / Vertical</div>
+      <div class="format-row"><i class="ti ti-arrows-vertical"></i> Chip height (px)</div>
+      <div class="format-row"><i class="ti ti-border-radius"></i> Border radius (px)</div>
+      <div class="format-row"><i class="ti ti-letter-case"></i> Font size</div>
+      <div class="format-row"><i class="ti ti-spacing-horizontal"></i> Gap &amp; Horizontal padding</div>
+      <div class="format-row"><i class="ti ti-palette"></i> Inactive colors (bg, border, text)</div>
+      <div class="format-row"><i class="ti ti-palette"></i> Active colors (bg, border, text)</div>
+      <div class="format-row"><i class="ti ti-circle-check"></i> Show "All" button + label</div>
+    </div>
+  </div>
+
+  <!-- ── 6. FOOTER ────────────────────────────────────────────────── -->
+  <div class="footer">
+    <!-- Small logo -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 828 362" width="80" height="35">
+      <defs>
+        <linearGradient id="gf" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stop-color="#B05730"/>
+          <stop offset="0.55" stop-color="#C96442"/>
+          <stop offset="1" stop-color="#9C87F5"/>
+        </linearGradient>
+      </defs>
+      <g transform="translate(40,46)">
+        <rect x="22" y="20" width="150" height="150" rx="30" fill="none" stroke="url(#gf)" stroke-width="11"/>
+        <g fill="url(#gf)">
+          <rect x="42" y="110" width="20" height="58" rx="5"/>
+          <rect x="70" y="86" width="20" height="82" rx="5"/>
+          <rect x="98" y="62" width="20" height="106" rx="5"/>
+          <rect x="126" y="38" width="20" height="130" rx="5"/>
+        </g>
+      </g>
+      <text x="258" y="246" font-family="Poppins,sans-serif" font-weight="700" font-size="196" letter-spacing="-4">
+        <tspan fill="url(#gf)">tc</tspan><tspan fill="#3D3929">viz</tspan>
+      </text>
+      <text x="264" y="306" font-family="Poppins,sans-serif" font-weight="500" font-size="31" letter-spacing="6.5" fill="#83827D">VISUALS TO POWER BI</text>
+    </svg>
+
+    <div class="footer-links">
+      <a href="https://tinocallarisa-web.github.io/chip-slicer/support.html"><i class="ti ti-lifebuoy"></i> Support</a>
+      <a href="https://tinocallarisa-web.github.io/chip-slicer/privacy.html"><i class="ti ti-shield"></i> Privacy</a>
+      <a href="https://tinocallarisa-web.github.io/chip-slicer/terms.html"><i class="ti ti-file-text"></i> Terms</a>
+      <a href="https://github.com/tinocallarisa-web/chip-slicer"><i class="ti ti-brand-github"></i> GitHub</a>
+    </div>
+
+    <div class="footer-copy">© 2026 TCViz · All rights reserved</div>
+  </div>
+
+</div>
+
+<script>
+function downloadPng() {
+  const btn = document.getElementById('download-btn');
+  btn.textContent = 'Generating…';
+  btn.disabled = true;
+  html2canvas(document.getElementById('infographic'), {
+    scale: 2,
+    useCORS: true,
+    allowTaint: true,
+    backgroundColor: '#FAF9F5'
+  }).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'chip-slicer-infographic.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    btn.innerHTML = '<i class="ti ti-download"></i> Download PNG';
+    btn.disabled = false;
+  });
+}
+</script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 {
-  "name": "chip-slicer-pro",
-  "description": "default_template_value",
-  "version": "1.0.0",
+  "name": "chip-slicer",
+  "description": "A modern chip/pill style slicer for Power BI. 100% free.",
+  "version": "1.4.0",
   "repository": {
     "type": "default_template_value",
     "url": "default_template_value"

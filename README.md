@@ -1,8 +1,8 @@
-# Chip Slicer Pro - Power BI Visual
+# Chip Slicer - Power BI Visual
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Chip Slicer Pro** es un visual moderno estilo "chip/pill" para Power BI que permite un filtrado intuitivo y profesional. Diseñado para ser ligero, altamente personalizable y compatible con los estándares de certificación de Microsoft.
+**Chip Slicer** es un visual moderno estilo "chip/pill" para Power BI que permite un filtrado intuitivo y profesional. Completamente gratuito — todas las funciones disponibles para todos los usuarios sin restricciones. Diseñado para ser ligero, altamente personalizable y compatible con los estándares de certificación de Microsoft.
 
 ## Características Principales
 
@@ -16,7 +16,6 @@
 ## Requisitos
 
 - Power BI Desktop (Versión compatible con API 5.3.0 o superior).
-- Licencia Pro habilitada para funciones extendidas.
 
 ## Instalación
 
