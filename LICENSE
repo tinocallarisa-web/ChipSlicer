@@ -1,0 +1,24 @@
+Copyright (c) 2026 TCViz (Laurentino Callarisa). All rights reserved.
+
+Chip Slicer is proprietary software, offered free of charge through Microsoft
+AppSource and governed by the Terms of Use published at:
+
+    https://tinocallarisa-web.github.io/ChipSlicer/terms.html
+
+PERMITTED
+  - Using the visual inside Microsoft Power BI, free of charge.
+  - Reading this source code for evaluation, security review and Microsoft
+    Power BI certification purposes.
+
+NOT PERMITTED without prior written permission from TCViz
+  - Copying, redistributing, sublicensing or selling this software or
+    derivative works.
+  - Publishing a modified build to AppSource or any other marketplace.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHOR BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Contact: support@tcviz.com

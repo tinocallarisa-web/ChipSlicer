@@ -1,6 +1,5 @@
 {
   "All": "All",
-  "UpgradePro": "Upgrade to Pro for more items",
   "chipSettings": "Chip Style",
   "multiSelect": "Multi-select",
   "layout": "Layout",
@@ -16,5 +15,7 @@
   "activeBorder": "Active border",
   "activeText": "Active text",
   "showSelectAll": "Show 'All' button",
-  "selectAllLabel": "'All' button text"
+  "selectAllLabel": "'All' button text",
+  "LandingText": "Add a field to the Category well to start filtering.",
+  "Blank": "(Blank)"
 }

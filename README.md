@@ -1,6 +1,6 @@
 # Chip Slicer - Power BI Visual
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+Gratuito · Software propietario — ver [LICENSE](LICENSE)
 
 **Chip Slicer** es un visual moderno estilo "chip/pill" para Power BI que permite un filtrado intuitivo y profesional. Completamente gratuito — todas las funciones disponibles para todos los usuarios sin restricciones. Diseñado para ser ligero, altamente personalizable y compatible con los estándares de certificación de Microsoft.
 
@@ -25,11 +25,11 @@
 
 ## Soporte
 
-Para cualquier duda o soporte técnico, visita [tcviz.com/support](https://tcviz.com/support) o contacta con [support@tcviz.com](mailto:support@tcviz.com).
+Para cualquier duda o soporte técnico, visita [la página de soporte](https://tinocallarisa-web.github.io/ChipSlicer/support.html) o contacta con [support@tcviz.com](mailto:support@tcviz.com).
 
 ## Privacidad
 
-Este visual no recopila ni transmite datos fuera de tu entorno de Power BI. Consulta la [Política de Privacidad completa](https://tcviz.com/privacy) para más detalles.
+Este visual no recopila ni transmite datos fuera de tu entorno de Power BI. Consulta la [Política de Privacidad completa](https://tinocallarisa-web.github.io/ChipSlicer/privacy.html) para más detalles.
 
 ---
 &copy; 2026 Tino Callarisa - [tcviz.com](https://tcviz.com)

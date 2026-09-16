@@ -1,12 +1,12 @@
 {
   "name": "chip-slicer",
   "description": "A modern chip/pill style slicer for Power BI. 100% free.",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "repository": {
     "type": "default_template_value",
     "url": "default_template_value"
   },
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "pbiviz": "pbiviz",
     "start": "pbiviz start",

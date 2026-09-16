@@ -6,3 +6,6 @@ node_modules/
 Thumbs.db
 
 dist/
+
+# Paquetes enviados: archivo local, recuperables desde el tag
+_releases/

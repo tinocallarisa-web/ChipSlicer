@@ -1,0 +1,33 @@
+Chip Slicer 1.4.1.0 — GUID chipSlicerPro
+
+Source (private repo, access granted to OSDC1033 and pbicvsupport):
+https://github.com/tinocallarisa-web/ChipSlicer/tree/certification
+Support: https://tinocallarisa-web.github.io/ChipSlicer/support.html
+Privacy: https://tinocallarisa-web.github.io/ChipSlicer/privacy.html
+Terms: https://tinocallarisa-web.github.io/ChipSlicer/terms.html
+Video: https://www.youtube.com/watch?v=uArWJsB_n7w
+
+WHY THIS UPDATE
+- supportUrl in 1.4.0.0 pointed to tcviz.com/support (404) and had no privacy link. Fixed.
+- Filter values keep their data type (text codes like 08001 were filtered as numbers; dates and blanks did not filter).
+- Filter target read from the column expression (table names with a dot and hierarchy levels failed).
+- Keyboard: single Tab stop, arrows, Home/End, Enter/Space, Escape, Shift+F10. role=listbox.
+- allowInteractions respected; format pane and landing page localized (en-US, es-ES).
+
+TESTING
+1. Open the sample .pbix. The Chip Slicer is on the canvas.
+2. Click a chip: other visuals filter. Click it again: filter clears.
+3. Format pane > Chip Style > Multi-select on: several chips active; "All" clears.
+4. Change page and return: selection is kept. Bookmarks restore it.
+5. Change colors, size, gap, layout: applied live.
+6. Keyboard: Tab in, arrows to move, Enter/Space to select, Escape to clear, Tab out in one step.
+7. Remove the field: landing page appears.
+8. High contrast mode: chips stay readable.
+
+PRIVACY AND NETWORK
+No network calls, no telemetry, no external libraries loaded at runtime. privileges: []. Only the selected filter is persisted, by Power BI, in the report.
+
+LICENSING
+Completely free. No IVisualLicenseManager, no license server, no feature gating.
+
+Full notes: CERTIFICATION-NOTES.md in the certification branch.

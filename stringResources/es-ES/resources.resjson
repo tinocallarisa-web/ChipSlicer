@@ -1,6 +1,5 @@
 {
   "All": "Todo",
-  "UpgradePro": "Pásate a Pro para ver más elementos",
   "chipSettings": "Estilo de Pastilla",
   "multiSelect": "Selección múltiple",
   "layout": "Orientación",
@@ -16,5 +15,7 @@
   "activeBorder": "Borde activo",
   "activeText": "Texto activo",
   "showSelectAll": "Mostrar botón 'Todo'",
-  "selectAllLabel": "Texto del botón 'Todo'"
+  "selectAllLabel": "Texto del botón 'Todo'",
+  "LandingText": "Añade un campo a Categoría para empezar a filtrar.",
+  "Blank": "(En blanco)"
 }
