@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support — Chip Slicer for Power BI</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.7; color: #333; max-width: 860px; margin: 0 auto; padding: 40px 24px; background: #fff; }
+        h1 { color: #0078d4; font-size: 2em; margin-bottom: 4px; }
+        .subtitle { color: #666; font-size: 1em; margin-bottom: 32px; }
+        h2 { color: #2b2b2b; margin-top: 40px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; }
+        h3 { color: #444; margin-top: 24px; margin-bottom: 8px; }
+        p { margin-bottom: 16px; }
+        code { background: #f4f4f4; border-radius: 3px; padding: 2px 6px; font-size: 0.9em; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 0.93em; }
+        th { background: #0078d4; color: #fff; text-align: left; padding: 10px 14px; }
+        td { padding: 9px 14px; border-bottom: 1px solid #eee; vertical-align: top; }
+        tr:nth-child(even) td { background: #f9f9f9; }
+        .badge { display: inline-block; background: #C96442; color: #fff; font-size: 0.75em; font-weight: 700; padding: 2px 9px; border-radius: 12px; letter-spacing: 0.5px; vertical-align: middle; margin-left: 6px; }
+        .free-notice { background: #e8f4e8; border-left: 4px solid #2e7d32; padding: 14px 18px; border-radius: 4px; margin: 24px 0; }
+        .free-notice strong { color: #2e7d32; }
+        .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; margin: 24px 0; box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+        .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .faq-item { margin-bottom: 20px; }
+        .faq-q { font-weight: 700; color: #0078d4; margin-bottom: 6px; }
+        .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 24px 0; }
+        .link-card { border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; text-decoration: none; color: #333; transition: border-color 0.15s; }
+        .link-card:hover { border-color: #0078d4; }
+        .link-card strong { display: block; color: #0078d4; margin-bottom: 4px; }
+        .link-card span { font-size: 0.88em; color: #666; }
+        .footer { margin-top: 60px; font-size: 0.88em; color: #888; border-top: 1px solid #eee; padding-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Chip Slicer <span class="badge">FREE</span></h1>
+    <p class="subtitle">Support documentation · Version 1.4.0.0 · <a href="https://tinocallarisa-web.github.io/chip-slicer/CHANGELOG.md">Changelog</a></p>
+
+    <div class="free-notice">
+        <strong>100% Free, no license required.</strong> All features are available to every Power BI user at no cost. No account, subscription, or Pro license needed.
+    </div>
+
+    <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/uArWJsB_n7w" allowfullscreen title="Chip Slicer for Power BI — Overview"></iframe>
+    </div>
+
+    <!-- ── QUICK START ─────────────────────────────────────────────────── -->
+    <h2>Quick Start</h2>
+    <ol>
+        <li><strong>Get the visual.</strong> Install <em>Chip Slicer</em> from Microsoft AppSource, or import the <code>.pbiviz</code> file via the Visualizations panel (⋯ → Import a visual from a file).</li>
+        <li><strong>Add it to the canvas.</strong> Click the Chip Slicer icon in the Visualizations panel. A blank visual appears.</li>
+        <li><strong>Drop a field.</strong> Drag any categorical column (text, date, number) from your data model into the <strong>Category</strong> field well. Chips render instantly.</li>
+        <li><strong>Click a chip to filter.</strong> All other visuals on the page respond to the selection.</li>
+        <li><strong>Click it again (or click "All") to clear the filter.</strong></li>
+    </ol>
+
+    <!-- ── FIELD WELLS ─────────────────────────────────────────────────── -->
+    <h2>Field Wells</h2>
+    <table>
+        <tr><th>Field well</th><th>Accepts</th><th>Notes</th></tr>
+        <tr>
+            <td><strong>Category</strong></td>
+            <td>Any categorical column (text, number, date, boolean)</td>
+            <td>One field at a time. Displays up to 1,000 distinct values. Remove the field to show the landing page.</td>
+        </tr>
+    </table>
+
+    <!-- ── FORMAT PANE ─────────────────────────────────────────────────── -->
+    <h2>Format Pane — Chip Style</h2>
+    <p>All settings live under <strong>Format visual → Chip Style</strong>.</p>
+
+    <h3>Behaviour</h3>
+    <table>
+        <tr><th>Setting</th><th>Default</th><th>Description</th></tr>
+        <tr><td>Multi-select</td><td>Off</td><td>When off, clicking a chip deselects the previous one. When on, multiple chips can be active simultaneously.</td></tr>
+        <tr><td>Show "All" button</td><td>On</td><td>Adds a special chip at the start that clears all active filters.</td></tr>
+        <tr><td>"All" button text</td><td>All</td><td>Custom label for the clear-all chip.</td></tr>
+        <tr><td>Layout</td><td>Horizontal</td><td>Horizontal: chips wrap into rows. Vertical: chips stack into a single column.</td></tr>
+    </table>
+
+    <h3>Dimensions</h3>
+    <table>
+        <tr><th>Setting</th><th>Default</th><th>Description</th></tr>
+        <tr><td>Chip height (px)</td><td>34</td><td>Height of every chip in pixels.</td></tr>
+        <tr><td>Border radius (px)</td><td>17</td><td>Corner rounding. Set to half the chip height for the classic pill look.</td></tr>
+        <tr><td>Font size</td><td>12</td><td>Label font size in points.</td></tr>
+        <tr><td>Gap (px)</td><td>8</td><td>Space between chips.</td></tr>
+        <tr><td>Horizontal padding (px)</td><td>16</td><td>Left/right padding inside each chip.</td></tr>
+    </table>
+
+    <h3>Colors — Inactive state</h3>
+    <table>
+        <tr><th>Setting</th><th>Default</th><th>Description</th></tr>
+        <tr><td>Inactive background</td><td>#F3F4F6</td><td>Fill color for unselected chips.</td></tr>
+        <tr><td>Inactive border</td><td>#E5E7EB</td><td>Border color for unselected chips.</td></tr>
+        <tr><td>Inactive text</td><td>#374151</td><td>Label color for unselected chips.</td></tr>
+    </table>
+
+    <h3>Colors — Active state</h3>
+    <table>
+        <tr><th>Setting</th><th>Default</th><th>Description</th></tr>
+        <tr><td>Active background</td><td>#378ADD</td><td>Fill color for selected chips.</td></tr>
+        <tr><td>Active border</td><td>#378ADD</td><td>Border color for selected chips.</td></tr>
+        <tr><td>Active text</td><td>#FFFFFF</td><td>Label color for selected chips.</td></tr>
+    </table>
+
+    <!-- ── FAQ ────────────────────────────────────────────────────────── -->
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+        <div class="faq-q">Is Chip Slicer really free? Are there any hidden limits?</div>
+        <p>Yes, completely free. There are no tiers, no paywalls, and no license required. All features — including multi-select, full color customization, and the "All" button — are available to every user. The only limit is 1,000 values per field well, which is a Power BI platform cap applied to all custom visuals.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">How do I select multiple chips at once?</div>
+        <p>Open the Format Pane → Chip Style → turn on <strong>Multi-select</strong>. Once enabled, each chip click toggles independently. Click "All" (or the custom label) to clear all selections at once.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">How do I keep the filter active when I switch report pages?</div>
+        <p>Use Power BI's built-in <strong>Sync Slicers</strong> panel (View → Sync Slicers). Add the Chip Slicer to all pages where you want the filter to persist. Chip Slicer fully supports slicer sync.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">How do I deselect all chips and clear the filter?</div>
+        <p>If "Show All button" is on (default), click the "All" chip. If it's off, click the currently active chip again to deselect it. In multi-select mode, deselect each chip individually or enable the "All" button.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">The visual shows a placeholder icon instead of chips. What happened?</div>
+        <p>No field has been added to the Category well. Drag a column from your data model into the Category field well in the Visualizations panel. The placeholder disappears as soon as a field is assigned.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Can I use Chip Slicer as a regular filter for any column?</div>
+        <p>Yes. Any categorical column works — text, numbers, dates, booleans. The visual passes its selections to Power BI as a standard BasicFilter, so it interacts correctly with all other visuals on the page.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Does Chip Slicer support High Contrast mode?</div>
+        <p>Yes. When Power BI's high contrast theme is active, Chip Slicer automatically reads the theme's foreground and background colors and applies them to the chips, ignoring the custom color settings.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Can I navigate chips with the keyboard?</div>
+        <p>Yes. Use <kbd>Tab</kbd> to move between chips, and <kbd>Enter</kbd> or <kbd>Space</kbd> to toggle selection on the focused chip.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Does this visual collect any data or make network calls?</div>
+        <p>No. Chip Slicer processes all data locally within your Power BI environment. It makes no external network requests, collects no telemetry, and stores no data outside the report file. See the <a href="https://tinocallarisa-web.github.io/chip-slicer/privacy.html">Privacy Policy</a> for full details.</p>
+    </div>
+
+    <!-- ── LINKS ───────────────────────────────────────────────────────── -->
+    <h2>Links &amp; Resources</h2>
+    <div class="links-grid">
+        <a class="link-card" href="https://www.youtube.com/watch?v=uArWJsB_n7w" target="_blank">
+            <strong>▶ Video Tutorial</strong>
+            <span>Full walkthrough on YouTube</span>
+        </a>
+        <a class="link-card" href="https://github.com/tinocallarisa-web/chip-slicer/issues" target="_blank">
+            <strong>🐛 Report a Bug</strong>
+            <span>GitHub Issues tracker</span>
+        </a>
+        <a class="link-card" href="https://tinocallarisa-web.github.io/chip-slicer/privacy.html">
+            <strong>🔒 Privacy Policy</strong>
+            <span>Data handling details</span>
+        </a>
+        <a class="link-card" href="https://tinocallarisa-web.github.io/chip-slicer/terms.html">
+            <strong>📄 Terms of Use</strong>
+            <span>License terms</span>
+        </a>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Tino Callarisa — <a href="https://tcviz.com">tcviz.com</a> · <a href="mailto:support@tcviz.com">support@tcviz.com</a>
+    </div>
+
+</body>
+</html>
