@@ -7,7 +7,11 @@
 
 ## Source code (certification branch)
 
-https://github.com/tinocallarisa-web/chip-slicer/tree/certification
+https://github.com/tinocallarisa-web/ChipSlicer/tree/certification
+
+The repository is **private**. Access has been granted to the following Microsoft reviewer accounts:
+- https://github.com/OSDC1033
+- https://github.com/pbicvsupport
 
 ## Video
 
