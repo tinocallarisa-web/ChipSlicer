@@ -1,31 +1,31 @@
 {
   "name": "chip-slicer",
   "description": "A modern chip/pill style slicer for Power BI. 100% free.",
-  "version": "1.4.1",
-  "repository": {
-    "type": "default_template_value",
-    "url": "default_template_value"
-  },
+  "version": "1.5.0",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "pbiviz": "pbiviz",
     "start": "pbiviz start",
     "package": "pbiviz package",
+    "test-build": "node build-test.js",
     "lint": "npx eslint ."
   },
   "dependencies": {
-    "@types/d3": "7.4.3",
-    "d3": "7.9.0",
-    "powerbi-visuals-api": "~5.10.0",
-    "powerbi-visuals-utils-formattingmodel": "6.0.4"
+    "powerbi-visuals-api": "~5.11.1",
+    "powerbi-models": "^2.0.1",
+    "powerbi-visuals-utils-formattingmodel": "^7.1.0",
+    "powerbi-visuals-utils-formattingutils": "^6.1.2",
+    "powerbi-visuals-utils-onobjectutils": "^6.0.3"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^8.8.0",
-    "eslint": "^9.11.1",
-    "eslint-plugin-powerbi-visuals": "^1.0.0",
-    "powerbi-models": "^2.0.1",
-    "powerbi-visuals-tools": "^7.0.3",
-    "powerbi-visuals-utils-formattingutils": "^6.1.2",
-    "typescript": "5.5.4"
+    "@types/node": "^22.20.4",
+    "eslint": "^10.13.0",
+    "eslint-plugin-powerbi-visuals": "^1.1.1",
+    "powerbi-visuals-tools": "^7.2.1",
+    "typescript": "^5.9.3"
+  },
+  "private": true,
+  "overrides": {
+    "uuid": "^11.1.1"
   }
 }

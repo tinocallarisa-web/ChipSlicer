@@ -2,8 +2,19 @@
   "dataRoles": [
     {
       "displayName": "Category",
+      "displayNameKey": "Role_Category",
       "name": "category",
-      "kind": "Grouping"
+      "kind": "Grouping",
+      "description": "The field whose values become chips",
+      "descriptionKey": "Role_Category_Desc"
+    },
+    {
+      "displayName": "Value (optional)",
+      "displayNameKey": "Role_Value",
+      "name": "measure",
+      "kind": "Measure",
+      "description": "A count or total shown on each chip; items without a value are hidden",
+      "descriptionKey": "Role_Value_Desc"
     }
   ],
   "objects": {
@@ -12,6 +23,13 @@
         "filter": {
           "type": {
             "filter": true
+          }
+        },
+        "formatString": {
+          "type": {
+            "formatting": {
+              "formatString": true
+            }
           }
         }
       }
@@ -23,82 +41,409 @@
         "multiSelect": {
           "displayName": "Multi-select",
           "displayNameKey": "multiSelect",
-          "type": { "bool": true }
+          "type": {
+            "bool": true
+          }
         },
         "layout": {
           "displayName": "Layout",
           "displayNameKey": "layout",
           "type": {
             "enumeration": [
-              { "value": "horizontal", "displayName": "Horizontal" },
-              { "value": "vertical", "displayName": "Vertical" }
+              {
+                "value": "horizontal",
+                "displayName": "Horizontal",
+                "displayNameKey": "Enum_horizontal"
+              },
+              {
+                "value": "vertical",
+                "displayName": "Vertical",
+                "displayNameKey": "Enum_vertical"
+              },
+              {
+                "value": "grid",
+                "displayName": "Grid",
+                "displayNameKey": "Enum_grid"
+              }
             ]
           }
         },
         "chipHeight": {
           "displayName": "Chip height (px)",
           "displayNameKey": "chipHeight",
-          "type": { "numeric": true }
+          "type": {
+            "numeric": true
+          }
         },
         "chipRadius": {
           "displayName": "Border radius (px)",
           "displayNameKey": "chipRadius",
-          "type": { "numeric": true }
+          "type": {
+            "numeric": true
+          }
         },
         "fontSize": {
           "displayName": "Font size",
           "displayNameKey": "fontSize",
-          "type": { "formatting": { "fontSize": true } }
+          "type": {
+            "formatting": {
+              "fontSize": true
+            }
+          }
         },
         "chipGap": {
           "displayName": "Gap (px)",
           "displayNameKey": "chipGap",
-          "type": { "numeric": true }
+          "type": {
+            "numeric": true
+          }
         },
         "chipPaddingH": {
           "displayName": "Horizontal padding (px)",
           "displayNameKey": "chipPaddingH",
-          "type": { "numeric": true }
+          "type": {
+            "numeric": true
+          }
         },
         "defaultBg": {
           "displayName": "Inactive background",
           "displayNameKey": "defaultBg",
-          "type": { "fill": { "solid": { "color": true } } }
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
         },
         "defaultBorder": {
           "displayName": "Inactive border",
           "displayNameKey": "defaultBorder",
-          "type": { "fill": { "solid": { "color": true } } }
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
         },
         "defaultText": {
           "displayName": "Inactive text",
           "displayNameKey": "defaultText",
-          "type": { "fill": { "solid": { "color": true } } }
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
         },
         "activeBg": {
           "displayName": "Active background",
           "displayNameKey": "activeBg",
-          "type": { "fill": { "solid": { "color": true } } }
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
         },
         "activeBorder": {
           "displayName": "Active border",
           "displayNameKey": "activeBorder",
-          "type": { "fill": { "solid": { "color": true } } }
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
         },
         "activeText": {
           "displayName": "Active text",
           "displayNameKey": "activeText",
-          "type": { "fill": { "solid": { "color": true } } }
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
         },
         "showSelectAll": {
           "displayName": "Show 'All' button",
           "displayNameKey": "showSelectAll",
-          "type": { "bool": true }
+          "type": {
+            "bool": true
+          }
         },
         "selectAllLabel": {
           "displayName": "'All' button text",
           "displayNameKey": "selectAllLabel",
-          "type": { "text": true }
+          "type": {
+            "text": true
+          }
+        },
+        "showClear": {
+          "displayName": "Show clear button",
+          "displayNameKey": "showClear",
+          "type": {
+            "bool": true
+          }
+        },
+        "defaultSelection": {
+          "displayName": "Default selection",
+          "displayNameKey": "defaultSelection",
+          "type": {
+            "text": true
+          }
+        },
+        "sort": {
+          "displayName": "Sort",
+          "displayNameKey": "sort",
+          "type": {
+            "enumeration": [
+              {
+                "value": "data",
+                "displayName": "Data order",
+                "displayNameKey": "Enum_data"
+              },
+              {
+                "value": "asc",
+                "displayName": "A to Z",
+                "displayNameKey": "Enum_asc"
+              },
+              {
+                "value": "desc",
+                "displayName": "Z to A",
+                "displayNameKey": "Enum_desc"
+              },
+              {
+                "value": "valueDesc",
+                "displayName": "Value, largest first",
+                "displayNameKey": "Enum_valueDesc"
+              }
+            ]
+          }
+        },
+        "columns": {
+          "displayName": "Columns (0 = automatic)",
+          "displayNameKey": "columns",
+          "type": {
+            "numeric": true
+          }
+        },
+        "wrap": {
+          "displayName": "Wrap to next line",
+          "displayNameKey": "wrap",
+          "type": {
+            "bool": true
+          }
+        },
+        "chipFill": {
+          "displayName": "Stretch chips to fill",
+          "displayNameKey": "chipFill",
+          "type": {
+            "bool": true
+          }
+        },
+        "align": {
+          "displayName": "Alignment",
+          "displayNameKey": "align",
+          "type": {
+            "enumeration": [
+              {
+                "value": "left",
+                "displayName": "Left",
+                "displayNameKey": "Enum_left"
+              },
+              {
+                "value": "center",
+                "displayName": "Center",
+                "displayNameKey": "Enum_center"
+              },
+              {
+                "value": "right",
+                "displayName": "Right",
+                "displayNameKey": "Enum_right"
+              }
+            ]
+          }
+        },
+        "fontFamily": {
+          "displayName": "Font",
+          "displayNameKey": "fontFamily",
+          "type": {
+            "formatting": {
+              "fontFamily": true
+            }
+          }
+        },
+        "showCheck": {
+          "displayName": "Check mark on selected",
+          "displayNameKey": "showCheck",
+          "type": {
+            "bool": true
+          }
+        },
+        "shadow": {
+          "displayName": "Shadow",
+          "displayNameKey": "shadow",
+          "type": {
+            "bool": true
+          }
+        }
+      }
+    },
+    "header": {
+      "displayName": "Header",
+      "displayNameKey": "header",
+      "properties": {
+        "show": {
+          "displayName": "Show header",
+          "displayNameKey": "header_show",
+          "type": {
+            "bool": true
+          }
+        },
+        "text": {
+          "displayName": "Text",
+          "displayNameKey": "header_text",
+          "type": {
+            "text": true
+          }
+        },
+        "fontSize": {
+          "displayName": "Font size",
+          "displayNameKey": "header_fontSize",
+          "type": {
+            "formatting": {
+              "fontSize": true
+            }
+          }
+        },
+        "fontFamily": {
+          "displayName": "Font",
+          "displayNameKey": "header_fontFamily",
+          "type": {
+            "formatting": {
+              "fontFamily": true
+            }
+          }
+        },
+        "bold": {
+          "displayName": "Bold",
+          "displayNameKey": "header_bold",
+          "type": {
+            "bool": true
+          }
+        },
+        "color": {
+          "displayName": "Color",
+          "displayNameKey": "header_color",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "search": {
+      "displayName": "Search",
+      "displayNameKey": "search",
+      "properties": {
+        "show": {
+          "displayName": "Show search box",
+          "displayNameKey": "search_show",
+          "type": {
+            "bool": true
+          }
+        },
+        "placeholder": {
+          "displayName": "Placeholder",
+          "displayNameKey": "search_placeholder",
+          "type": {
+            "text": true
+          }
+        }
+      }
+    },
+    "badge": {
+      "displayName": "Values",
+      "displayNameKey": "badge",
+      "properties": {
+        "show": {
+          "displayName": "Show value on chips",
+          "displayNameKey": "badge_show",
+          "type": {
+            "bool": true
+          }
+        },
+        "color": {
+          "displayName": "Color",
+          "displayNameKey": "badge_color",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "style": {
+      "displayName": "Style template",
+      "displayNameKey": "style",
+      "properties": {
+        "template": {
+          "displayName": "Template",
+          "displayNameKey": "style_template",
+          "type": {
+            "enumeration": [
+              {
+                "value": "classic",
+                "displayName": "Classic",
+                "displayNameKey": "Enum_classic"
+              },
+              {
+                "value": "outline",
+                "displayName": "Outline",
+                "displayNameKey": "Enum_outline"
+              },
+              {
+                "value": "soft",
+                "displayName": "Soft",
+                "displayNameKey": "Enum_soft"
+              },
+              {
+                "value": "square",
+                "displayName": "Square",
+                "displayNameKey": "Enum_square"
+              },
+              {
+                "value": "segmented",
+                "displayName": "Segmented",
+                "displayNameKey": "Enum_segmented"
+              },
+              {
+                "value": "dark",
+                "displayName": "Dark",
+                "displayNameKey": "Enum_dark"
+              }
+            ]
+          }
+        },
+        "guide": {
+          "displayName": "Show setup tips",
+          "displayNameKey": "style_guide",
+          "type": {
+            "bool": true
+          }
         }
       }
     }
@@ -106,10 +451,35 @@
   "privileges": [],
   "dataViewMappings": [
     {
+      "conditions": [
+        {
+          "category": {
+            "max": 1
+          },
+          "measure": {
+            "max": 1
+          }
+        }
+      ],
       "categorical": {
         "categories": {
-          "for": { "in": "category" },
-          "dataReductionAlgorithm": { "top": { "count": 1000 } }
+          "for": {
+            "in": "category"
+          },
+          "dataReductionAlgorithm": {
+            "top": {
+              "count": 1000
+            }
+          }
+        },
+        "values": {
+          "select": [
+            {
+              "bind": {
+                "to": "measure"
+              }
+            }
+          ]
         }
       }
     }
@@ -118,5 +488,13 @@
   "supportsSynchronizingFilterState": true,
   "supportsLandingPage": true,
   "supportsKeyboardFocus": true,
-  "supportsMultiVisualSelection": true
+  "supportsMultiVisualSelection": true,
+  "supportsOnObjectFormatting": true,
+  "enablePointerEventsFormatMode": true,
+  "tooltips": {
+    "supportedTypes": {
+      "default": true,
+      "canvas": true
+    }
+  }
 }

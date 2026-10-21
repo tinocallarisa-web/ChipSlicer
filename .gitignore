@@ -9,3 +9,4 @@ dist/
 
 # Paquetes enviados: archivo local, recuperables desde el tag
 _releases/
+webpack.statistics.*.html

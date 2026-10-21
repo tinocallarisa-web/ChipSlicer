@@ -1,28 +1,38 @@
 {
-  "visual": {
-    "name": "chipSlicerPro",
-    "displayName": "Chip Slicer",
-    "guid": "chipSlicerPro",
-    "visualClassName": "Visual",
-    "version": "1.4.1.0",
-    "description": "A modern chip/pill style slicer with page-level filtering, multi-select, and professional customization.",
-    "supportUrl": "https://tinocallarisa-web.github.io/ChipSlicer/support.html",
-    "privacyTermsLink": "https://tinocallarisa-web.github.io/ChipSlicer/privacy.html",
-    "gitHubUrl": "https://github.com/tinocallarisa-web/ChipSlicer"
-  },
-  "author": {
-    "name": "TCViz",
-    "email": "support@tcviz.com"
-  },
-  "assets": {
-    "icon": "assets/icon.svg"
-  },
-  "apiVersion": "5.10.0",
-  "style": "style/visual.less",
-  "capabilities": "capabilities.json",
-  "dependencies": null,
-  "stringResources": [
-    "stringResources/en-US/resources.resjson",
-    "stringResources/es-ES/resources.resjson"
-  ]
+    "visual": {
+        "name": "chipSlicerPro",
+        "displayName": "Chip Slicer",
+        "guid": "chipSlicerPro",
+        "visualClassName": "Visual",
+        "version": "1.5.0.0",
+        "description": "A modern chip/pill style slicer with page-level filtering, multi-select, and professional customization.",
+        "supportUrl": "https://tinocallarisa-web.github.io/ChipSlicer/support.html",
+        "privacyTermsLink": "https://tinocallarisa-web.github.io/ChipSlicer/privacy.html",
+        "gitHubUrl": "https://github.com/tinocallarisa-web/ChipSlicer"
+    },
+    "author": {
+        "name": "TCViz",
+        "email": "support@tcviz.com"
+    },
+    "assets": {
+        "icon": "assets/icon.png"
+    },
+    "apiVersion": "5.11.1",
+    "style": "style/visual.less",
+    "capabilities": "capabilities.json",
+    "dependencies": null,
+    "stringResources": [
+        "stringResources/en-US/resources.resjson",
+        "stringResources/es-ES/resources.resjson",
+        "stringResources/pt-BR/resources.resjson",
+        "stringResources/pt-PT/resources.resjson",
+        "stringResources/fr-FR/resources.resjson",
+        "stringResources/de-DE/resources.resjson",
+        "stringResources/it-IT/resources.resjson",
+        "stringResources/nl-NL/resources.resjson",
+        "stringResources/pl-PL/resources.resjson",
+        "stringResources/ja-JP/resources.resjson",
+        "stringResources/zh-CN/resources.resjson",
+        "stringResources/ko-KR/resources.resjson"
+    ]
 }
