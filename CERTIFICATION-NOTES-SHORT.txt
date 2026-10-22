@@ -1,7 +1,7 @@
 Chip Slicer 1.5.0.0 - GUID chipSlicerPro
 Repo, branch certification: https://github.com/tinocallarisa-web/ChipSlicer/tree/certification
 Docs: https://tinocallarisa-web.github.io/ChipSlicer/support.html (+privacy.html, terms.html, changelog.html)
-Video: https://www.youtube.com/watch?v=uArWJsB_n7w
+Video: https://www.youtube.com/watch?v=cbJ_VHPA5Sk
 
 WHY THIS SUBMISSION
 Replaces 1.4.1.0. Same objects and properties (saved reports unchanged); new ones added.

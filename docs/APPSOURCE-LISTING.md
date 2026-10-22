@@ -80,8 +80,8 @@ formatting, tooltips and 12 languages. Reports made with earlier versions look t
 
 ## Vídeo
 
-URL canónica `https://www.youtube.com/watch?v=<id>` (nunca acortada). PENDIENTE del vídeo de la 1.5; hasta entonces
-`https://www.youtube.com/watch?v=uArWJsB_n7w`.
+URL canónica `https://www.youtube.com/watch?v=<id>` (nunca acortada). Vídeo de la 1.5:
+`https://www.youtube.com/watch?v=cbJ_VHPA5Sk`.
 
 ## Notas para la certificación
 

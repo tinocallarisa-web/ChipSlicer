@@ -47,7 +47,7 @@ Chip Slicer renders each value of a field as a clickable chip. Selected chips ar
 - ✅ Free for everyone
 
 ### Video
-Overview: https://www.youtube.com/watch?v=uArWJsB_n7w
+Overview: https://www.youtube.com/watch?v=cbJ_VHPA5Sk
 
 ---
 

@@ -16,7 +16,7 @@ Versión 1.5.0.0 · Gratuito para todos · Software propietario — ver [LICENSE
 
 Límites: 1 campo en Categoría, 1 medida en Valor y hasta 1.000 valores. Para varios niveles, [Chip Slicer Hierarchy](https://tcviz.com/product/chip-slicer-hierarchy/).
 
-Vídeo: https://www.youtube.com/watch?v=uArWJsB_n7w
+Vídeo: https://www.youtube.com/watch?v=cbJ_VHPA5Sk
 
 ## Instalación
 

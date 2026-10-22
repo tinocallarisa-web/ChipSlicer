@@ -13,7 +13,7 @@
 
 While you edit, a tips bar at the bottom of the visual offers the templates. Hide it with ✕ (it comes back from Format → Style template → Show setup tips). It never shows in reading view.
 
-Overview video: https://www.youtube.com/watch?v=uArWJsB_n7w
+Overview video: https://www.youtube.com/watch?v=cbJ_VHPA5Sk
 
 ---
 

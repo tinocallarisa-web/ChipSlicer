@@ -25,7 +25,7 @@ import { LANDING_ICON } from "./landingIcon";
 
 const URL_GUIDE = "https://tinocallarisa-web.github.io/ChipSlicer/support.html";
 const URL_PRODUCT = "https://tcviz.com/product/chip-slicer/?ref=visual-chip-slicer";
-const URL_VIDEO = "https://www.youtube.com/watch?v=uArWJsB_n7w";
+const URL_VIDEO = "https://www.youtube.com/watch?v=cbJ_VHPA5Sk";
 const URL_HIERARCHY = "https://tcviz.com/product/chip-slicer-hierarchy/?ref=visual-chip-slicer";
 
 /** Un chip: el valor original (para el filtro), su texto y, si hay medida, su valor. */
