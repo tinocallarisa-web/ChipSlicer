@@ -15,8 +15,9 @@ TESTING
 1. Sample .pbix: Category on the canvas. Click a chip: the page filters. Again: clears.
 2. Ctrl+click or Format > Chip Style > Selection > Multi-select: several chips. The X
 button and "All" clear. Keyboard: Tab in, arrows, Enter/Space, Esc, Shift+F10, Tab out.
-3. Default selection = a value shown on a chip: applied once when the slicer has no
-filter. Clear it: it stays clear. Bookmarks and sync slicers restore the filter.
+3. Default selection = a value shown on a chip: applied when the slicer loads with no
+filter (open the page/report). Clearing it stays clear until the page is opened again.
+Bookmarks and sync slicers restore the filter.
 4. Add a measure to Value: number on each chip, model format; Sort > Value.
 5. Format > Style template > Outline: look changes. Edit mode: tips bar at the bottom,
 close with X. Format mode: click a chip or the header (on-object).
@@ -32,7 +33,7 @@ Only on a click in the tips bar (template, close) and once when the template is 
 in the format pane (clears the settings it defines). Never in a selection callback.
 
 PRIVACY
-No network, telemetry, cookies or storage. privileges: []. No innerHTML. Start-screen
+No network, telemetry, cookies or storage. privileges: []. No innerHTML in src/. Start-screen
 links open only on click via host.launchUrl. ESLint clean; npm audit --omit=dev 0.
 
 LICENSING
@@ -55,7 +56,8 @@ CAPABILITIES CHANGES IN 1.5
 DEFAULT SELECTION
 Applied with applyJsonFilter inside update() only when (a) the text is set, (b) the slicer has no filter in
 options.jsonFilters, (c) a chip matches, (d) interactions are allowed and not in format mode. Applied once per text
-per session: clearing afterwards is respected. While editing, changing the text applies the new default.
+while the visual instance lives: clearing afterwards is respected until the page or report is
+opened again (new instance), when it applies again. Nothing is persisted for it. While editing, changing the text applies the new default.
 
 ON-OBJECT
 HtmlSubSelectionHelper; sub-selectable: chips, header, chip value. In format mode clicks do not filter, tooltips and

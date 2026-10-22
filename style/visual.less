@@ -28,7 +28,7 @@
         color: #605E5C; font-size: 11px; line-height: 1; cursor: pointer; padding: 0;
         &:hover:not(:disabled) { background: rgba(0, 0, 0, 0.06); }
         &:disabled { opacity: 0.35; cursor: default; }
-        &:focus-visible { outline: 2px solid #005A9E; outline-offset: 1px; }
+        &:focus-visible { outline: 2px solid var(--chip-focus, #005A9E); outline-offset: 1px; }
     }
     .chip-clear-float { position: absolute; top: 8px; right: 8px; }
 
@@ -78,10 +78,12 @@
         }
         // Keyboard focus ring — accessible, non-intrusive
         &:focus-visible {
-            outline: 2px solid #005A9E;
+            outline: 2px solid var(--chip-focus, #005A9E);
             outline-offset: 2px;
         }
         &.active { font-weight: 600; }
+        // Fuera del resaltado de otro visual
+        &.dim { opacity: 0.4; }
         // "All" chip gets a subtle dashed border when inactive
         &.chip-all:not(.active) { border-style: dashed !important; }
     }
@@ -115,10 +117,12 @@
         .cl-well { color: #252423; }
         .cl-links { display: grid; gap: 7px; }
         .cl-card { display: flex; align-items: center; gap: 9px; padding: 7px 10px; border: 1px solid #E1DFDD; border-radius: 6px; background: #F7F6F3; color: #252423; text-decoration: none; font-size: 13.5px; cursor: pointer; }
-        .cl-card:hover, .cl-card:focus-visible { border-color: #2B6CB0; outline: none; }
+        .cl-card:hover { border-color: #2B6CB0; }
+        .cl-card:focus-visible { border-color: #2B6CB0; outline: 2px solid var(--chip-focus, #005A9E); outline-offset: 1px; }
         .cl-sub { margin-left: auto; color: #8A8886; font-size: 11px; }
         .cl-a { color: #2B6CB0; font-weight: 600; text-decoration: none; cursor: pointer; font-size: 12px; }
-        .cl-a:hover, .cl-a:focus-visible { text-decoration: underline; outline: none; }
+        .cl-a:hover { text-decoration: underline; }
+        .cl-a:focus-visible { text-decoration: underline; outline: 2px solid var(--chip-focus, #005A9E); outline-offset: 1px; }
         .cl-do { margin: 0; font-size: 12px; line-height: 1.45; }
     }
     .chip-landing-m {

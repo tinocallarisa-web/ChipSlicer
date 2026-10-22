@@ -34,6 +34,8 @@ interface ChipItem {
     value: powerbi.PrimitiveValue;
     label: string;
     measure: number | null;
+    /** Con resaltado de otro visual: false si este valor queda fuera. */
+    lit: boolean;
     measureText: string;
     selectionId: powerbi.visuals.ISelectionId;
     index: number;
@@ -106,6 +108,8 @@ export class Visual implements IVisual {
             this.formatMode = !!(options as any).formatMode;
             this.subSelectionHelper.setFormatMode(this.formatMode);
             this.container.classList.toggle("fmt", this.formatMode);
+            const pal: any = this.host.colorPalette;
+            this.container.style.setProperty("--chip-focus", pal?.isHighContrast ? (pal.foregroundSelected?.value || pal.foreground?.value || "#FFFF00") : "#005A9E");
 
             const dataView = options.dataViews?.[0];
             this.formattingSettings = this.formattingSettingsService.populateFormattingSettingsModel(VisualSettingsModel, dataView);
@@ -233,7 +237,9 @@ export class Visual implements IVisual {
         const ol = mk("ol", "cl-steps");
         const paso = (n: string, b: string, txt: string) => {
             const li = mk("li");
-            li.appendChild(mk("span", "cl-n", n));
+            const num = mk("span", "cl-n", n);
+            if (hc) Object.assign(num.style, { background: "transparent", border: "1px solid " + fg });
+            li.appendChild(num);
             const s = mk("span");
             s.appendChild(mk("b", "cl-well", b));
             s.appendChild(document.createTextNode(" — " + txt));
@@ -265,14 +271,16 @@ export class Visual implements IVisual {
         const blankLabel = this.t("Blank", "(Blank)");
         const catFmt = this.categoryFormatter(category.source);
         const out: ChipItem[] = [];
+        const hl = mcol?.highlights;
         category.values.forEach((val, i) => {
-            const m = mcol ? mcol.values[i] : null;
+            const m = mcol ? (hl ? hl[i] : mcol.values[i]) : null;
             const measure = typeof m === "number" && isFinite(m) ? m : null;
             out.push({
                 key: Visual.valueKey(val),
                 value: val,
                 label: val === null || val === undefined || val === "" ? blankLabel : catFmt(val),
                 measure,
+                lit: !hl || (hl[i] !== null && hl[i] !== undefined && hl[i] !== 0),
                 measureText: mcol && m !== null && m !== undefined ? this.formatValue(m, this.fmtOf(mcol, i)) : "",
                 selectionId: this.host.createSelectionIdBuilder().withCategory(category, i).createSelectionId(),
                 index: i
@@ -443,6 +451,7 @@ export class Visual implements IVisual {
         const badgeOn = !!s.badgeCard.show.value;
         this.items.forEach(it => {
             const c = this.createChip(it.label, it.key, this.selectedValues.has(it.key), false, it.selectionId, badgeOn ? it.measureText : "", hc, layout);
+            if (!it.lit) c.classList.add("dim");
             this.bindTooltip(c, it);
             chips.push(c);
         });
@@ -626,11 +635,13 @@ export class Visual implements IVisual {
             a.href = URL_HIERARCHY;
             a.textContent = this.t("Guide_Hierarchy", "Need several levels (country → city)? Try Chip Slicer Hierarchy.");
             a.addEventListener("click", (e) => { e.preventDefault(); if (this.interactionsAllowed()) this.host.launchUrl(URL_HIERARCHY); });
+            if (hc) a.style.color = azul;
             g.appendChild(a);
         } else if (!this.lastOptions?.dataViews?.[0]?.categorical?.values?.length && vp.width >= 520) {
             const tip = document.createElement("span");
             tip.className = "chip-g-tip";
             tip.textContent = this.t("Guide_ValueTip", "Tip: add a measure to Value to show counts on the chips.");
+            if (hc) tip.style.color = pal.foreground?.value || "#FFF";
             g.appendChild(tip);
         }
         const x = document.createElement("button");
@@ -639,6 +650,7 @@ export class Visual implements IVisual {
         x.textContent = "✕";
         x.title = this.t("Guide_Close", "Hide tips (Format → Style template)");
         x.setAttribute("aria-label", x.title);
+        if (hc) x.style.color = pal.foreground?.value || "#FFF";
         x.addEventListener("click", () => this.persistir("style", { guide: false }));
         g.appendChild(x);
         this.container.querySelector(".chip-root")?.appendChild(g);

@@ -60,7 +60,7 @@ Overview: https://www.youtube.com/watch?v=cbJ_VHPA5Sk
 
 **Clear button (✕)** — Removes the selection in one click. It sits in the header when the header is shown, otherwise in the top-right corner, and only appears when something is selected.
 
-**Default selection** — Type values separated by commas, e.g. `Spain, France`. When the report opens with nothing selected in this slicer, those values are selected. If the user clears them, the slicer stays clear for that session. Values match the chip text, without case or accents. In single-select mode the first match is used.
+**Default selection** — Type values separated by commas, e.g. `Spain, France`. When the report opens with nothing selected in this slicer, those values are selected. If the user clears them, the slicer stays clear until the page is opened again. Values match the chip text, without case or accents. In single-select mode the first match is used.
 
 **Sort** — Data order (the model's sort, including Sort by column), A to Z, Z to A, or by value when there is a measure.
 
@@ -160,7 +160,7 @@ Reports made with earlier versions look and behave the same: the default templat
 ### [1.5.0.0] — 2026-10-22
 **Added**
 - Clear button (✕): removes the selection in one click; in the header when it is shown, otherwise in the top-right corner, and only when something is selected.
-- Default selection: values separated by commas; the report opens with them selected when this slicer has no selection. If the user clears it, it stays clear.
+- Default selection: values separated by commas; the report opens with them selected when this slicer has no selection. If the user clears it, it stays clear until the page is opened again.
 - Value field (optional): a measure shown on each chip with the model's format, dynamic format strings included. Items without a value are hidden.
 - Sort: data order, A to Z, Z to A, or by value.
 - Header with its own text, font, size, bold and color.

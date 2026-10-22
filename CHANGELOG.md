@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 - **Clear button** (✕): removes the selection in one click. In the header when it is shown, otherwise in the
   top-right corner, and only when something is selected.
 - **Default selection**: type values separated by commas; the report opens with them selected when this slicer has
-  no selection. If the user clears it, it stays clear.
+  no selection. If the user clears it, it stays clear until the page is opened again.
 - **Value field** (optional): a measure shown on each chip with the model's format, dynamic format strings included.
   Items without a value are hidden.
 - **Sort**: data order, A to Z, Z to A, or by value.

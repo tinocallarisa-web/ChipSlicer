@@ -30,7 +30,7 @@ everyone, with every feature: no Pro tier, no licence, no watermark.
 
 WHAT IT ADDS TO A SLICER
 • Default selection: type "2026" or "Spain, France" and the report opens with them selected. If the reader clears
-  it, it stays clear.
+  it, it stays clear until the page is opened again.
 • Clear button (✕) and an optional "All" chip.
 • Counts on the chips: put a measure in Value and each chip shows its count or total, with your model's format.
   Items without a value are hidden.
@@ -85,4 +85,4 @@ URL canónica `https://www.youtube.com/watch?v=<id>` (nunca acortada). Vídeo de
 
 ## Notas para la certificación
 
-Ver `CERTIFICATION-NOTES-SHORT.txt` (el campo se vacía en cada reenvío: pegarlo siempre).
+Ver `docs/CERTIFICATION-NOTES-SHORT.txt` (el campo se vacía en cada reenvío: pegarlo siempre).

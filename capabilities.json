@@ -476,5 +476,6 @@
       "default": true,
       "canvas": true
     }
-  }
+  },
+  "supportsEmptyDataView": true
 }
