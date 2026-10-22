@@ -1,112 +1,133 @@
 # Chip Slicer — Website Product Page Content
-**Version 1.4.0.0**
+**Version 1.5.0.0**
 
 ---
 
 ## TAB 1: Overview
 
 ### Headline
-**Chip Slicer — The modern way to filter in Power BI**
+**Chip Slicer — One-click chip filters for Power BI**
 
 ### Subheadline
-Replace cluttered dropdown slicers with compact, beautiful chip/pill filters. 100% free, no license required.
+Turn a field into a row of buttons that filter the page with one click. Free for everyone: no Pro tier, no licence, no watermark.
 
 ### The Problem
-The default Power BI list slicer takes up too much space, shows too little context, and looks out of place in polished dashboards. Dropdown slicers are hidden until clicked. Neither option gives your users an at-a-glance view of what's filtered and what isn't.
+The default Power BI list slicer takes up space and looks out of place in polished dashboards, and a dropdown hides the values until it is opened. Neither opens the report on a chosen value, shows a count next to each item, or clears the selection with one button.
 
 ### How It Works
-Chip Slicer renders each category value as a compact, clickable chip. Active filters are instantly visible by color. Users click to select, click again to deselect. No dropdowns, no scrolling, no confusion.
+Chip Slicer renders each value of a field as a clickable chip. Selected chips are visible at a glance. Click to select, click again (or ✕, or All) to clear. The selection is a standard Power BI filter: it follows sync slicers, is saved in bookmarks, respects edit interactions and appears in the filter pane.
 
 ### Who It's For
-- Power BI report developers who want a cleaner, more modern filtering UX
+- Power BI report developers who want a cleaner, button-style filter
 - Dashboard designers building client-facing reports
 - Analysts who need a compact filter that doesn't dominate the layout
 
 ### What Makes It Different
-- Chips show every available value at a glance — no hidden items
-- Full color control for active and inactive states to match any brand
-- Horizontal wrapping for headers, vertical stacking for sidebars
-- Zero external dependencies, zero network calls — fully certified by Microsoft
-- 100% free with no tier restrictions or licensing
+- **Default selection** — the report opens with the values you choose already selected
+- **Clear button (✕)** — removes the selection in one click
+- **Value on each chip** — put a measure in Value and each chip shows its count or total, with the model's format
+- **Grid layout and six style templates** — Classic, Outline, Soft, Square, Segmented, Dark
+- **Free for everyone** — every feature included, no Pro tier, no licence
 
 ### At a Glance
-- ✅ Single-select and multi-select modes
-- ✅ Horizontal and vertical layout
-- ✅ Full color customization
-- ✅ "Select All" button
-- ✅ Slicer sync across pages
-- ✅ High contrast support
-- ✅ Keyboard accessible
+- ✅ Single-select and multi-select (Ctrl+click adds)
+- ✅ Default selection
+- ✅ Clear button (✕) and optional "All" chip
+- ✅ Optional measure on each chip, with sort by value
+- ✅ Sort: data order, A to Z, Z to A, by value
+- ✅ Horizontal, vertical and grid layout
+- ✅ Six style templates
+- ✅ Optional header
+- ✅ On-object formatting
+- ✅ Power BI tooltips on each chip
+- ✅ Sync slicers and bookmarks
+- ✅ Keyboard, screen reader and high contrast support
+- ✅ 12 languages
 - ✅ Up to 1,000 values
-- ✅ Microsoft certified
-- ✅ 100% free
+- ✅ Free for everyone
+
+### Video
+Overview: https://www.youtube.com/watch?v=uArWJsB_n7w
 
 ---
 
 ## TAB 2: Features
 
-### Interaction
-**Single & Multi-select** — Toggle between modes in the Format Pane. In single-select, clicking a chip deselects the previous one. In multi-select, multiple chips can be active simultaneously.
+### Selection
+**Single & Multi-select** — In single select, a click selects one chip and clicking it again clears it; Ctrl+click adds chips even in this mode. With Multi-select on, every click toggles a chip.
 
-**"Select All" Button** — An optional chip at the start of the list that clears all active filters instantly. The label is fully customizable (e.g., "All", "Reset", "Show all").
+**"All" chip** — An optional chip that clears the filter. Its text can be changed.
 
-**Slicer Sync** — Chip Slicer supports Power BI's native Sync Slicers feature. Add it to the sync group in View → Sync Slicers and filter state is preserved across all linked report pages.
+**Clear button (✕)** — Removes the selection in one click. It sits in the header when the header is shown, otherwise in the top-right corner, and only appears when something is selected.
 
-**Keyboard Navigation** — Every chip is keyboard-focusable. Tab to navigate, Enter or Space to toggle. Fully accessible for screen reader users.
+**Default selection** — Type values separated by commas, e.g. `Spain, France`. When the report opens with nothing selected in this slicer, those values are selected. If the user clears them, the slicer stays clear for that session. Values match the chip text, without case or accents. In single-select mode the first match is used.
 
-**High Contrast Support** — When Power BI's high contrast theme is active, Chip Slicer automatically uses the theme's foreground and background colors, ignoring the custom color settings.
+**Sort** — Data order (the model's sort, including Sort by column), A to Z, Z to A, or by value when there is a measure.
+
+**Works like a native slicer** — The selection is a standard Power BI filter: sync slicers, bookmarks, edit interactions and cross-page filters.
+
+### Values
+**Value field (optional)** — Put a measure in Value and each chip shows it (a count, a total, a percentage), with the model's format, dynamic format strings included. As in any Power BI visual with a measure, items for which the measure is blank are not shown.
+
+**Tooltips** — Power BI tooltips on each chip with the value and the measure.
 
 ### Appearance
-**Horizontal & Vertical Layout** — Horizontal mode wraps chips into rows — ideal for report headers or top-of-page filter bars. Vertical mode stacks chips in a single column — ideal for narrow sidebars.
+**Style templates** — Classic (the look of earlier versions, and the default), Outline, Soft, Square, Segmented and Dark. A template fills in what you have not changed yourself.
 
-**Full Color Control** — Set background, border, and text color for both active (selected) and inactive (unselected) states independently. Six color pickers total.
+**Layout** — Horizontal (wrapping or a single row with horizontal scrolling), Vertical, or Grid with fixed or automatic columns. Stretch chips to fill and alignment. Long labels end with "…".
 
-**Chip Dimensions** — Control chip height, border radius, font size, horizontal padding, and the gap between chips. Mix and match to match your report's visual language.
+**Chips** — Height, border radius, horizontal padding, font, font size, check mark on selected chips and shadow.
 
-**Landing Page** — When no field is assigned to the Category well, Chip Slicer displays a clean placeholder icon with a hint message instead of leaving a blank white box.
+**Colors** — Background, border and text for selected and unselected chips.
 
-**Theme Friendly** — Default colors work with any Power BI theme. Override as needed to match your brand.
+**Header** — Optional title with its own text, font, size, bold and color.
 
-### Technical
-**Filtering via BasicFilter** — Selections are passed to Power BI as a standard BasicFilter using `host.applyJsonFilter`. This ensures compatibility with all other visuals and with Power BI's filter state management.
+**On-object formatting** — With Format on, click a chip, the header or a chip value to format it on the canvas.
 
-**No External Dependencies** — The visual uses only the Power BI visuals API and no third-party libraries. This eliminates CDN dependencies and ensures the visual works in air-gapped environments.
+**Start screen and setup tips** — A start screen with the steps when no field is assigned, and a tips bar while editing that offers the templates in one click. It never shows in reading view.
 
-**Up to 1,000 Values** — The Category field well uses Power BI's `top: 1000` data reduction, which is the platform cap for categorical slicers.
+### Accessibility and languages
+**Keyboard** — One Tab stop for the whole slicer; arrow keys, Home and End move between chips; Enter or Space select (Ctrl adds); Escape clears; Shift+F10 opens the context menu.
+
+**Screen readers** — Announced as a list, with each chip's state and its value.
+
+**High contrast** — The chips take the colours of the Windows high-contrast theme.
+
+**12 languages** — English, Spanish, Portuguese (Brazil and Portugal), French, German, Italian, Dutch, Polish, Japanese, Chinese (Simplified) and Korean, following the language of Power BI.
+
+**Formats** — Chip labels use the column's format and the report locale for dates and numbers.
+
+### Need several levels?
+Chip Slicer uses one level: if you drop a hierarchy into Category it filters by its first level. For several levels with expand and collapse, use **Chip Slicer Hierarchy**: https://tcviz.com/product/chip-slicer-hierarchy/
 
 ---
 
 ## TAB 3: Technical
 
 ### Specifications
-- API version: 5.10.0
-- Package: Microsoft AppSource / `.pbiviz` import
-- Certified: Yes (Microsoft Power BI certified visual)
-- License: 100% free, no restrictions
+- Version: 1.5.0.0
+- Power BI visuals API: 5.11.1
+- Package: Microsoft AppSource
+- Price: free for everyone, no Pro tier, no licence
 
 ### Field Wells
-| Field well | Data types | Max values |
+| Field well | Accepts | Limit |
 |---|---|---|
-| Category | Text, number, date, boolean | 1,000 |
+| Category | 1 column (text, number, date, true/false) or a hierarchy level | Up to 1,000 values |
+| Value (optional) | 1 measure | Shown on each chip with the model's format |
 
-### Format Pane Settings (Chip Style)
-| Setting | Type | Default |
-|---|---|---|
-| Multi-select | Toggle | Off |
-| Layout | Dropdown (Horizontal / Vertical) | Horizontal |
-| Chip height | Number (px) | 34 |
-| Border radius | Number (px) | 17 |
-| Font size | Number (pt) | 12 |
-| Gap | Number (px) | 8 |
-| Horizontal padding | Number (px) | 16 |
-| Inactive background | Color | #F3F4F6 |
-| Inactive border | Color | #E5E7EB |
-| Inactive text | Color | #374151 |
-| Active background | Color | #378ADD |
-| Active border | Color | #378ADD |
-| Active text | Color | #FFFFFF |
-| Show "All" button | Toggle | On |
-| "All" button text | Text input | All |
+### Format Pane
+| Card / group | Settings |
+|---|---|
+| Style template | Template (Classic, Outline, Soft, Square, Segmented, Dark) · Show setup tips |
+| Chip Style → Selection | Multi-select · Show 'All' button · 'All' button text · Show clear button · Default selection · Sort |
+| Chip Style → Layout | Layout (Horizontal, Vertical, Grid) · Columns (0 = automatic) · Wrap to next line · Stretch chips to fill · Alignment · Gap |
+| Chip Style → Chips | Chip height · Border radius · Horizontal padding · Font · Font size · Check mark on selected · Shadow |
+| Chip Style → Colors | Inactive background, border, text · Active background, border, text |
+| Header | Show header · Text (empty = field name) · Font · Font size · Bold · Color |
+| Values | Show value on chips · Color (appears when a measure is in Value) |
+
+Reports made with earlier versions look and behave the same: the default template, Classic, is the 1.4 look, and no saved setting moved.
 
 ### Capabilities
 - `supportsHighlight: true`
@@ -114,59 +135,64 @@ Chip Slicer renders each category value as a compact, clickable chip. Active fil
 - `supportsLandingPage: true`
 - `supportsKeyboardFocus: true`
 - `supportsMultiVisualSelection: true`
-
-### Performance
-- DOM is built in memory and swapped atomically — no blank flash during re-render
-- No animations or heavy CSS transitions that could block the rendering pipeline
-- Minimal dependencies: Power BI API + `powerbi-models` for BasicFilter only
+- `supportsOnObjectFormatting: true`
+- Tooltips (default and canvas)
 
 ### Privacy & Network
-- No external network requests
-- No cookies, localStorage, or persistent storage
-- No telemetry or analytics
-- All data is processed locally within Power BI
-
-### Licensing
-- 100% free. No IVisualLicenseManager integration.
-- Previously offered a paid Pro tier (removed in v1.4.0.0 — no subscribers existed at removal)
+- No network calls
+- No telemetry, no cookies
+- Stores nothing outside the report
+- Links on the start screen open only when you click them, through Power BI
 
 ### Compatibility
-- Power BI Desktop: all versions supporting API 5.x
-- Power BI Service: all regions
-- Power BI Mobile: rendering supported; filter interaction depends on app version
-- Embedded / Report Server: rendering supported; filter API availability depends on host
-
-### Dependencies
-- `powerbi-visuals-api ~5.10.0`
-- `powerbi-visuals-utils-formattingmodel 6.0.4`
-- `powerbi-models ^2.0.1`
+- Works wherever custom visuals from AppSource work.
+- Where Power BI disallows interactions (some exports and embedded views), the chips are shown but do not change the filter.
 
 ### Support
-- Documentation: https://tinocallarisa-web.github.io/chip-slicer/support.html
-- Bug reports: https://github.com/tinocallarisa-web/chip-slicer/issues
+- Documentation: https://tinocallarisa-web.github.io/ChipSlicer/support.html
+- Bug reports: https://github.com/tinocallarisa-web/ChipSlicer/issues
 - Email: support@tcviz.com
 
 ---
 
 ## TAB 4: Changelog
 
+### [1.5.0.0] — 2026-10-22
+**Added**
+- Clear button (✕): removes the selection in one click; in the header when it is shown, otherwise in the top-right corner, and only when something is selected.
+- Default selection: values separated by commas; the report opens with them selected when this slicer has no selection. If the user clears it, it stays clear.
+- Value field (optional): a measure shown on each chip with the model's format, dynamic format strings included. Items without a value are hidden.
+- Sort: data order, A to Z, Z to A, or by value.
+- Header with its own text, font, size, bold and color.
+- Grid layout with fixed or automatic columns; a single row with horizontal scrolling; stretch chips to fill; alignment. Long labels end with "…".
+- Style templates: Classic (the look of earlier versions, and the default), Outline, Soft, Square, Segmented, Dark. Check mark on selected chips, shadow and font.
+- On-object formatting: chips, header and chip values can be selected and formatted on the canvas.
+- Power BI tooltips on each chip (value and measure).
+- Start screen with the steps and links, and setup tips while editing (templates in one click). When a hierarchy is dropped into Category, the tips point to Chip Slicer Hierarchy for several levels.
+- 12 languages: English, Spanish, Portuguese (Brazil, Portugal), French, German, Italian, Dutch, Polish, Japanese, Chinese (Simplified), Korean.
+- Chip labels use the column's format and the report locale for dates and numbers.
+
+**Changed**
+- New icon.
+- Format pane reorganised in groups (Selection, Layout, Chips, Colors). No saved setting moved: reports made with earlier versions look and behave the same.
+- Tool chain updated (Power BI visuals API 5.11.1, pbiviz 7.2.1).
+
+### [1.4.1.0] — 2026-09-16
+**Fixed**
+- Support link in the visual's information pane now opens the support page; privacy policy link included.
+- Filtering by text codes (e.g. `08001`), dates and blanks now uses the original value.
+- Tables with a dot in their name and date hierarchy levels can be filtered.
+
+**Changed**
+- Keyboard: a single Tab stop; arrow keys, Home and End; Enter or Space (Ctrl adds); Escape clears; Shift+F10 opens the context menu. Announced to screen readers as a list.
+- Ctrl+click adds a chip even when Multi-select is off.
+- Blank values are shown as "(Blank)".
+- The slicer does not change the filter where Power BI disallows interactions.
+
 ### [1.4.0.0] — 2026-08-02
 **Changed**
-- Removed paid licensing model. All features are now completely free for every user.
-- Removed IVisualLicenseManager integration and all Free/Pro tier gating.
-- Updated Terms of Use and Privacy Policy to remove licensing references.
-- Added `support.html` documentation page.
+- Removed the paid licensing model. All features are free for every user.
 
 ### [1.3.0.0] — 2026-04-22
 **Added**
 - Initial public release on Microsoft AppSource.
-- Chip/pill-style slicer with single-select and multi-select modes.
-- Horizontal and vertical layout options.
-- Full color customization for active and inactive chip states.
-- Configurable chip height, border radius, gap, and horizontal padding.
-- Optional "Select All" button with customizable label.
-- Page-level filtering via Power BI BasicFilter API.
-- Slicer sync across report pages.
-- High contrast mode support.
-- Full keyboard navigation (Tab, Enter, Space).
-- Landing page when no data field is assigned.

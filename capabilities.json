@@ -352,26 +352,6 @@
         }
       }
     },
-    "search": {
-      "displayName": "Search",
-      "displayNameKey": "search",
-      "properties": {
-        "show": {
-          "displayName": "Show search box",
-          "displayNameKey": "search_show",
-          "type": {
-            "bool": true
-          }
-        },
-        "placeholder": {
-          "displayName": "Placeholder",
-          "displayNameKey": "search_placeholder",
-          "type": {
-            "text": true
-          }
-        }
-      }
-    },
     "badge": {
       "displayName": "Values",
       "displayNameKey": "badge",

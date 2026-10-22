@@ -26,6 +26,7 @@ import { LANDING_ICON } from "./landingIcon";
 const URL_GUIDE = "https://tinocallarisa-web.github.io/ChipSlicer/support.html";
 const URL_PRODUCT = "https://tcviz.com/product/chip-slicer/?ref=visual-chip-slicer";
 const URL_VIDEO = "https://www.youtube.com/watch?v=uArWJsB_n7w";
+const URL_HIERARCHY = "https://tcviz.com/product/chip-slicer-hierarchy/?ref=visual-chip-slicer";
 
 /** Un chip: el valor original (para el filtro), su texto y, si hay medida, su valor. */
 interface ChipItem {
@@ -57,8 +58,6 @@ export class Visual implements IVisual {
     private filterTarget: models.IFilterTarget = null;
     /** Clave del chip con tabindex=0 (roving tabindex); sobrevive al re-render. */
     private focusKey: string = null;
-    /** Texto del buscador: es de la sesión, no se guarda en el informe. */
-    private searchText = "";
     private formatMode = false;
     private editing = false;
     private lastOptions: VisualUpdateOptions = null;
@@ -354,12 +353,11 @@ export class Visual implements IVisual {
         }
 
         const hadFocus = this.container.contains(document.activeElement);
-        const searchHadFocus = hadFocus && (document.activeElement as HTMLElement)?.classList?.contains("chip-search-input");
 
         const root = document.createElement("div");
         root.className = "chip-root";
 
-        // Cabecera, buscador y botón de limpiar
+        // Cabecera y botón de limpiar
         const hasSel = this.selectedValues.size > 0;
         const showClear = !!sel.showClear.value && (hasSel || this.formatMode);
         let clearPlaced = false;
@@ -380,27 +378,6 @@ export class Visual implements IVisual {
             if (showClear) { hd.appendChild(this.clearButton(hc, fgHC)); clearPlaced = true; }
             root.appendChild(hd);
         }
-        if (s.searchCard.show.value) {
-            const row = document.createElement("div");
-            row.className = "chip-search";
-            const inp = document.createElement("input");
-            inp.type = "search";
-            inp.className = "chip-search-input";
-            inp.value = this.searchText;
-            inp.placeholder = s.searchCard.placeholder.value || this.t("UI_Search", "Search");
-            inp.setAttribute("aria-label", inp.placeholder);
-            inp.setAttribute("data-o", "search");
-            if (hc) Object.assign(inp.style, { background: pal.background?.value, color: fgHC, borderColor: fgHC });
-            inp.addEventListener("input", () => { this.searchText = inp.value; this.renderList(); });
-            inp.addEventListener("keydown", (e: KeyboardEvent) => {
-                e.stopPropagation();
-                if (e.key === "ArrowDown") { e.preventDefault(); (this.container.querySelector(".chip-item[tabindex='0']") as HTMLElement)?.focus(); }
-                if (e.key === "Escape" && inp.value) { e.preventDefault(); inp.value = ""; this.searchText = ""; this.renderList(); }
-            });
-            row.appendChild(inp);
-            if (showClear && !clearPlaced) { row.appendChild(this.clearButton(hc, fgHC)); clearPlaced = true; }
-            root.appendChild(row);
-        }
 
         const list = document.createElement("div");
         list.className = "chip-slicer-inner";
@@ -419,18 +396,14 @@ export class Visual implements IVisual {
             root.appendChild(b);
             root.classList.add("has-float-clear");
         }
-        if (sel.showClear.value && !s.headerCard.show.value && !s.searchCard.show.value) root.classList.add("reserve-clear");
+        if (sel.showClear.value && !s.headerCard.show.value) root.classList.add("reserve-clear");
 
         const layout = String(lay.layout.value?.value ?? "horizontal");
         list.setAttribute("aria-orientation", layout === "vertical" ? "vertical" : "horizontal");
         this.swapContent(root);
         this.renderList();
 
-        if (searchHadFocus) {
-            const inp = this.container.querySelector(".chip-search-input") as HTMLInputElement;
-            inp?.focus();
-            try { inp?.setSelectionRange(inp.value.length, inp.value.length); } catch { /* tipo search */ }
-        } else if (hadFocus) {
+        if (hadFocus) {
             (this.container.querySelector(".chip-item[tabindex='0']") as HTMLElement)?.focus();
         }
         this.renderGuide(options.viewport);
@@ -438,7 +411,7 @@ export class Visual implements IVisual {
 
     private lastLocale: string = null;
 
-    /** Pinta los chips en la lista ya montada (también al escribir en el buscador, sin reconstruir lo demás). */
+    /** Pinta los chips en la lista ya montada (también desde el callback de marcadores, sin reconstruir lo demás). */
     private renderList(): void {
         const list = this.container.querySelector(".chip-slicer-inner") as HTMLElement;
         if (!list) return;
@@ -462,28 +435,19 @@ export class Visual implements IVisual {
 
         const pal: any = this.host.colorPalette;
         const hc = !!pal?.isHighContrast;
-        const q = Visual.norm(this.searchText);
         const chips: HTMLElement[] = [];
-        if (sel.showSelectAll.value && !q) {
+        if (sel.showSelectAll.value) {
             const label = sel.selectAllLabel.value || this.t("All", "All");
             chips.push(this.createChip(label, Visual.ALL_KEY, this.selectedValues.size === 0, true, null, "", hc, layout));
         }
         const badgeOn = !!s.badgeCard.show.value;
         this.items.forEach(it => {
-            if (q && Visual.norm(it.label).indexOf(q) < 0) return;
             const c = this.createChip(it.label, it.key, this.selectedValues.has(it.key), false, it.selectionId, badgeOn ? it.measureText : "", hc, layout);
             this.bindTooltip(c, it);
             chips.push(c);
         });
 
         while (list.firstChild) list.removeChild(list.firstChild);
-        if (!chips.length) {
-            const empty = document.createElement("div");
-            empty.className = "chip-empty";
-            empty.textContent = this.t("UI_NoMatch", "No matches");
-            list.appendChild(empty);
-            return;
-        }
         // Roving tabindex: una sola parada de Tab para todo el slicer
         const focusChip = chips.find(c => c.dataset.key === this.focusKey)
             ?? chips.find(c => c.getAttribute("aria-selected") === "true")
@@ -654,7 +618,16 @@ export class Visual implements IVisual {
                 b.addEventListener("click", () => this.persistir("style", { template: v }));
                 g.appendChild(b);
             });
-        if (!this.lastOptions?.dataViews?.[0]?.categorical?.values?.length && vp.width >= 520) {
+        const src: any = this.lastOptions?.dataViews?.[0]?.categorical?.categories?.[0]?.source;
+        if (src?.expr?.level && src?.expr?.arg?.hierarchy) {
+            // Una jerarquía en Category: aquí solo se usa un nivel. Los niveles son de Chip Slicer Hierarchy.
+            const a = document.createElement("a");
+            a.className = "chip-g-tip chip-g-link";
+            a.href = URL_HIERARCHY;
+            a.textContent = this.t("Guide_Hierarchy", "Need several levels (country → city)? Try Chip Slicer Hierarchy.");
+            a.addEventListener("click", (e) => { e.preventDefault(); if (this.interactionsAllowed()) this.host.launchUrl(URL_HIERARCHY); });
+            g.appendChild(a);
+        } else if (!this.lastOptions?.dataViews?.[0]?.categorical?.values?.length && vp.width >= 520) {
             const tip = document.createElement("span");
             tip.className = "chip-g-tip";
             tip.textContent = this.t("Guide_ValueTip", "Tip: add a measure to Value to show counts on the chips.");
@@ -732,10 +705,6 @@ export class Visual implements IVisual {
                 break;
             case "ArrowLeft":
             case "ArrowUp":
-                if (idx === 0) {
-                    const inp = this.container.querySelector(".chip-search-input") as HTMLElement;
-                    if (inp) { e.preventDefault(); inp.focus(); return; }
-                }
                 next = Math.max(idx - 1, 0);
                 break;
             case "Home":
@@ -859,7 +828,6 @@ export class Visual implements IVisual {
     private static readonly SUB: Record<string, [string, string, string]> = {
         chips: ["chipSettings", "chipSettings", "Chip Style"],
         header: ["header", "header", "Header"],
-        search: ["search", "search", "Search"],
         badge: ["badge", "badge", "Values"],
     };
 
@@ -891,7 +859,6 @@ export class Visual implements IVisual {
                 bold: ref("header", "bold", "header_bold", "Bold"),
                 fontColor: ref("header", "color", "header_color", "Color") } as any;
             case "badge": return { type: Text, fontColor: ref("badge", "color", "badge_color", "Color") } as any;
-            case "search": return { type: Text } as any;
         }
         return undefined;
     }
@@ -917,8 +884,6 @@ export class Visual implements IVisual {
                     reset("chipSettings", ["defaultBg", "defaultBorder", "defaultText", "activeBg", "activeBorder", "activeText"]), nav] as any;
             case "header":
                 return [toggle("header", "show", "header_show", "Show header"), div, reset("header", ["fontSize", "fontFamily", "bold", "color"]), nav] as any;
-            case "search":
-                return [toggle("search", "show", "search_show", "Show search box"), div, nav] as any;
             case "badge":
                 return [toggle("badge", "show", "badge_show", "Show value on chips"), div, reset("badge", ["color"]), nav] as any;
         }

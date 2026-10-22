@@ -49,9 +49,6 @@
   "header_fontFamily": "Schriftart",
   "header_bold": "Fett",
   "header_color": "Farbe",
-  "search": "Suchen",
-  "search_show": "Suchfeld anzeigen",
-  "search_placeholder": "Platzhalter",
   "badge": "Werte",
   "badge_show": "Wert auf Chips anzeigen",
   "badge_color": "Farbe",
@@ -78,11 +75,10 @@
   "Landing_GuideSub": "Supportseite",
   "Landing_Product": "Produktseite",
   "Landing_Video": "Video",
-  "UI_Search": "Suchen",
-  "UI_NoMatch": "Keine Treffer",
   "UI_Clear": "Auswahl löschen",
   "Guide_Title": "Einrichtungstipps",
   "Guide_TryStyle": "Stil ausprobieren:",
   "Guide_ValueTip": "Tipp: Fügen Sie Wert eine Measure hinzu, um Anzahlen auf den Chips anzuzeigen.",
-  "Guide_Close": "Tipps ausblenden (Format → Stilvorlage)"
+  "Guide_Close": "Tipps ausblenden (Format → Stilvorlage)",
+  "Guide_Hierarchy": "Mehrere Ebenen nötig (Land → Stadt)? Probieren Sie Chip Slicer Hierarchy."
 }

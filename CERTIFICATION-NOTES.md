@@ -1,112 +1,71 @@
-# Chip Slicer — Certification Notes v1.4.1.0
+# Certification notes — Chip Slicer 1.5.0.0
 
-> Reference copy. Paste `CERTIFICATION-NOTES-SHORT.txt` into the "Notes for certification"
-> field in Partner Center: that field keeps only 2,500 characters and is cleared on every
-> resubmission.
-
----
-
-## Source code (certification branch)
-
-https://github.com/tinocallarisa-web/ChipSlicer/tree/certification
-
-The repository is **private**. Access has been granted to the following Microsoft reviewer accounts:
-- https://github.com/OSDC1033
-- https://github.com/pbicvsupport
-
-## Video
-
-https://www.youtube.com/watch?v=uArWJsB_n7w
-
-## Legal URLs
-
-- Privacy Policy: https://tinocallarisa-web.github.io/ChipSlicer/privacy.html
-- Terms of Use:   https://tinocallarisa-web.github.io/ChipSlicer/terms.html
-- Support:        https://tinocallarisa-web.github.io/ChipSlicer/support.html
-- Changelog:      https://tinocallarisa-web.github.io/ChipSlicer/changelog.html
-
----
-
-## Why this update (1.4.1.0)
-
-- **Support URL.** The 1.4.0.0 package pointed `supportUrl` to `https://tcviz.com/support`,
-  which returns 404, and had no privacy link. Both now point to the pages above.
-- **Filter values keep their data type.** Values were converted to text and back to numbers,
-  so a text code such as `08001` was filtered as `8001`, and dates and blanks did not filter.
-- **Filter target** is read from the column expression instead of splitting `queryName` at
-  the first dot, which failed for table names containing a dot and for hierarchy levels.
-- **Keyboard and screen readers:** the slicer is a single Tab stop (roving tabindex) with
-  arrow keys, Home/End, Enter/Space, Escape and Shift+F10; `role="listbox"` with
-  `aria-multiselectable`.
-- `allowInteractions` is respected; the format pane and the landing page are localized
-  (en-US, es-ES); numeric settings have minimum and maximum values.
-
-No licensing, no new privileges, no network access.
-
----
-
-## License validation
-
-This visual is **completely free** — it does not use IVisualLicenseManager or any external
-license server. All features are available to every user without any license check.
-
----
-
-## Features (all free, no restrictions)
-
-- Chip/pill-style slicer for any categorical field (up to 1,000 values)
-- Single-select and multi-select modes; Ctrl+click adds to the selection
-- Horizontal and vertical layout
-- Fully customizable chip colors (active and inactive states)
-- Configurable chip size, border radius, gap, and padding
-- Optional "All" button with customizable label
-- Page-level filtering via Power BI BasicFilter API
-- Slicer sync across report pages (`supportsSynchronizingFilterState`) and bookmarks
-- High contrast mode support
-- Keyboard navigation and screen reader support
-- Landing page when no data field is assigned
-
----
-
-## Testing instructions
-
-1. Import `ChipSlicer_sample.pbix` from the submission package.
-2. The report opens with a pre-configured Chip Slicer on the canvas.
-3. Verify chips render for each category value in the data.
-4. Click individual chips — the report visuals should filter accordingly.
-5. Enable **Multi-select** in the Format Pane and verify multiple chips can be active.
-6. Click "All" — all filters should clear and all data should be visible.
-7. Switch report pages and return — verify the selected chips are preserved.
-8. Open Format Pane → **Chip Style** and adjust colors, size, and layout. Verify changes apply live.
-9. Keyboard: Tab into the slicer, move with the arrow keys, select with Enter or Space,
-   clear with Escape. Tab leaves the slicer in one step.
-10. Remove the field from the Category well — verify the landing page appears.
-11. Test in **High Contrast** mode — verify chips remain readable.
-
----
-
-## Technical notes
-
-- API version: 5.10.0
-- Filtering: `host.applyJsonFilter` with `powerbi-models.BasicFilter` (`FilterAction.remove` to clear)
-- Filter target: from `category.source.expr` (column or hierarchy level), falling back to `queryName`
-- Filter values: the original typed values from the data view; dates as ISO strings
-- Filter sync: active filter values are re-read from `options.jsonFilters` on every `update()`
-- Rendering events: `renderingStarted`, `renderingFinished`, `renderingFailed` on every path
-- DOM updates: atomic swap (content built in memory before touching the DOM)
-- No external dependencies, no network calls, no telemetry
-
----
-
-## Capabilities summary
-
-```json
-{
-  "supportsHighlight": true,
-  "supportsSynchronizingFilterState": true,
-  "supportsLandingPage": true,
-  "supportsKeyboardFocus": true,
-  "supportsMultiVisualSelection": true,
-  "privileges": []
-}
 ```
+Chip Slicer 1.5.0.0 - GUID chipSlicerPro
+Repo, branch certification: https://github.com/tinocallarisa-web/ChipSlicer/tree/certification
+Docs: https://tinocallarisa-web.github.io/ChipSlicer/support.html (+privacy.html, terms.html, changelog.html)
+Video: https://www.youtube.com/watch?v=uArWJsB_n7w
+
+WHY THIS SUBMISSION
+Replaces 1.4.1.0. Same objects and properties (saved reports unchanged); new ones added.
+Clear button, default selection, optional Value measure on chips, sort, grid layout,
+header, style templates, on-object formatting, tooltips, 12 languages. API 5.11.1.
+
+TESTING
+1. Sample .pbix: Category on the canvas. Click a chip: the page filters. Again: clears.
+2. Ctrl+click or Format > Chip Style > Selection > Multi-select: several chips. The X
+button and "All" clear. Keyboard: Tab in, arrows, Enter/Space, Esc, Shift+F10, Tab out.
+3. Default selection = a value shown on a chip: applied once when the slicer has no
+filter. Clear it: it stays clear. Bookmarks and sync slicers restore the filter.
+4. Add a measure to Value: number on each chip, model format; Sort > Value.
+5. Format > Style template > Outline: look changes. Edit mode: tips bar at the bottom,
+close with X. Format mode: click a chip or the header (on-object).
+6. Remove the field: start screen. High contrast: theme colours.
+7. allowInteractions false: chips shown, filter unchanged.
+
+FILTER
+BasicFilter "In" via applyJsonFilter on the column (or hierarchy level) of Category, with
+the original value types. Selection state comes from options.jsonFilters.
+
+PERSISTPROPERTIES
+Only on a click in the tips bar (template, close) and once when the template is changed
+in the format pane (clears the settings it defines). Never in a selection callback.
+
+PRIVACY
+No network, telemetry, cookies or storage. privileges: []. No innerHTML. Start-screen
+links open only on click via host.launchUrl. ESLint clean; npm audit --omit=dev 0.
+
+LICENSING
+Free. No IVisualLicenseManager, no gating, no licensing UI.
+
+RENDERING EVENTS 1:1
+One renderingStarted and one Finished/Failed per update(). The bookmark callback only
+repaints chips and raises none.
+```
+
+CAPABILITIES CHANGES IN 1.5
+- dataRoles: "category" (Grouping, unchanged) + new optional "measure" (Measure, max 1).
+- dataViewMappings: categorical; conditions category max 1, measure max 1; top 1000 categories.
+- objects: "general" (filter + formatString for dynamic measure formats), "chipSettings" (all 1.4 properties kept,
+  new: showClear, defaultSelection, sort, columns, wrap, chipFill, align, fontFamily, showCheck, shadow; layout enum
+  gains "grid"), new "header", "badge", "style".
+- supportsOnObjectFormatting + enablePointerEventsFormatMode; tooltips (default, canvas); supportsKeyboardFocus,
+  supportsLandingPage, supportsSynchronizingFilterState, supportsMultiVisualSelection unchanged.
+
+DEFAULT SELECTION
+Applied with applyJsonFilter inside update() only when (a) the text is set, (b) the slicer has no filter in
+options.jsonFilters, (c) a chip matches, (d) interactions are allowed and not in format mode. Applied once per text
+per session: clearing afterwards is respected. While editing, changing the text applies the new default.
+
+ON-OBJECT
+HtmlSubSelectionHelper; sub-selectable: chips, header, chip value. In format mode clicks do not filter, tooltips and
+context menu are off. Shortcuts navigate to "Visual-<object>-card".
+
+LOCALIZATION
+stringResources for en-US, es-ES, pt-BR, pt-PT, fr-FR, de-DE, it-IT, nl-NL, pl-PL, ja-JP, zh-CN, ko-KR. Texts drawn by
+the visual itself also ship in src/strings.ts (generated by tools/i18n.py).
+
+BUILD
+powerbi-visuals-tools 7.2.1, API 5.11.1, TypeScript 5.9, ESLint 10 + eslint-plugin-powerbi-visuals (recommended),
+clean. npm audit: 0 in production dependencies; the remaining advisories are in the pbiviz dev server (braces), with
+no fixed version published.

@@ -4,6 +4,37 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.5.0.0] — 2026-10-22
+
+### Added
+- **Clear button** (✕): removes the selection in one click. In the header when it is shown, otherwise in the
+  top-right corner, and only when something is selected.
+- **Default selection**: type values separated by commas; the report opens with them selected when this slicer has
+  no selection. If the user clears it, it stays clear.
+- **Value field** (optional): a measure shown on each chip with the model's format, dynamic format strings included.
+  Items without a value are hidden.
+- **Sort**: data order, A to Z, Z to A, or by value.
+- **Header** with its own text, font, size, bold and color.
+- **Grid layout** with fixed or automatic columns; a single row with horizontal scrolling; stretch chips to fill;
+  alignment. Long labels end with "…".
+- **Style templates**: Classic (the look of earlier versions, and the default), Outline, Soft, Square, Segmented, Dark.
+  Check mark on selected chips, shadow and font.
+- **On-object formatting**: chips, header and chip values can be selected and formatted on the canvas.
+- Power BI **tooltips** on each chip (value and measure).
+- **Start screen** with the steps and links, and **setup tips** while editing (templates in one click). When a
+  hierarchy is dropped into Category, the tips point to Chip Slicer Hierarchy for several levels.
+- **12 languages**: English, Spanish, Portuguese (Brazil, Portugal), French, German, Italian, Dutch, Polish, Japanese,
+  Chinese (Simplified), Korean.
+- Chip labels use the column's format and the report locale for dates and numbers.
+
+### Changed
+- New icon.
+- Format pane reorganised in groups (Selection, Layout, Chips, Colors). No saved setting moved: reports made with
+  earlier versions look and behave the same.
+- Tool chain updated (Power BI visuals API 5.11.1, pbiviz 7.2.1).
+
+---
+
 ## [1.4.1.0] — 2026-09-16
 
 ### Fixed

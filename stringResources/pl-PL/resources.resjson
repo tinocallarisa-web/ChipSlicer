@@ -49,9 +49,6 @@
   "header_fontFamily": "Czcionka",
   "header_bold": "Pogrubienie",
   "header_color": "Kolor",
-  "search": "Szukaj",
-  "search_show": "Pokaż pole wyszukiwania",
-  "search_placeholder": "Tekst zastępczy",
   "badge": "Wartości",
   "badge_show": "Pokaż wartość na chipach",
   "badge_color": "Kolor",
@@ -78,11 +75,10 @@
   "Landing_GuideSub": "strona pomocy",
   "Landing_Product": "Strona produktu",
   "Landing_Video": "Wideo",
-  "UI_Search": "Szukaj",
-  "UI_NoMatch": "Brak wyników",
   "UI_Clear": "Wyczyść zaznaczenie",
   "Guide_Title": "Wskazówki konfiguracji",
   "Guide_TryStyle": "Wypróbuj styl:",
   "Guide_ValueTip": "Wskazówka: dodaj miarę do pola Wartość, aby pokazać liczby na chipach.",
-  "Guide_Close": "Ukryj wskazówki (Format → Szablon stylu)"
+  "Guide_Close": "Ukryj wskazówki (Format → Szablon stylu)",
+  "Guide_Hierarchy": "Potrzebujesz kilku poziomów (kraj → miasto)? Wypróbuj Chip Slicer Hierarchy."
 }

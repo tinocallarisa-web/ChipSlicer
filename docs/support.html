@@ -1,182 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support — Chip Slicer for Power BI</title>
-    <style>
-        * { box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.7; color: #333; max-width: 860px; margin: 0 auto; padding: 40px 24px; background: #fff; }
-        h1 { color: #0078d4; font-size: 2em; margin-bottom: 4px; }
-        .subtitle { color: #666; font-size: 1em; margin-bottom: 32px; }
-        h2 { color: #2b2b2b; margin-top: 40px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; }
-        h3 { color: #444; margin-top: 24px; margin-bottom: 8px; }
-        p { margin-bottom: 16px; }
-        code { background: #f4f4f4; border-radius: 3px; padding: 2px 6px; font-size: 0.9em; }
-        table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 0.93em; }
-        th { background: #0078d4; color: #fff; text-align: left; padding: 10px 14px; }
-        td { padding: 9px 14px; border-bottom: 1px solid #eee; vertical-align: top; }
-        tr:nth-child(even) td { background: #f9f9f9; }
-        .badge { display: inline-block; background: #C96442; color: #fff; font-size: 0.75em; font-weight: 700; padding: 2px 9px; border-radius: 12px; letter-spacing: 0.5px; vertical-align: middle; margin-left: 6px; }
-        .free-notice { background: #e8f4e8; border-left: 4px solid #2e7d32; padding: 14px 18px; border-radius: 4px; margin: 24px 0; }
-        .free-notice strong { color: #2e7d32; }
-        .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; margin: 24px 0; box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
-        .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        .faq-item { margin-bottom: 20px; }
-        .faq-q { font-weight: 700; color: #0078d4; margin-bottom: 6px; }
-        .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 24px 0; }
-        .link-card { border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; text-decoration: none; color: #333; transition: border-color 0.15s; }
-        .link-card:hover { border-color: #0078d4; }
-        .link-card strong { display: block; color: #0078d4; margin-bottom: 4px; }
-        .link-card span { font-size: 0.88em; color: #666; }
-        .footer { margin-top: 60px; font-size: 0.88em; color: #888; border-top: 1px solid #eee; padding-top: 20px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Chip Slicer | TCViz</title>
+  <meta name="description" content="Chip Slicer for Power BI, free: field wells, default selection, clear button, values on chips, style templates, on-object formatting, keyboard, languages, troubleshooting and FAQ." />
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 24px; color: #333; line-height: 1.7; }
+    h1   { color: #0078D4; margin-bottom: 4px; }
+    h2   { margin-top: 2.2em; color: #1a1a2e; border-bottom: 2px solid #e0e0e0; padding-bottom: 6px; }
+    h3   { margin-top: 1.4em; color: #333; }
+    .card { background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 6px; padding: 16px 20px; margin: 16px 0; }
+    code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+    .badge { display: inline-block; background: #0078D4; color: #fff; font-size: .72rem; padding: 1px 7px; border-radius: 10px; margin-left: 4px; vertical-align: middle; }
+    nav { margin-bottom: 32px; font-size: .95rem; }
+    nav a { color: #0078D4; text-decoration: none; margin-right: 18px; white-space: nowrap; }
+    nav a:hover { text-decoration: underline; }
+    .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,.12); margin: 20px 0 32px; }
+    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    details { border: 1px solid #e0e0e0; border-radius: 6px; padding: 12px 16px; margin-bottom: 10px; background: #fff; }
+    details summary { font-weight: 600; cursor: pointer; color: #1a1a2e; }
+    details p, details ul, details ol { margin-top: 10px; }
+    .tbl-wrap { overflow-x: auto; margin: 12px 0 20px; }
+    table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+    th, td { border-bottom: 1px solid #e0e0e0; padding: 6px 10px; text-align: left; vertical-align: top; }
+    th { background: #f4f4f4; color: #1a1a2e; }
+    .muted { color: #777; font-size: .9rem; }
+    #faq-search { width: 100%; box-sizing: border-box; padding: 9px 12px; border: 1px solid #c8c6c4; border-radius: 6px; font: inherit; margin: 6px 0 16px; }
+    footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid #e0e0e0; font-size: .9rem; color: #888; }
+  </style>
 </head>
 <body>
 
-    <h1>Chip Slicer <span class="badge">FREE</span></h1>
-    <p class="subtitle">Support documentation · Version 1.4.1.0 · <a href="changelog.html">Changelog</a></p>
+  <h1>Support — Chip Slicer</h1>
+  <p><strong>Publisher:</strong> TCViz &nbsp;|&nbsp;
+     <strong>Email:</strong> <a href="mailto:support@tcviz.com">support@tcviz.com</a> &nbsp;|&nbsp;
+     <strong>Version:</strong> 1.5.0.0 &nbsp;|&nbsp;
+     <strong>Price:</strong> free, no licence &nbsp;|&nbsp;
+     <span class="muted">docs updated 22 Oct 2026</span></p>
 
-    <div class="free-notice">
-        <strong>100% Free, no license required.</strong> All features are available to every Power BI user at no cost. No account, subscription, or Pro license needed.
-    </div>
+  <nav>
+    <a href="#quick-start">Quick start</a>
+    <a href="#fields">Fields</a>
+    <a href="#selection">Selection</a>
+    <a href="#format">Format pane</a>
+    <a href="#use-cases">Use cases</a>
+    <a href="#troubleshooting">Troubleshooting</a>
+    <a href="#faq">FAQ</a>
+    <a href="changelog.html">Changelog</a>
+    <a href="#contact">Contact</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+  </nav>
 
-    <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/uArWJsB_n7w" allowfullscreen title="Chip Slicer for Power BI — Overview"></iframe>
-    </div>
+  <p>Chip Slicer turns a field into a row of buttons — chips — that filter the page with one click.
+     It is free for everyone: there is no Pro tier, no licence and no watermark. It works like a
+     native Power BI slicer (sync slicers, bookmarks, edit interactions, cross-page filters) and adds
+     what the native one does not have: a default selection, a clear button, the value of a measure on
+     each chip, a grid layout and style templates.</p>
 
-    <!-- ── QUICK START ─────────────────────────────────────────────────── -->
-    <h2>Quick Start</h2>
-    <ol>
-        <li><strong>Get the visual.</strong> Install <em>Chip Slicer</em> from Microsoft AppSource, or import the <code>.pbiviz</code> file via the Visualizations panel (⋯ → Import a visual from a file).</li>
-        <li><strong>Add it to the canvas.</strong> Click the Chip Slicer icon in the Visualizations panel. A blank visual appears.</li>
-        <li><strong>Drop a field.</strong> Drag any categorical column (text, date, number) from your data model into the <strong>Category</strong> field well. Chips render instantly.</li>
-        <li><strong>Click a chip to filter.</strong> All other visuals on the page respond to the selection.</li>
-        <li><strong>Click it again (or click "All") to clear the filter.</strong></li>
-    </ol>
+  <!-- VIDEO -->
+  <h2>Overview video</h2>
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/uArWJsB_n7w" title="Chip Slicer for Power BI" allowfullscreen></iframe>
+  </div>
+  <p class="muted">Also on YouTube: <a href="https://www.youtube.com/watch?v=uArWJsB_n7w">https://www.youtube.com/watch?v=uArWJsB_n7w</a></p>
 
-    <!-- ── FIELD WELLS ─────────────────────────────────────────────────── -->
-    <h2>Field Wells</h2>
-    <table>
-        <tr><th>Field well</th><th>Accepts</th><th>Notes</th></tr>
-        <tr>
-            <td><strong>Category</strong></td>
-            <td>Any categorical column (text, number, date, boolean)</td>
-            <td>One field at a time. Displays up to 1,000 distinct values. Remove the field to show the landing page.</td>
-        </tr>
-    </table>
+  <h2 id="whats-new">What's new in 1.5.0.0</h2>
+  <ul>
+    <li><strong>Clear button</strong> (✕) that removes the selection in one click.</li>
+    <li><strong>Default selection</strong>: the report opens with the values you choose already selected.</li>
+    <li><strong>Value field</strong>: put a measure in it and each chip shows its count or total, with the model's format (dynamic format strings included). Items without a value are hidden.</li>
+    <li><strong>Sort</strong> A to Z, Z to A or by value.</li>
+    <li>Optional <strong>header</strong>.</li>
+    <li><strong>Grid layout</strong> with fixed or automatic columns, no-wrap row, stretch to fill and alignment. Long labels end with “…”.</li>
+    <li><strong>Six style templates</strong>, a check mark on selected chips, shadow and font.</li>
+    <li><strong>On-object formatting</strong>: click a chip, the header or a value to format it.</li>
+    <li>Power BI <strong>tooltips</strong> on each chip, a <strong>start screen</strong> with the steps, and <strong>setup tips</strong> while you edit.</li>
+    <li><strong>12 languages</strong> and a new icon.</li>
+  </ul>
+  <p>Reports made with earlier versions look exactly the same: the default template, Classic, is the 1.4 look,
+     and no saved setting moved.</p>
 
-    <!-- ── FORMAT PANE ─────────────────────────────────────────────────── -->
-    <h2>Format Pane — Chip Style</h2>
-    <p>All settings live under <strong>Format visual → Chip Style</strong>.</p>
+  <!-- QUICK START -->
+  <h2 id="quick-start">Quick start</h2>
+  <ol>
+    <li>Add <strong>Chip Slicer</strong> from AppSource (Visualizations pane → <em>Get more visuals</em>).</li>
+    <li>Drag a column into <strong>Category</strong>: one chip per value.</li>
+    <li>Optional: drag a measure into <strong>Value</strong> to show a count or total on each chip.</li>
+    <li>Click a chip to filter the page. Click it again, the ✕ button or <em>All</em> to clear.</li>
+    <li>In the Format pane, <strong>Style template</strong> changes the whole look in one click.</li>
+  </ol>
+  <p>While you edit, a tips bar at the bottom of the visual offers the templates; hide it with ✕
+     (it comes back from Format → Style template → Show setup tips). It never shows in reading view.</p>
 
-    <h3>Behaviour</h3>
-    <table>
-        <tr><th>Setting</th><th>Default</th><th>Description</th></tr>
-        <tr><td>Multi-select</td><td>Off</td><td>When off, clicking a chip deselects the previous one. When on, multiple chips can be active simultaneously.</td></tr>
-        <tr><td>Show "All" button</td><td>On</td><td>Adds a special chip at the start that clears all active filters.</td></tr>
-        <tr><td>"All" button text</td><td>All</td><td>Custom label for the clear-all chip.</td></tr>
-        <tr><td>Layout</td><td>Horizontal</td><td>Horizontal: chips wrap into rows. Vertical: chips stack into a single column.</td></tr>
-    </table>
+  <!-- FIELDS -->
+  <h2 id="fields">Field wells</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Well</th><th>Accepts</th><th>What it does</th></tr>
+    <tr><td><strong>Category</strong></td><td>1 column (text, number, date, true/false) or a hierarchy level</td><td>One chip per distinct value, up to 1,000 values.</td></tr>
+    <tr><td><strong>Value</strong> (optional)</td><td>1 measure</td><td>Shown on each chip with the model's format. As in any Power BI visual with a measure, values for which the measure is blank are not shown.</td></tr>
+  </table></div>
 
-    <h3>Dimensions</h3>
-    <table>
-        <tr><th>Setting</th><th>Default</th><th>Description</th></tr>
-        <tr><td>Chip height (px)</td><td>34</td><td>Height of every chip in pixels.</td></tr>
-        <tr><td>Border radius (px)</td><td>17</td><td>Corner rounding. Set to half the chip height for the classic pill look.</td></tr>
-        <tr><td>Font size</td><td>12</td><td>Label font size in points.</td></tr>
-        <tr><td>Gap (px)</td><td>8</td><td>Space between chips.</td></tr>
-        <tr><td>Horizontal padding (px)</td><td>16</td><td>Left/right padding inside each chip.</td></tr>
-    </table>
+  <!-- SELECTION -->
+  <h2 id="selection">Selecting and clearing</h2>
+  <ul>
+    <li><strong>Single select</strong> (default): a click selects one chip; clicking it again clears it.
+        Ctrl+click adds chips even in single-select mode.</li>
+    <li><strong>Multi-select</strong> (Format → Chip Style → Selection): every click toggles a chip.</li>
+    <li><strong>All</strong> chip: clears the filter. Its text can be changed.</li>
+    <li><strong>Clear button ✕</strong>: in the header when it is on; otherwise in the top-right corner. It only shows when something is selected.</li>
+    <li><strong>Default selection</strong>: type values separated by commas, e.g. <code>Spain, France</code>. When
+        the report opens with nothing selected in this slicer, those values are selected. If the user clears
+        them, the slicer stays clear for that session. Values match the chip text, without case or accents.
+        In single-select mode the first match is used.</li>
+  </ul>
+  <p>The selection is a standard Power BI filter: it follows <strong>sync slicers</strong>, is saved in
+     <strong>bookmarks</strong>, respects <strong>edit interactions</strong> and appears in the filter pane.</p>
 
-    <h3>Colors — Inactive state</h3>
-    <table>
-        <tr><th>Setting</th><th>Default</th><th>Description</th></tr>
-        <tr><td>Inactive background</td><td>#F3F4F6</td><td>Fill color for unselected chips.</td></tr>
-        <tr><td>Inactive border</td><td>#E5E7EB</td><td>Border color for unselected chips.</td></tr>
-        <tr><td>Inactive text</td><td>#374151</td><td>Label color for unselected chips.</td></tr>
-    </table>
+  <!-- TEMPLATES -->
+  <h2 id="templates">Style templates</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Template</th><th>Look</th></tr>
+    <tr><td>Classic</td><td>Grey pills, blue when selected. The look of earlier versions.</td></tr>
+    <tr><td>Outline</td><td>White pills with a blue outline and a check mark when selected.</td></tr>
+    <tr><td>Soft</td><td>Pale blue pills, solid blue when selected.</td></tr>
+    <tr><td>Square</td><td>Small corners, black when selected.</td></tr>
+    <tr><td>Segmented</td><td>Joined square buttons, like a segmented control.</td></tr>
+    <tr><td>Dark</td><td>For dark report backgrounds.</td></tr>
+  </table></div>
+  <p>A template fills in what you have not changed yourself. When you pick a template, the colours and shapes it
+     defines replace yours, so it looks as designed; anything else you changed stays.</p>
 
-    <h3>Colors — Active state</h3>
-    <table>
-        <tr><th>Setting</th><th>Default</th><th>Description</th></tr>
-        <tr><td>Active background</td><td>#378ADD</td><td>Fill color for selected chips.</td></tr>
-        <tr><td>Active border</td><td>#378ADD</td><td>Border color for selected chips.</td></tr>
-        <tr><td>Active text</td><td>#FFFFFF</td><td>Label color for selected chips.</td></tr>
-    </table>
+  <!-- ON-OBJECT -->
+  <h2 id="on-object">On-object formatting</h2>
+  <p>With <em>Format</em> on, click a chip, the header or a chip value to see its options next to
+     it: font, size and colours, quick toggles (multi-select, All button, check mark, show header…) and a link
+     to its card in the Format pane. In format mode a click chooses what to format and does not filter. As with
+     native visuals, the first click selects the visual and the second the part.</p>
 
-    <!-- ── FAQ ────────────────────────────────────────────────────────── -->
-    <h2>Frequently Asked Questions</h2>
+  <!-- FORMAT -->
+  <h2 id="format">Format pane reference</h2>
+  <h3>Style template</h3>
+  <p>Template · Show setup tips.</p>
+  <h3>Chip Style</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Group</th><th>Settings</th></tr>
+    <tr><td>Selection</td><td>Multi-select · Show 'All' button · 'All' button text · Show clear button · Default selection · Sort (data order, A to Z, Z to A, value largest first)</td></tr>
+    <tr><td>Layout</td><td>Layout (horizontal, vertical, grid) · Columns (grid, 0 = automatic) · Wrap to next line (horizontal) · Stretch chips to fill · Alignment · Gap</td></tr>
+    <tr><td>Chips</td><td>Height · Border radius · Horizontal padding · Font · Font size · Check mark on selected · Shadow</td></tr>
+    <tr><td>Colors</td><td>Inactive background, border and text · Active background, border and text</td></tr>
+  </table></div>
+  <h3>Header</h3>
+  <p>Show header · Text (empty = field name) · Font · Font size · Bold · Color.</p>
+  <h3>Values</h3>
+  <p>Show value on chips · Color. Appears when a measure is in the Value well.</p>
 
-    <div class="faq-item">
-        <div class="faq-q">Is Chip Slicer really free? Are there any hidden limits?</div>
-        <p>Yes, completely free. There are no tiers, no paywalls, and no license required. All features — including multi-select, full color customization, and the "All" button — are available to every user. The only limit is technical: the slicer shows up to 1,000 distinct values of the field.</p>
-    </div>
+  <h2 id="languages">Languages, number formats and accessibility</h2>
+  <ul>
+    <li>Format pane and texts in English, Spanish, Portuguese (Brazil and Portugal), French, German, Italian, Dutch,
+        Polish, Japanese, Chinese (Simplified) and Korean, following the language of Power BI.</li>
+    <li>Dates and numbers in the chips, and the values from the Value well, use the format of the model and the
+        report locale. Dynamic format strings of the measure are respected.</li>
+    <li><strong>Keyboard</strong>: one Tab stop for the whole slicer; arrow keys, Home and End move between chips;
+        Enter or Space select (Ctrl adds); Escape clears; Shift+F10 opens the context menu.</li>
+    <li><strong>Screen readers</strong>: announced as a list, with each chip's state (selected or not) and its value.</li>
+    <li><strong>High contrast</strong>: the chips take the colours of the Windows high-contrast theme.</li>
+    <li><strong>Themes</strong>: the header and fonts follow the report theme where you leave them unset.</li>
+  </ul>
 
-    <div class="faq-item">
-        <div class="faq-q">How do I select multiple chips at once?</div>
-        <p>Open the Format Pane → Chip Style → turn on <strong>Multi-select</strong>. Once enabled, each chip click toggles independently. With Multi-select off, hold <kbd>Ctrl</kbd> while clicking to add a chip to the selection. Click "All" (or the custom label) to clear all selections at once.</p>
-    </div>
+  <!-- USE CASES -->
+  <h2 id="use-cases">Use cases</h2>
+  <h3>1. Year or quarter buttons on a dashboard</h3>
+  <p>Put Year in Category, layout Horizontal, Default selection <code>2026</code>. The page opens on the current year and
+     the reader switches with one click; the ✕ goes back to all years.</p>
+  <h3>2. Region filter with counts</h3>
+  <p>Region in Category, <code>Customers = DISTINCTCOUNT(Sales[CustomerID])</code> in Value, Sort by value. The
+     reader sees how big each region is before clicking, and regions without customers disappear.</p>
+  <h3>3. A long list in a small space</h3>
+  <p>Product in Category, Grid with automatic columns and a smaller chip height: dozens of products fit in a
+     tile and scroll inside it.</p>
+  <h3>4. Status toggles</h3>
+  <p>Status (Open, In progress, Closed) with the Segmented template and Multi-select on: it reads like a switch.</p>
 
-    <div class="faq-item">
-        <div class="faq-q">How do I keep the filter active when I switch report pages?</div>
-        <p>Use Power BI's built-in <strong>Sync Slicers</strong> panel (View → Sync Slicers). Add the Chip Slicer to all pages where you want the filter to persist. Chip Slicer fully supports slicer sync.</p>
-    </div>
+  <!-- TROUBLESHOOTING -->
+  <h2 id="troubleshooting">Troubleshooting</h2>
+  <details>
+    <summary>Clicking a chip does not filter the other visuals</summary>
+    <p>Check <em>Format → Edit interactions</em>: the other visuals must be set to filter from Chip Slicer.
+       Check also that the field in Category is related to the tables of the other visuals in the model.</p>
+  </details>
+  <details>
+    <summary>Some values are missing</summary>
+    <ul>
+      <li>With a measure in Value, values for which the measure is blank are not shown. Remove the measure, or wrap it
+          as <code>COALESCE([Measure], 0)</code> to show them with 0.</li>
+      <li>Other filters on the page or report reduce the values, as with any slicer.</li>
+      <li>Beyond 1,000 distinct values the rest are not loaded. Split the list with another slicer or use Chip Slicer Hierarchy.</li>
+    </ul>
+  </details>
+  <details>
+    <summary>The default selection does not apply</summary>
+    <ul>
+      <li>It only applies when the report opens with nothing selected in this slicer. A bookmark or a saved selection wins.</li>
+      <li>The text must match the chip text, e.g. a date as it appears on the chip. Separate values with commas.</li>
+      <li>If the value is filtered out by another filter, there is nothing to select.</li>
+    </ul>
+  </details>
+  <details>
+    <summary>I chose a template and some colours did not change</summary>
+    <p>A template changes only what it defines; the others keep your settings. Use <em>Reset to default</em> on a
+       colour to let the template decide it.</p>
+  </details>
+  <details>
+    <summary>The tips bar covers my chips</summary>
+    <p>It only appears while you edit. Close it with ✕ or turn off Format → Style template → Show setup tips.</p>
+  </details>
+  <details>
+    <summary>Dates appear in a different format than in my table</summary>
+    <p>Chips use the format of the column in the model. Set the column's format in Power BI (Column tools → Format).</p>
+  </details>
 
-    <div class="faq-item">
-        <div class="faq-q">How do I deselect all chips and clear the filter?</div>
-        <p>If "Show All button" is on (default), click the "All" chip. If it's off, click the currently active chip again to deselect it. In multi-select mode, deselect each chip individually or enable the "All" button.</p>
-    </div>
+  <!-- FAQ -->
+  <h2 id="faq">Frequently asked questions</h2>
+  <input id="faq-search" type="search" placeholder="Search the FAQ…" aria-label="Search the FAQ" />
+  <div id="faq-list">
+  <details>
+    <summary>Is Chip Slicer really free? Are there hidden limits?</summary>
+    <p>Yes, free for everyone, with every feature. There is no Pro tier and no licence. The only limits are technical
+       and the same for everyone: one field in Category, one measure in Value, and up to 1,000 distinct values.</p>
+  </details>
+  <details>
+    <summary>How do I select several chips?</summary>
+    <p>Turn on Format → Chip Style → Selection → Multi-select, or hold Ctrl while clicking.</p>
+  </details>
+  <details>
+    <summary>How do I clear the selection?</summary>
+    <p>Click ✕, the All chip, the selected chip again (single select), or press Escape with the keyboard.</p>
+  </details>
+  <details>
+    <summary>Can the report open with a value already selected?</summary>
+    <p>Yes: Format → Chip Style → Selection → Default selection. See <a href="#selection">Selecting and clearing</a>.</p>
+  </details>
+  <details>
+    <summary>How do I keep the filter when I change page?</summary>
+    <p>Use View → Sync slicers and add Chip Slicer to the pages you want.</p>
+  </details>
+  <details>
+    <summary>Do bookmarks remember the selection?</summary>
+    <p>Yes. The selection is a Power BI filter, saved and restored by bookmarks like any slicer.</p>
+  </details>
+  <details>
+    <summary>Can I show counts on the chips?</summary>
+    <p>Yes: put a measure in Value (a count, a total, a percentage). It uses the measure's format.</p>
+  </details>
+  <details>
+    <summary>Can I sort the chips?</summary>
+    <p>Format → Chip Style → Selection → Sort: data order (the model's sort, including <em>Sort by column</em>),
+       A to Z, Z to A, or by value when there is a measure.</p>
+  </details>
+  <details>
+    <summary>Can I put the chips in columns?</summary>
+    <p>Yes: Layout → Grid, and choose the number of columns or 0 to fit as many as the width allows.</p>
+  </details>
+  <details>
+    <summary>Can I put the chips in one row with scrolling?</summary>
+    <p>Layout Horizontal and turn off Wrap to next line.</p>
+  </details>
+  <details>
+    <summary>Does it work with dates, numbers and codes such as 08001?</summary>
+    <p>Yes. The filter uses the original value and type, so a text code keeps its leading zeros and dates filter correctly.</p>
+  </details>
+  <details>
+    <summary>Can I filter by several levels, such as country → city?</summary>
+    <p>Chip Slicer uses one level: if you drop a hierarchy into Category it filters by its first level. For several
+       levels with expand and collapse, use <a href="https://tcviz.com/product/chip-slicer-hierarchy/">Chip Slicer Hierarchy</a>,
+       our slicer built for that.</p>
+  </details>
+  <details>
+    <summary>Does it work with tables with a dot in the name?</summary>
+    <p>Yes, since 1.4.1.</p>
+  </details>
+  <details>
+    <summary>Does it work in the Power BI service, apps, mobile and Report Server?</summary>
+    <p>It works wherever custom visuals from AppSource work. Where Power BI disallows interactions (some exports and
+       embedded views), the chips are shown but do not change the filter.</p>
+  </details>
+  <details>
+    <summary>Does it support high contrast and keyboard?</summary>
+    <p>Yes. See <a href="#languages">Languages, number formats and accessibility</a>.</p>
+  </details>
+  <details>
+    <summary>Why is it called “Chip Slicer Pro” in some places?</summary>
+    <p>That was the name of an earlier paid version. Since 1.4 it is free and every feature is included.</p>
+  </details>
+  <details>
+    <summary>Does the visual send my data anywhere?</summary>
+    <p>No. It makes no network calls, has no telemetry, sets no cookies and stores nothing outside the report. The
+       links on the start screen open only when you click them, through Power BI. See the
+       <a href="privacy.html">privacy policy</a>.</p>
+  </details>
+  </div>
 
-    <div class="faq-item">
-        <div class="faq-q">The visual shows a placeholder icon instead of chips. What happened?</div>
-        <p>No field has been added to the Category well. Drag a column from your data model into the Category field well in the Visualizations panel. The placeholder disappears as soon as a field is assigned.</p>
-    </div>
+  <!-- CONTACT -->
+  <h2 id="contact">Contact &amp; issues</h2>
+  <div class="card">
+    <p>Questions, bugs or ideas: write to <a href="mailto:support@tcviz.com">support@tcviz.com</a>. A person answers —
+       the developer of the visual, not a bot.</p>
+    <p>Bug reports are also welcome on <a href="https://github.com/tinocallarisa-web/ChipSlicer/issues">GitHub Issues</a>.
+       Please include the visual version (1.5.0.0), Power BI Desktop or service, and a screenshot.</p>
+    <p>Version history: <a href="changelog.html">Changelog</a>.</p>
+  </div>
 
-    <div class="faq-item">
-        <div class="faq-q">Can I use Chip Slicer as a regular filter for any column?</div>
-        <p>Yes. Any categorical column works — text, numbers, dates, booleans. The visual passes its selections to Power BI as a standard BasicFilter, so it interacts correctly with all other visuals on the page.</p>
-    </div>
+  <footer>
+    Chip Slicer 1.5.0.0 by TCViz &nbsp;|&nbsp;
+    <a href="https://tcviz.com/product/chip-slicer/">tcviz.com</a> &nbsp;|&nbsp;
+    <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+    <a href="terms.html">Terms of Use</a>
+  </footer>
 
-    <div class="faq-item">
-        <div class="faq-q">Does Chip Slicer support High Contrast mode?</div>
-        <p>Yes. When Power BI's high contrast theme is active, Chip Slicer automatically reads the theme's foreground and background colors and applies them to the chips, ignoring the custom color settings.</p>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q">Can I navigate chips with the keyboard?</div>
-        <p>Yes. <kbd>Tab</kbd> moves into the slicer and out of it in one step. Inside, use the arrow keys, <kbd>Home</kbd> and <kbd>End</kbd> to move between chips, <kbd>Enter</kbd> or <kbd>Space</kbd> to select (hold <kbd>Ctrl</kbd> to add to the selection), <kbd>Escape</kbd> to clear it and <kbd>Shift</kbd>+<kbd>F10</kbd> for the context menu. Screen readers announce the slicer as a list and read which chips are selected.</p>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q">Does this visual collect any data or make network calls?</div>
-        <p>No. Chip Slicer processes all data locally within your Power BI environment. It makes no external network requests, collects no telemetry, and stores no data outside the report file. See the <a href="privacy.html">Privacy Policy</a> for full details.</p>
-    </div>
-
-    <!-- ── LINKS ───────────────────────────────────────────────────────── -->
-    <h2>Links &amp; Resources</h2>
-    <div class="links-grid">
-        <a class="link-card" href="https://www.youtube.com/watch?v=uArWJsB_n7w" target="_blank">
-            <strong>▶ Video Tutorial</strong>
-            <span>Full walkthrough on YouTube</span>
-        </a>
-        <a class="link-card" href="mailto:support@tcviz.com?subject=Chip%20Slicer%20bug%20report" target="_blank">
-            <strong>🐛 Report a Bug</strong>
-            <span>Email support@tcviz.com</span>
-        </a>
-        <a class="link-card" href="privacy.html">
-            <strong>🔒 Privacy Policy</strong>
-            <span>Data handling details</span>
-        </a>
-        <a class="link-card" href="terms.html">
-            <strong>📄 Terms of Use</strong>
-            <span>License terms</span>
-        </a>
-    </div>
-
-    <div class="footer">
-        &copy; 2026 Tino Callarisa — <a href="https://tcviz.com">tcviz.com</a> · <a href="mailto:support@tcviz.com">support@tcviz.com</a>
-    </div>
-
+  <script>
+    // Buscador del FAQ: filtra las preguntas por texto, sin red.
+    document.getElementById('faq-search').addEventListener('input', function (e) {
+      var q = e.target.value.toLowerCase();
+      document.querySelectorAll('#faq-list details').forEach(function (d) {
+        d.style.display = d.textContent.toLowerCase().indexOf(q) >= 0 ? '' : 'none';
+      });
+    });
+  </script>
 </body>
 </html>

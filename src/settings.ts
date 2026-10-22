@@ -147,16 +147,6 @@ export class HeaderCard extends FormattingSettingsCard {
     slices: FormattingSettingsSlice[] = [this.text, this.fontFamily, this.fontSize, this.bold, this.color];
 }
 
-export class SearchCard extends FormattingSettingsCard {
-    public show = new formattingSettings.ToggleSwitch({ name: "show", displayNameKey: "search_show", displayName: "Show search box", value: false });
-    public placeholder = new formattingSettings.TextInput({ name: "placeholder", displayNameKey: "search_placeholder", displayName: "Placeholder", placeholder: "Search", value: "" });
-    topLevelSlice = this.show;
-    name = "search";
-    displayName = "Search";
-    displayNameKey = "search";
-    slices: FormattingSettingsSlice[] = [this.placeholder];
-}
-
 export class BadgeCard extends FormattingSettingsCard {
     public show = new formattingSettings.ToggleSwitch({ name: "show", displayNameKey: "badge_show", displayName: "Show value on chips", value: true });
     public color = new formattingSettings.ColorPicker({ name: "color", displayNameKey: "badge_color", displayName: "Color", value: { value: "" } });
@@ -191,9 +181,8 @@ export class VisualSettingsModel extends FormattingSettingsModel {
     public styleCard = new StyleCard();
     public chipSettingsCard = new ChipSettingsCard();
     public headerCard = new HeaderCard();
-    public searchCard = new SearchCard();
     public badgeCard = new BadgeCard();
-    cards: Array<FormattingSettingsCard | formattingSettings.CompositeCard> = [this.styleCard, this.chipSettingsCard, this.headerCard, this.searchCard, this.badgeCard];
+    cards: Array<FormattingSettingsCard | formattingSettings.CompositeCard> = [this.styleCard, this.chipSettingsCard, this.headerCard, this.badgeCard];
 }
 
 /**

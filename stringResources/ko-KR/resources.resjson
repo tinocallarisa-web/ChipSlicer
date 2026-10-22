@@ -49,9 +49,6 @@
   "header_fontFamily": "글꼴",
   "header_bold": "굵게",
   "header_color": "색",
-  "search": "검색",
-  "search_show": "검색 상자 표시",
-  "search_placeholder": "자리 표시자",
   "badge": "값",
   "badge_show": "칩에 값 표시",
   "badge_color": "색",
@@ -78,11 +75,10 @@
   "Landing_GuideSub": "지원 페이지",
   "Landing_Product": "제품 페이지",
   "Landing_Video": "동영상",
-  "UI_Search": "검색",
-  "UI_NoMatch": "일치 항목 없음",
   "UI_Clear": "선택 지우기",
   "Guide_Title": "설정 팁",
   "Guide_TryStyle": "스타일 사용해 보기:",
   "Guide_ValueTip": "팁: 값에 측정값을 추가하면 칩에 개수가 표시됩니다.",
-  "Guide_Close": "팁 숨기기(서식 → 스타일 템플릿)"
+  "Guide_Close": "팁 숨기기(서식 → 스타일 템플릿)",
+  "Guide_Hierarchy": "여러 수준(국가 → 도시)이 필요하세요? Chip Slicer Hierarchy를 사용해 보세요."
 }

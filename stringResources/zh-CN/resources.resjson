@@ -49,9 +49,6 @@
   "header_fontFamily": "字体",
   "header_bold": "加粗",
   "header_color": "颜色",
-  "search": "搜索",
-  "search_show": "显示搜索框",
-  "search_placeholder": "占位文本",
   "badge": "值",
   "badge_show": "在标签上显示值",
   "badge_color": "颜色",
@@ -78,11 +75,10 @@
   "Landing_GuideSub": "支持页面",
   "Landing_Product": "产品页面",
   "Landing_Video": "视频",
-  "UI_Search": "搜索",
-  "UI_NoMatch": "无匹配项",
   "UI_Clear": "清除选择",
   "Guide_Title": "设置提示",
   "Guide_TryStyle": "试试样式：",
   "Guide_ValueTip": "提示：向“值”添加度量值即可在标签上显示计数。",
-  "Guide_Close": "隐藏提示（格式 → 样式模板）"
+  "Guide_Close": "隐藏提示（格式 → 样式模板）",
+  "Guide_Hierarchy": "需要多个层级（国家 → 城市）？试试 Chip Slicer Hierarchy。"
 }

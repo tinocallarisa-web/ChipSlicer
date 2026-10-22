@@ -7,6 +7,7 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "All": "Todo",
         "Blank": "(En blanco)",
         "Guide_Close": "Ocultar consejos (Formato → Plantilla de estilo)",
+        "Guide_Hierarchy": "¿Necesitas varios niveles (país → ciudad)? Prueba Chip Slicer Hierarchy.",
         "Guide_Title": "Consejos de configuración",
         "Guide_TryStyle": "Prueba un estilo:",
         "Guide_ValueTip": "Consejo: añade una medida a Valor para ver recuentos en las pastillas.",
@@ -21,14 +22,13 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Steps": "Para empezar",
         "Landing_Tagline": "Filtra la página con un clic. Gratis, sin licencia.",
         "Landing_Video": "Vídeo",
-        "UI_Clear": "Borrar selección",
-        "UI_NoMatch": "Sin resultados",
-        "UI_Search": "Buscar"
+        "UI_Clear": "Borrar selección"
     },
     "pt-BR": {
         "All": "Todos",
         "Blank": "(Em branco)",
         "Guide_Close": "Ocultar dicas (Formatar → Modelo de estilo)",
+        "Guide_Hierarchy": "Precisa de vários níveis (país → cidade)? Experimente o Chip Slicer Hierarchy.",
         "Guide_Title": "Dicas de configuração",
         "Guide_TryStyle": "Experimente um estilo:",
         "Guide_ValueTip": "Dica: adicione uma medida a Valor para mostrar contagens nos chips.",
@@ -43,14 +43,13 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Steps": "Comece",
         "Landing_Tagline": "Filtre a página com um clique. Gratuito, sem licença.",
         "Landing_Video": "Vídeo",
-        "UI_Clear": "Limpar seleção",
-        "UI_NoMatch": "Nenhum resultado",
-        "UI_Search": "Pesquisar"
+        "UI_Clear": "Limpar seleção"
     },
     "pt-PT": {
         "All": "Todos",
         "Blank": "(Em branco)",
         "Guide_Close": "Ocultar dicas (Formatar → Modelo de estilo)",
+        "Guide_Hierarchy": "Precisa de vários níveis (país → cidade)? Experimente o Chip Slicer Hierarchy.",
         "Guide_Title": "Dicas de configuração",
         "Guide_TryStyle": "Experimente um estilo:",
         "Guide_ValueTip": "Dica: adicione uma medida a Valor para mostrar contagens nos chips.",
@@ -65,14 +64,13 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Steps": "Comece",
         "Landing_Tagline": "Filtre a página com um clique. Gratuito, sem licença.",
         "Landing_Video": "Vídeo",
-        "UI_Clear": "Limpar seleção",
-        "UI_NoMatch": "Nenhum resultado",
-        "UI_Search": "Pesquisar"
+        "UI_Clear": "Limpar seleção"
     },
     "fr-FR": {
         "All": "Tout",
         "Blank": "(Vide)",
         "Guide_Close": "Masquer les conseils (Format → Modèle de style)",
+        "Guide_Hierarchy": "Besoin de plusieurs niveaux (pays → ville) ? Essayez Chip Slicer Hierarchy.",
         "Guide_Title": "Conseils de configuration",
         "Guide_TryStyle": "Essayez un style :",
         "Guide_ValueTip": "Astuce : ajoutez une mesure à Valeur pour afficher les nombres sur les puces.",
@@ -86,14 +84,13 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Steps": "Pour commencer",
         "Landing_Tagline": "Filtrez la page en un clic. Gratuit, sans licence.",
         "Landing_Video": "Vidéo",
-        "UI_Clear": "Effacer la sélection",
-        "UI_NoMatch": "Aucun résultat",
-        "UI_Search": "Rechercher"
+        "UI_Clear": "Effacer la sélection"
     },
     "de-DE": {
         "All": "Alle",
         "Blank": "(Leer)",
         "Guide_Close": "Tipps ausblenden (Format → Stilvorlage)",
+        "Guide_Hierarchy": "Mehrere Ebenen nötig (Land → Stadt)? Probieren Sie Chip Slicer Hierarchy.",
         "Guide_Title": "Einrichtungstipps",
         "Guide_TryStyle": "Stil ausprobieren:",
         "Guide_ValueTip": "Tipp: Fügen Sie Wert eine Measure hinzu, um Anzahlen auf den Chips anzuzeigen.",
@@ -107,14 +104,13 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Step3": "im Formatbereich: Aussehen mit einem Klick wählen",
         "Landing_Steps": "Erste Schritte",
         "Landing_Tagline": "Filtern Sie die Seite mit einem Klick. Kostenlos, ohne Lizenz.",
-        "UI_Clear": "Auswahl löschen",
-        "UI_NoMatch": "Keine Treffer",
-        "UI_Search": "Suchen"
+        "UI_Clear": "Auswahl löschen"
     },
     "it-IT": {
         "All": "Tutti",
         "Blank": "(Vuoto)",
         "Guide_Close": "Nascondi suggerimenti (Formato → Modello di stile)",
+        "Guide_Hierarchy": "Ti servono più livelli (paese → città)? Prova Chip Slicer Hierarchy.",
         "Guide_Title": "Suggerimenti di configurazione",
         "Guide_TryStyle": "Prova uno stile:",
         "Guide_ValueTip": "Suggerimento: aggiungi una misura a Valore per mostrare i conteggi sui chip.",
@@ -128,14 +124,13 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Step3": "nel riquadro Formato: scegli un aspetto con un clic",
         "Landing_Steps": "Per iniziare",
         "Landing_Tagline": "Filtra la pagina con un clic. Gratuito, senza licenza.",
-        "UI_Clear": "Cancella selezione",
-        "UI_NoMatch": "Nessun risultato",
-        "UI_Search": "Cerca"
+        "UI_Clear": "Cancella selezione"
     },
     "nl-NL": {
         "All": "Alles",
         "Blank": "(Leeg)",
         "Guide_Close": "Tips verbergen (Opmaak → Stijlsjabloon)",
+        "Guide_Hierarchy": "Meerdere niveaus nodig (land → stad)? Probeer Chip Slicer Hierarchy.",
         "Guide_Title": "Installatietips",
         "Guide_TryStyle": "Probeer een stijl:",
         "Guide_ValueTip": "Tip: voeg een meting toe aan Waarde om aantallen op de chips te tonen.",
@@ -148,14 +143,13 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Step3": "in het deelvenster Opmaak: kies een stijl met één klik",
         "Landing_Steps": "Aan de slag",
         "Landing_Tagline": "Filter de pagina met één klik. Gratis, zonder licentie.",
-        "UI_Clear": "Selectie wissen",
-        "UI_NoMatch": "Geen resultaten",
-        "UI_Search": "Zoeken"
+        "UI_Clear": "Selectie wissen"
     },
     "pl-PL": {
         "All": "Wszystkie",
         "Blank": "(Puste)",
         "Guide_Close": "Ukryj wskazówki (Format → Szablon stylu)",
+        "Guide_Hierarchy": "Potrzebujesz kilku poziomów (kraj → miasto)? Wypróbuj Chip Slicer Hierarchy.",
         "Guide_Title": "Wskazówki konfiguracji",
         "Guide_TryStyle": "Wypróbuj styl:",
         "Guide_ValueTip": "Wskazówka: dodaj miarę do pola Wartość, aby pokazać liczby na chipach.",
@@ -170,14 +164,13 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Steps": "Pierwsze kroki",
         "Landing_Tagline": "Filtruj stronę jednym kliknięciem. Bezpłatnie, bez licencji.",
         "Landing_Video": "Wideo",
-        "UI_Clear": "Wyczyść zaznaczenie",
-        "UI_NoMatch": "Brak wyników",
-        "UI_Search": "Szukaj"
+        "UI_Clear": "Wyczyść zaznaczenie"
     },
     "ja-JP": {
         "All": "すべて",
         "Blank": "(空白)",
         "Guide_Close": "ヒントを非表示 (書式 → スタイル テンプレート)",
+        "Guide_Hierarchy": "複数の階層 (国 → 都市) が必要ですか? Chip Slicer Hierarchy をお試しください。",
         "Guide_Title": "設定のヒント",
         "Guide_TryStyle": "スタイルを試す:",
         "Guide_ValueTip": "ヒント: 値にメジャーを追加すると、チップに件数が表示されます。",
@@ -192,14 +185,13 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Steps": "はじめに",
         "Landing_Tagline": "ワンクリックでページをフィルター。無料、ライセンス不要。",
         "Landing_Video": "動画",
-        "UI_Clear": "選択をクリア",
-        "UI_NoMatch": "一致なし",
-        "UI_Search": "検索"
+        "UI_Clear": "選択をクリア"
     },
     "zh-CN": {
         "All": "全部",
         "Blank": "(空白)",
         "Guide_Close": "隐藏提示（格式 → 样式模板）",
+        "Guide_Hierarchy": "需要多个层级（国家 → 城市）？试试 Chip Slicer Hierarchy。",
         "Guide_Title": "设置提示",
         "Guide_TryStyle": "试试样式：",
         "Guide_ValueTip": "提示：向“值”添加度量值即可在标签上显示计数。",
@@ -214,14 +206,13 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Steps": "开始使用",
         "Landing_Tagline": "一键筛选页面。免费，无需许可证。",
         "Landing_Video": "视频",
-        "UI_Clear": "清除选择",
-        "UI_NoMatch": "无匹配项",
-        "UI_Search": "搜索"
+        "UI_Clear": "清除选择"
     },
     "ko-KR": {
         "All": "모두",
         "Blank": "(비어 있음)",
         "Guide_Close": "팁 숨기기(서식 → 스타일 템플릿)",
+        "Guide_Hierarchy": "여러 수준(국가 → 도시)이 필요하세요? Chip Slicer Hierarchy를 사용해 보세요.",
         "Guide_Title": "설정 팁",
         "Guide_TryStyle": "스타일 사용해 보기:",
         "Guide_ValueTip": "팁: 값에 측정값을 추가하면 칩에 개수가 표시됩니다.",
@@ -236,8 +227,6 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Steps": "시작하기",
         "Landing_Tagline": "클릭 한 번으로 페이지를 필터링합니다. 무료, 라이선스 불필요.",
         "Landing_Video": "동영상",
-        "UI_Clear": "선택 지우기",
-        "UI_NoMatch": "일치 항목 없음",
-        "UI_Search": "검색"
+        "UI_Clear": "선택 지우기"
     }
 };

@@ -16,18 +16,12 @@
         padding: 8px;
         gap: 6px;
     }
-    // Sin cabecera ni buscador, el botón de limpiar flota arriba a la derecha: se le reserva su hueco
+    // Sin cabecera, el botón de limpiar flota arriba a la derecha: se le reserva su hueco
     .chip-root.reserve-clear .chip-slicer-inner { padding-right: 28px; }
 
     .chip-header { display: flex; align-items: center; gap: 8px; min-height: 22px; }
     .chip-header-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-    .chip-search { display: flex; align-items: center; gap: 8px; }
-    .chip-search-input {
-        flex: 1; min-width: 0; height: 28px; box-sizing: border-box; padding: 0 10px;
-        border: 1px solid #C8C6C4; border-radius: 6px; font: inherit; font-size: 12px; color: #252423; background: #FFFFFF;
-        &:focus-visible { outline: 2px solid #005A9E; outline-offset: 1px; }
-    }
 
     .chip-clear {
         flex: none; width: 24px; height: 24px; border-radius: 50%; border: 1px solid #C8C6C4; background: transparent;
@@ -57,7 +51,6 @@
             &:hover { background: rgba(0, 0, 0, 0.32); }
         }
     }
-    .chip-empty { font-size: 12px; color: #8A8886; padding: 4px 2px; }
 
     // ── Chip ──────────────────────────────────────────────────────────────────
     .chip-item {
@@ -102,6 +95,7 @@
         .chip-g-lbl { font-weight: 600; }
         .chip-g-btn { border: 1px solid; border-radius: 999px; background: transparent; padding: 2px 9px; font: inherit; cursor: pointer; }
         .chip-g-tip { color: #605E5C; flex-basis: 100%; }
+        .chip-g-link { color: #2B6CB0; text-decoration: none; cursor: pointer; &:hover { text-decoration: underline; } }
         .chip-g-close { margin-left: auto; border: none; background: transparent; cursor: pointer; color: #605E5C; font-size: 12px; }
     }
 

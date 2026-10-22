@@ -1,33 +1,41 @@
-Chip Slicer 1.4.1.0 — GUID chipSlicerPro
-
-Source (private repo, access granted to OSDC1033 and pbicvsupport):
-https://github.com/tinocallarisa-web/ChipSlicer/tree/certification
-Support: https://tinocallarisa-web.github.io/ChipSlicer/support.html
-Privacy: https://tinocallarisa-web.github.io/ChipSlicer/privacy.html
-Terms: https://tinocallarisa-web.github.io/ChipSlicer/terms.html
+Chip Slicer 1.5.0.0 - GUID chipSlicerPro
+Repo, branch certification: https://github.com/tinocallarisa-web/ChipSlicer/tree/certification
+Docs: https://tinocallarisa-web.github.io/ChipSlicer/support.html (+privacy.html, terms.html, changelog.html)
 Video: https://www.youtube.com/watch?v=uArWJsB_n7w
 
-WHY THIS UPDATE
-- supportUrl in 1.4.0.0 pointed to tcviz.com/support (404) and had no privacy link. Fixed.
-- Filter values keep their data type (text codes like 08001 were filtered as numbers; dates and blanks did not filter).
-- Filter target read from the column expression (table names with a dot and hierarchy levels failed).
-- Keyboard: single Tab stop, arrows, Home/End, Enter/Space, Escape, Shift+F10. role=listbox.
-- allowInteractions respected; format pane and landing page localized (en-US, es-ES).
+WHY THIS SUBMISSION
+Replaces 1.4.1.0. Same objects and properties (saved reports unchanged); new ones added.
+Clear button, default selection, optional Value measure on chips, sort, grid layout,
+header, style templates, on-object formatting, tooltips, 12 languages. API 5.11.1.
 
 TESTING
-1. Open the sample .pbix. The Chip Slicer is on the canvas.
-2. Click a chip: other visuals filter. Click it again: filter clears.
-3. Format pane > Chip Style > Multi-select on: several chips active; "All" clears.
-4. Change page and return: selection is kept. Bookmarks restore it.
-5. Change colors, size, gap, layout: applied live.
-6. Keyboard: Tab in, arrows to move, Enter/Space to select, Escape to clear, Tab out in one step.
-7. Remove the field: landing page appears.
-8. High contrast mode: chips stay readable.
+1. Sample .pbix: Category on the canvas. Click a chip: the page filters. Again: clears.
+2. Ctrl+click or Format > Chip Style > Selection > Multi-select: several chips. The X
+button and "All" clear. Keyboard: Tab in, arrows, Enter/Space, Esc, Shift+F10, Tab out.
+3. Default selection = a value shown on a chip: applied once when the slicer has no
+filter. Clear it: it stays clear. Bookmarks and sync slicers restore the filter.
+4. Add a measure to Value: number on each chip, model format; Sort > Value.
+5. Format > Style template > Outline: look changes. Edit mode: tips bar at the bottom,
+close with X. Format mode: click a chip or the header (on-object).
+6. Remove the field: start screen. High contrast: theme colours.
+7. allowInteractions false: chips shown, filter unchanged.
 
-PRIVACY AND NETWORK
-No network calls, no telemetry, no external libraries loaded at runtime. privileges: []. Only the selected filter is persisted, by Power BI, in the report.
+FILTER
+BasicFilter "In" via applyJsonFilter on the column (or hierarchy level) of Category, with
+the original value types. Selection state comes from options.jsonFilters.
+
+PERSISTPROPERTIES
+Only on a click in the tips bar (template, close) and once when the template is changed
+in the format pane (clears the settings it defines). Never in a selection callback.
+
+PRIVACY
+No network, telemetry, cookies or storage. privileges: []. No innerHTML. Start-screen
+links open only on click via host.launchUrl. ESLint clean; npm audit --omit=dev 0.
 
 LICENSING
-Completely free. No IVisualLicenseManager, no license server, no feature gating.
+Free. No IVisualLicenseManager, no gating, no licensing UI.
 
-Full notes: CERTIFICATION-NOTES.md in the certification branch.
+RENDERING EVENTS 1:1
+One renderingStarted and one Finished/Failed per update(). The bookmark callback only
+repaints chips and raises none.
+Full notes: CERTIFICATION-NOTES.md

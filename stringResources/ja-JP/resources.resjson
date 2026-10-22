@@ -49,9 +49,6 @@
   "header_fontFamily": "フォント",
   "header_bold": "太字",
   "header_color": "色",
-  "search": "検索",
-  "search_show": "検索ボックスを表示",
-  "search_placeholder": "プレースホルダー",
   "badge": "値",
   "badge_show": "チップに値を表示",
   "badge_color": "色",
@@ -78,11 +75,10 @@
   "Landing_GuideSub": "サポート ページ",
   "Landing_Product": "製品ページ",
   "Landing_Video": "動画",
-  "UI_Search": "検索",
-  "UI_NoMatch": "一致なし",
   "UI_Clear": "選択をクリア",
   "Guide_Title": "設定のヒント",
   "Guide_TryStyle": "スタイルを試す:",
   "Guide_ValueTip": "ヒント: 値にメジャーを追加すると、チップに件数が表示されます。",
-  "Guide_Close": "ヒントを非表示 (書式 → スタイル テンプレート)"
+  "Guide_Close": "ヒントを非表示 (書式 → スタイル テンプレート)",
+  "Guide_Hierarchy": "複数の階層 (国 → 都市) が必要ですか? Chip Slicer Hierarchy をお試しください。"
 }

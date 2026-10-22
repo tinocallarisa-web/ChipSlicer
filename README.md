@@ -1,35 +1,34 @@
 # Chip Slicer - Power BI Visual
 
-Gratuito · Software propietario — ver [LICENSE](LICENSE)
+Versión 1.5.0.0 · Gratuito para todos · Software propietario — ver [LICENSE](LICENSE)
 
-**Chip Slicer** es un visual moderno estilo "chip/pill" para Power BI que permite un filtrado intuitivo y profesional. Completamente gratuito — todas las funciones disponibles para todos los usuarios sin restricciones. Diseñado para ser ligero, altamente personalizable y compatible con los estándares de certificación de Microsoft.
+**Chip Slicer** convierte un campo en una fila de botones (chips) que filtran la página con un clic. Es gratuito para todos: todas las funciones, sin nivel Pro y sin licencia.
 
-## Características Principales
+## Funciones
 
-- **Diseño Moderno**: Estilos de chip/pill con bordes redondeados personalizables.
-- **Multiselección**: Opción para permitir seleccionar múltiples categorías.
-- **Layout Adaptativo**: Disposición horizontal o vertical.
-- **Personalización Total**: Control de colores (activo/inactivo), tamaños de fuente, gaps y paddings.
-- **Botón "Todos"**: Opción de incluir un botón para borrar filtros rápidamente.
-- **Certificable**: No realiza llamadas externas y cumple con todas las políticas de privacidad.
+- **Selección simple o múltiple** (Ctrl+clic añade), chip **"Todos"** opcional y **botón ✕** para borrar la selección.
+- **Selección por defecto**: valores separados por comas con los que se abre el informe.
+- **Campo Valor** (opcional): una medida en cada chip con el formato del modelo. Orden por datos, A-Z, Z-A o por valor.
+- **Diseño** horizontal, vertical o en cuadrícula; encabezado opcional; formato sobre el objeto; tooltips de Power BI.
+- **Seis plantillas**: Classic, Outline, Soft, Square, Segmented y Dark.
+- Funciona como un slicer nativo: sincronización de slicers, marcadores e interacciones.
+- Teclado, lectores de pantalla y alto contraste. **12 idiomas**: inglés, español, portugués (Brasil y Portugal), francés, alemán, italiano, neerlandés, polaco, japonés, chino simplificado y coreano.
 
-## Requisitos
+Límites: 1 campo en Categoría, 1 medida en Valor y hasta 1.000 valores. Para varios niveles, [Chip Slicer Hierarchy](https://tcviz.com/product/chip-slicer-hierarchy/).
 
-- Power BI Desktop (Versión compatible con API 5.3.0 o superior).
+Vídeo: https://www.youtube.com/watch?v=uArWJsB_n7w
 
 ## Instalación
 
-1. Descarga el archivo `.pbiviz` desde [tcviz.com](https://tcviz.com).
-2. En Power BI Desktop, haz clic en los tres puntos (...) en el panel de Visualizaciones.
-3. Selecciona "Importar un objeto visual de un archivo".
+En Power BI, panel Visualizaciones → Obtener más objetos visuales → busca Chip Slicer en AppSource.
 
 ## Soporte
 
-Para cualquier duda o soporte técnico, visita [la página de soporte](https://tinocallarisa-web.github.io/ChipSlicer/support.html) o contacta con [support@tcviz.com](mailto:support@tcviz.com).
+[Página de soporte](https://tinocallarisa-web.github.io/ChipSlicer/support.html) · [support@tcviz.com](mailto:support@tcviz.com) · [Historial de cambios](CHANGELOG.md)
 
 ## Privacidad
 
-Este visual no recopila ni transmite datos fuera de tu entorno de Power BI. Consulta la [Política de Privacidad completa](https://tinocallarisa-web.github.io/ChipSlicer/privacy.html) para más detalles.
+El visual no hace llamadas de red, no tiene telemetría ni cookies. Ver la [Política de Privacidad](https://tinocallarisa-web.github.io/ChipSlicer/privacy.html).
 
 ---
-&copy; 2026 Tino Callarisa - [tcviz.com](https://tcviz.com)
+&copy; 2026 TCViz - [tcviz.com](https://tcviz.com)

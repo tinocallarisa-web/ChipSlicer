@@ -49,9 +49,6 @@
   "header_fontFamily": "Lettertype",
   "header_bold": "Vet",
   "header_color": "Kleur",
-  "search": "Zoeken",
-  "search_show": "Zoekvak weergeven",
-  "search_placeholder": "Tijdelijke tekst",
   "badge": "Waarden",
   "badge_show": "Waarde op chips weergeven",
   "badge_color": "Kleur",
@@ -78,11 +75,10 @@
   "Landing_GuideSub": "ondersteuningspagina",
   "Landing_Product": "Productpagina",
   "Landing_Video": "Video",
-  "UI_Search": "Zoeken",
-  "UI_NoMatch": "Geen resultaten",
   "UI_Clear": "Selectie wissen",
   "Guide_Title": "Installatietips",
   "Guide_TryStyle": "Probeer een stijl:",
   "Guide_ValueTip": "Tip: voeg een meting toe aan Waarde om aantallen op de chips te tonen.",
-  "Guide_Close": "Tips verbergen (Opmaak → Stijlsjabloon)"
+  "Guide_Close": "Tips verbergen (Opmaak → Stijlsjabloon)",
+  "Guide_Hierarchy": "Meerdere niveaus nodig (land → stad)? Probeer Chip Slicer Hierarchy."
 }

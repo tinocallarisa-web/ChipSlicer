@@ -49,9 +49,6 @@
   "header_fontFamily": "Font",
   "header_bold": "Bold",
   "header_color": "Color",
-  "search": "Search",
-  "search_show": "Show search box",
-  "search_placeholder": "Placeholder",
   "badge": "Values",
   "badge_show": "Show value on chips",
   "badge_color": "Color",
@@ -78,11 +75,10 @@
   "Landing_GuideSub": "support page",
   "Landing_Product": "Product page",
   "Landing_Video": "Video",
-  "UI_Search": "Search",
-  "UI_NoMatch": "No matches",
   "UI_Clear": "Clear selection",
   "Guide_Title": "Setup tips",
   "Guide_TryStyle": "Try a style:",
   "Guide_ValueTip": "Tip: add a measure to Value to show counts on the chips.",
-  "Guide_Close": "Hide tips (Format → Style template)"
+  "Guide_Close": "Hide tips (Format → Style template)",
+  "Guide_Hierarchy": "Need several levels (country → city)? Try Chip Slicer Hierarchy."
 }

@@ -49,9 +49,6 @@
   "header_fontFamily": "Police",
   "header_bold": "Gras",
   "header_color": "Couleur",
-  "search": "Rechercher",
-  "search_show": "Afficher la zone de recherche",
-  "search_placeholder": "Texte indicatif",
   "badge": "Valeurs",
   "badge_show": "Afficher la valeur sur les puces",
   "badge_color": "Couleur",
@@ -78,11 +75,10 @@
   "Landing_GuideSub": "page d'assistance",
   "Landing_Product": "Page du produit",
   "Landing_Video": "Vidéo",
-  "UI_Search": "Rechercher",
-  "UI_NoMatch": "Aucun résultat",
   "UI_Clear": "Effacer la sélection",
   "Guide_Title": "Conseils de configuration",
   "Guide_TryStyle": "Essayez un style :",
   "Guide_ValueTip": "Astuce : ajoutez une mesure à Valeur pour afficher les nombres sur les puces.",
-  "Guide_Close": "Masquer les conseils (Format → Modèle de style)"
+  "Guide_Close": "Masquer les conseils (Format → Modèle de style)",
+  "Guide_Hierarchy": "Besoin de plusieurs niveaux (pays → ville) ? Essayez Chip Slicer Hierarchy."
 }

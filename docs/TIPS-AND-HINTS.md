@@ -1,14 +1,19 @@
 # Chip Slicer — Tips & Hints
-**Version 1.4.0.0 · 100% Free · tcviz.com**
+**Version 1.5.0.0 · Free for everyone · tcviz.com**
 
 ---
 
 ## Getting Started
 
-1. **Install** — Import Chip Slicer from AppSource or via `.pbiviz` file (Visualizations panel → ⋯ → Import a visual from a file).
-2. **Add to canvas** — Click the Chip Slicer icon in the Visualizations panel.
-3. **Drop a field** — Drag any categorical column into the **Category** field well. Chips appear immediately.
-4. **Filter** — Click any chip to filter all visuals on the page. Click again (or click "All") to clear.
+1. **Install** — Add Chip Slicer from AppSource (Visualizations pane → Get more visuals).
+2. **Drop a field** — Drag a column into the **Category** field well. One chip per value.
+3. **Optional: add a measure** — Drag a measure into **Value** to show a count or total on each chip.
+4. **Filter** — Click a chip to filter the page. Click it again, the ✕ button or "All" to clear.
+5. **Pick a look** — Format pane → **Style template** changes the whole look in one click.
+
+While you edit, a tips bar at the bottom of the visual offers the templates. Hide it with ✕ (it comes back from Format → Style template → Show setup tips). It never shows in reading view.
+
+Overview video: https://www.youtube.com/watch?v=uArWJsB_n7w
 
 ---
 
@@ -16,36 +21,70 @@
 
 | Well | Accepts | Limit |
 |---|---|---|
-| **Category** | Any categorical column (text, number, date, boolean) | 1,000 values |
+| **Category** | 1 column (text, number, date, true/false) or a hierarchy level | Up to 1,000 values |
+| **Value** (optional) | 1 measure | Shown on each chip with the model's format |
 
-One field at a time. Remove the field to show the landing page placeholder.
+With a measure in Value, items for which the measure is blank are not shown. Remove the field from Category to see the start screen.
 
 ---
 
-## Format Pane — Chip Style
+## Format Pane
 
-### Behaviour
+### Style template
 
 | Setting | Default | What it does |
 |---|---|---|
-| Multi-select | Off | On = multiple chips can be active at once |
-| Show "All" button | On | Adds a chip that clears all selections instantly |
-| "All" button text | All | Custom label for the clear-all chip |
-| Layout | Horizontal | Horizontal wraps chips; Vertical stacks them |
+| Template | Classic | Classic, Outline, Soft, Square, Segmented or Dark |
+| Show setup tips | On | Tips bar while editing (never in reading view) |
 
-### Dimensions
+| Template | Look |
+|---|---|
+| Classic | Grey pills, blue when selected. The look of earlier versions |
+| Outline | White pills with a blue outline and a check mark when selected |
+| Soft | Pale blue pills, solid blue when selected |
+| Square | Small corners, black when selected |
+| Segmented | Joined square buttons, like a segmented control |
+| Dark | For dark report backgrounds |
+
+A template fills in what you have not changed yourself. When you pick a template, the colours and shapes it defines replace yours; anything else you changed stays.
+
+### Chip Style — Selection
+
+| Setting | Default | What it does |
+|---|---|---|
+| Multi-select | Off | On = every click toggles a chip |
+| Show "All" button | On | Adds a chip that clears the filter |
+| "All" button text | All | Custom label for that chip |
+| Show clear button | On | ✕ that clears the selection; only shows when something is selected |
+| Default selection | (empty) | Values separated by commas, selected when the report opens with nothing selected in this slicer |
+| Sort | Data order | Data order, A to Z, Z to A, or Value, largest first |
+
+### Chip Style — Layout
+
+| Setting | Default | What it does |
+|---|---|---|
+| Layout | Horizontal | Horizontal, Vertical or Grid |
+| Columns | 0 | Grid columns; 0 = automatic |
+| Wrap to next line | On | Off = a single row with horizontal scrolling |
+| Stretch chips to fill | Off | Chips share the available width |
+| Alignment | Left | Left, Center or Right |
+| Gap (px) | 8 | Space between chips |
+
+### Chip Style — Chips
 
 | Setting | Default | What it does |
 |---|---|---|
 | Chip height (px) | 34 | Height of every chip |
-| Border radius (px) | 17 | Corner rounding (= half height for full pill) |
-| Font size | 12 | Label size in points |
-| Gap (px) | 8 | Space between chips |
+| Border radius (px) | 17 | Corner rounding (= half height for a full pill) |
 | Horizontal padding (px) | 16 | Left/right padding inside each chip |
+| Font | Segoe UI | Chip label font |
+| Font size | 12 | Label size |
+| Check mark on selected | Off | ✓ on selected chips |
+| Shadow | On | Soft shadow under the chips |
 
-### Colors
+### Chip Style — Colors
 
-| Setting | Default | State |
+| Setting | Default (Classic) | State |
 |---|---|---|
 | Inactive background | #F3F4F6 | Unselected chip fill |
 | Inactive border | #E5E7EB | Unselected chip border |
@@ -54,39 +93,67 @@ One field at a time. Remove the field to show the landing page placeholder.
 | Active border | #378ADD | Selected chip border |
 | Active text | #FFFFFF | Selected chip label |
 
+### Header
+
+| Setting | Default | What it does |
+|---|---|---|
+| Show header | Off | Title above the chips |
+| Text | (field name) | Empty = the field name |
+| Font · Font size · Bold · Color | Segoe UI Semibold · 12 · Off · #252423 | Header text style |
+
+### Values
+
+| Setting | Default | What it does |
+|---|---|---|
+| Show value on chips | On | Shows the measure from the Value well (appears only when there is a measure) |
+| Color | (automatic) | Color of the value |
+
+### On-object formatting
+
+With Format on, click a chip, the header or a chip value to see its options next to it. In format mode a click chooses what to format and does not filter.
+
 ---
 
 ## Tips & Best Practices
 
-- **Header slicers** — Use Horizontal layout in report headers for a navigation-bar look.
-- **Sidebar slicers** — Use Vertical layout in a narrow side panel; chips stack cleanly.
-- **Short labels** — Chip width adapts to label length; keep values concise.
-- **Brand colors** — Set Active background to your report's accent color for consistency.
-- **Full pill look** — Set Border radius to half of Chip height (e.g., height 34 → radius 17).
-- **Guided analysis** — Keep Multi-select off to force single-value selection.
-- **Exploratory dashboards** — Turn Multi-select on to let users combine values freely.
-- **Slicer sync** — Use View → Sync Slicers to share state across all report pages.
-- **Custom "All" label** — Change "All" to "Show all", "Reset", or your language equivalent.
-- **Match theme** — Override Active colors to match Power BI theme accent colors.
+- **Start from a template** — Pick the closest template, then change only what you need. Use Reset to default on a colour to let the template decide it.
+- **Open on the current period** — Put Year in Category and type it in Default selection; the ✕ goes back to all years.
+- **Show sizes before clicking** — Put a count measure in Value and Sort by value.
+- **Show items with no value** — Wrap the measure as `COALESCE([Measure], 0)` so blank items still appear.
+- **Long lists in small tiles** — Grid with Columns = 0 and a smaller chip height.
+- **One row with scrolling** — Horizontal layout with Wrap to next line off.
+- **Status toggles** — Segmented template with Multi-select on reads like a switch.
+- **Header slicers** — Horizontal layout in a report header gives a navigation-bar look.
+- **Sidebar slicers** — Vertical layout in a narrow side panel.
+- **Full pill look** — Border radius = half of Chip height (e.g. height 34 → radius 17).
+- **Ctrl+click** — Adds chips to the selection even when Multi-select is off.
+- **Slicer sync** — View → Sync slicers keeps the selection across report pages. Bookmarks save it too.
+- **Several levels** — Chip Slicer uses one level. For country → city with expand and collapse, use Chip Slicer Hierarchy: https://tcviz.com/product/chip-slicer-hierarchy/
+
+---
+
+## Keyboard
+
+One Tab stop for the whole slicer. Arrow keys, Home and End move between chips; Enter or Space select (Ctrl adds); Escape clears; Shift+F10 opens the context menu.
 
 ---
 
 ## Example Configurations
 
-### Classic pill slicer (single-select)
-- Layout: Horizontal · Height: 34 · Radius: 17 · Gap: 8 · H-Padding: 16
-- Multi-select: Off · Show "All": On
+### Year buttons
+- Category: Year · Layout: Horizontal · Default selection: 2026
+- Template: Classic · Show clear button: On
 
-### Compact tag filter (multi-select)
-- Layout: Horizontal · Height: 28 · Radius: 6 · Gap: 6 · H-Padding: 12 · Font: 11
-- Multi-select: On · Active bg: your report accent color
+### Region filter with counts
+- Category: Region · Value: a distinct-count measure · Sort: Value, largest first
+- Template: Soft
 
-### Sidebar navigation
-- Layout: Vertical · Height: 40 · Radius: 8 · Gap: 4 · H-Padding: 20 · Font: 13
-- Multi-select: Off · Show "All": On
+### Compact product grid
+- Layout: Grid · Columns: 0 · Height: 28 · Font size: 11
+- Multi-select: On · Template: Outline
 
-### Minimal / borderless look
-- Inactive border = same as Inactive background · Active border = same as Active background
+### Status switch
+- Template: Segmented · Multi-select: On · Show "All": Off
 
 ---
 
@@ -95,14 +162,16 @@ One field at a time. Remove the field to show the landing page placeholder.
 | Symptom | Solution |
 |---|---|
 | Chips don't appear | Add a field to the Category well |
-| Filter doesn't affect other visuals | Check the filter interaction settings (Format → Edit interactions) |
-| "All" chip is missing | Enable Show "All" button in Format Pane → Chip Style |
-| Can only select one chip | Enable Multi-select in Format Pane → Chip Style |
-| Colors look wrong in high contrast | Expected — Chip Slicer auto-adapts to the OS/Power BI high contrast theme |
-| Chips still filtered after switching pages | Use Sync Slicers to share state, or clear the filter before navigating |
-| Visual appears blank after import | Remove it from the canvas and re-add it; reload Power BI Desktop if needed |
+| Clicking a chip does not filter other visuals | Check Format → Edit interactions, and that the field is related to their tables in the model |
+| Some values are missing | With a measure in Value, blank items are hidden; other page filters also reduce values; beyond 1,000 values the rest are not loaded |
+| Default selection does not apply | It only applies when the report opens with nothing selected in this slicer (a bookmark or saved selection wins); the text must match the chip text; separate values with commas |
+| A template did not change some colours | A template changes only what it defines; use Reset to default on a colour |
+| The tips bar covers the chips | It only shows while editing; close it with ✕ or turn off Show setup tips |
+| Dates look different from my table | Chips use the column's format in the model (Column tools → Format) |
+| A hierarchy filters only the first level | Expected: Chip Slicer is one level. Use Chip Slicer Hierarchy for several levels |
 
 ---
 
-*Chip Slicer is 100% free — all features are available to every user with no license required.*
-*Support: https://tinocallarisa-web.github.io/chip-slicer/support.html*
+*Chip Slicer is free for everyone: every feature, no Pro tier, no licence. Limits are technical and the same for all: 1 field in Category, 1 measure in Value, up to 1,000 values.*
+*12 languages: English, Spanish, Portuguese (Brazil, Portugal), French, German, Italian, Dutch, Polish, Japanese, Chinese (Simplified), Korean.*
+*Support: https://tinocallarisa-web.github.io/ChipSlicer/support.html · support@tcviz.com*

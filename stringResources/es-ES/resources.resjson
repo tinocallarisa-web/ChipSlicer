@@ -49,9 +49,6 @@
   "header_fontFamily": "Fuente",
   "header_bold": "Negrita",
   "header_color": "Color",
-  "search": "Buscar",
-  "search_show": "Mostrar cuadro de búsqueda",
-  "search_placeholder": "Texto de ejemplo",
   "badge": "Valores",
   "badge_show": "Mostrar valor en las pastillas",
   "badge_color": "Color",
@@ -78,11 +75,10 @@
   "Landing_GuideSub": "página de soporte",
   "Landing_Product": "Página del producto",
   "Landing_Video": "Vídeo",
-  "UI_Search": "Buscar",
-  "UI_NoMatch": "Sin resultados",
   "UI_Clear": "Borrar selección",
   "Guide_Title": "Consejos de configuración",
   "Guide_TryStyle": "Prueba un estilo:",
   "Guide_ValueTip": "Consejo: añade una medida a Valor para ver recuentos en las pastillas.",
-  "Guide_Close": "Ocultar consejos (Formato → Plantilla de estilo)"
+  "Guide_Close": "Ocultar consejos (Formato → Plantilla de estilo)",
+  "Guide_Hierarchy": "¿Necesitas varios niveles (país → ciudad)? Prueba Chip Slicer Hierarchy."
 }
