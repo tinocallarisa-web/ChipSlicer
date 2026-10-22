@@ -76,7 +76,8 @@ formatting, tooltips and 12 languages. Reports made with earlier versions look t
 
 1. `button slicer` — lo teclea quien quiere botones en vez de la lista desplegable del nativo: problema concreto.
 2. `default selection` — el nativo no la tiene y es una queja clásica de Power BI; quien la busca ya tiene el problema.
-3. `slicer` — genérico, por volumen.
+3. `filter` — genérico, por volumen. No `slicer`: ya está en el nombre de la oferta y como palabra clave no suma
+   (Tino, 22-10). Lo escribe además quien no conoce el término de Power BI.
 
 ## Vídeo
 
