@@ -86,3 +86,8 @@ URL canónica `https://www.youtube.com/watch?v=<id>` (nunca acortada). Vídeo de
 ## Notas para la certificación
 
 Ver `docs/CERTIFICATION-NOTES-SHORT.txt` (el campo se vacía en cada reenvío: pegarlo siempre).
+
+## Imágenes (Partner Center → Offer listing)
+
+- Logo 300×300: `assets/icon_300x300.png` (icono nuevo de la serie)
+- Capturas 1366×768: `assets/Screenshot_1.png` y `assets/chip-slicer-infographic.png` (fuente: `docs/infographic.html`)
