@@ -2,6 +2,8 @@
   "All": "すべて",
   "chipSettings": "チップのスタイル",
   "multiSelect": "複数選択",
+  "forceSelection": "選択を強制",
+  "collapse": "収まらないチップをまとめる (+N)",
   "layout": "レイアウト",
   "chipHeight": "チップの高さ",
   "chipRadius": "角の半径",
@@ -81,5 +83,7 @@
   "Guide_TryStyle": "スタイルを試す:",
   "Guide_ValueTip": "ヒント: 値にメジャーを追加すると、チップに件数が表示されます。",
   "Guide_Close": "ヒントを非表示 (書式 → スタイル テンプレート)",
-  "Guide_Hierarchy": "複数の階層 (国 → 都市) が必要ですか? Chip Slicer Hierarchy をお試しください。"
+  "Guide_Hierarchy": "複数の階層 (国 → 都市) が必要ですか? Chip Slicer Hierarchy をお試しください。",
+  "UI_ShowLess": "表示を減らす",
+  "UI_ShowMore": "さらに {0} 件を表示"
 }

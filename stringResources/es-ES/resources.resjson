@@ -2,6 +2,8 @@
   "All": "Todo",
   "chipSettings": "Estilo de Pastilla",
   "multiSelect": "Selección múltiple",
+  "forceSelection": "Forzar selección",
+  "collapse": "Agrupar las pastillas que no caben (+N)",
   "layout": "Orientación",
   "chipHeight": "Altura de pastilla",
   "chipRadius": "Radio del borde",
@@ -81,5 +83,7 @@
   "Guide_TryStyle": "Prueba un estilo:",
   "Guide_ValueTip": "Consejo: añade una medida a Valor para ver recuentos en las pastillas.",
   "Guide_Close": "Ocultar consejos (Formato → Plantilla de estilo)",
-  "Guide_Hierarchy": "¿Necesitas varios niveles (país → ciudad)? Prueba Chip Slicer Hierarchy."
+  "Guide_Hierarchy": "¿Necesitas varios niveles (país → ciudad)? Prueba Chip Slicer Hierarchy.",
+  "UI_ShowLess": "Mostrar menos",
+  "UI_ShowMore": "Mostrar {0} más"
 }

@@ -2,6 +2,10 @@
 """Traducciones de Chip Slicer por TEXTO inglés. Columnas: pt, fr, de, it, nl, pl, ja, zh, ko, es."""
 
 P = {
+    "Force selection": ["Forçar seleção", "Forcer la sélection", "Auswahl erzwingen", "Forza selezione", "Selectie afdwingen", "Wymuś zaznaczenie", "選択を強制", "强制选择", "선택 강제", "Forzar selección"],
+    "Group chips that don't fit (+N)": ["Agrupar os chips que não cabem (+N)", "Regrouper les puces qui ne tiennent pas (+N)", "Nicht passende Chips zusammenfassen (+N)", "Raggruppa i chip che non entrano (+N)", "Chips die niet passen groeperen (+N)", "Grupuj chipy, które się nie mieszczą (+N)", "収まらないチップをまとめる (+N)", "合并放不下的标签 (+N)", "들어가지 않는 칩 묶기(+N)", "Agrupar las pastillas que no caben (+N)"],
+    "Show {0} more": ["Mostrar mais {0}", "Afficher {0} de plus", "{0} weitere anzeigen", "Mostra altri {0}", "Nog {0} weergeven", "Pokaż jeszcze {0}", "さらに {0} 件を表示", "再显示 {0} 项", "{0}개 더 보기", "Mostrar {0} más"],
+    "Show less": ["Mostrar menos", "Afficher moins", "Weniger anzeigen", "Mostra meno", "Minder weergeven", "Pokaż mniej", "表示を減らす", "收起", "간단히 보기", "Mostrar menos"],
     "Report theme": ["Tema do relatório", "Thème du rapport", "Berichtsdesign", "Tema del report", "Rapportthema", "Motyw raportu", "レポートのテーマ", "报表主题", "보고서 테마", "Tema del informe"],
     "Setup guide": ["Guia de configuração", "Guide de configuration", "Einrichtungsleitfaden", "Guida alla configurazione", "Instellingsgids", "Przewodnik konfiguracji", "セットアップ ガイド", "设置指南", "설정 가이드", "Guía de configuración"],
     "'All' button text": ["Texto do botão 'Todos'", "Texte du bouton « Tout »", "Text der Schaltfläche „Alle“", "Testo del pulsante 'Tutti'", "Tekst van knop 'Alles'", "Tekst przycisku 'Wszystkie'", "「すべて」ボタンのテキスト", "“全部”按钮文本", "'모두' 단추 텍스트", "Texto del botón 'Todo'"],

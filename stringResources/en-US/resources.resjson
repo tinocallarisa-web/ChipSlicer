@@ -2,6 +2,8 @@
   "All": "All",
   "chipSettings": "Chip Style",
   "multiSelect": "Multi-select",
+  "forceSelection": "Force selection",
+  "collapse": "Group chips that don't fit (+N)",
   "layout": "Layout",
   "chipHeight": "Chip height",
   "chipRadius": "Border radius",
@@ -81,5 +83,7 @@
   "Guide_TryStyle": "Try a style:",
   "Guide_ValueTip": "Tip: add a measure to Value to show counts on the chips.",
   "Guide_Close": "Hide tips (Format → Style template)",
-  "Guide_Hierarchy": "Need several levels (country → city)? Try Chip Slicer Hierarchy."
+  "Guide_Hierarchy": "Need several levels (country → city)? Try Chip Slicer Hierarchy.",
+  "UI_ShowLess": "Show less",
+  "UI_ShowMore": "Show {0} more"
 }

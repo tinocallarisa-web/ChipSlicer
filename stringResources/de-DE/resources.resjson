@@ -2,6 +2,8 @@
   "All": "Alle",
   "chipSettings": "Chip-Stil",
   "multiSelect": "Mehrfachauswahl",
+  "forceSelection": "Auswahl erzwingen",
+  "collapse": "Nicht passende Chips zusammenfassen (+N)",
   "layout": "Layout",
   "chipHeight": "Chip-Höhe",
   "chipRadius": "Eckenradius",
@@ -81,5 +83,7 @@
   "Guide_TryStyle": "Stil ausprobieren:",
   "Guide_ValueTip": "Tipp: Fügen Sie Wert eine Measure hinzu, um Anzahlen auf den Chips anzuzeigen.",
   "Guide_Close": "Tipps ausblenden (Format → Stilvorlage)",
-  "Guide_Hierarchy": "Mehrere Ebenen nötig (Land → Stadt)? Probieren Sie Chip Slicer Hierarchy."
+  "Guide_Hierarchy": "Mehrere Ebenen nötig (Land → Stadt)? Probieren Sie Chip Slicer Hierarchy.",
+  "UI_ShowLess": "Weniger anzeigen",
+  "UI_ShowMore": "{0} weitere anzeigen"
 }

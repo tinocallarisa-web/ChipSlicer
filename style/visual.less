@@ -86,6 +86,8 @@
         &.dim { opacity: 0.4; }
         // "All" chip gets a subtle dashed border when inactive
         &.chip-all:not(.active) { border-style: dashed !important; }
+        // "+N" / "Show less": not a value, so it reads as a control
+        &.chip-more { border-style: dashed !important; font-variant-numeric: tabular-nums; }
     }
 
     // ── Consejos de configuración (solo editando) ─────────────────────────────

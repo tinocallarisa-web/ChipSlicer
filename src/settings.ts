@@ -15,6 +15,10 @@ class SelectionGroup extends formattingSettings.Group {
     public multiSelect = new formattingSettings.ToggleSwitch({
         name: "multiSelect", displayNameKey: "multiSelect", displayName: "Multi-select", value: false
     });
+    /** Never empty: no 'All', no clear, the last selected value cannot be removed. Off by default (1.5 reports). */
+    public forceSelection = new formattingSettings.ToggleSwitch({
+        name: "forceSelection", displayNameKey: "forceSelection", displayName: "Force selection", value: false
+    });
     public showSelectAll = new formattingSettings.ToggleSwitch({
         name: "showSelectAll", displayNameKey: "showSelectAll", displayName: "Show 'All' button", value: true
     });
@@ -41,7 +45,7 @@ class SelectionGroup extends formattingSettings.Group {
     name = "grpSelection";
     displayName = "Selection";
     displayNameKey = "grpSelection";
-    slices: FormattingSettingsSlice[] = [this.multiSelect, this.showSelectAll, this.selectAllLabel, this.showClear, this.defaultSelection, this.sort];
+    slices: FormattingSettingsSlice[] = [this.multiSelect, this.forceSelection, this.showSelectAll, this.selectAllLabel, this.showClear, this.defaultSelection, this.sort];
 }
 
 class LayoutGroup extends formattingSettings.Group {
@@ -59,6 +63,10 @@ class LayoutGroup extends formattingSettings.Group {
     });
     public wrap = new formattingSettings.ToggleSwitch({
         name: "wrap", displayNameKey: "wrap", displayName: "Wrap to next line", value: true
+    });
+    /** Horizontal with wrap: the chips that do not fit go into a "+N" chip that shows them. */
+    public collapse = new formattingSettings.ToggleSwitch({
+        name: "collapse", displayNameKey: "collapse", displayName: "Group chips that don't fit (+N)", value: true
     });
     public chipFill = new formattingSettings.ToggleSwitch({
         name: "chipFill", displayNameKey: "chipFill", displayName: "Stretch chips to fill", value: false
@@ -78,7 +86,7 @@ class LayoutGroup extends formattingSettings.Group {
     name = "grpLayout";
     displayName = "Layout";
     displayNameKey = "grpLayout";
-    slices: FormattingSettingsSlice[] = [this.layout, this.columns, this.wrap, this.chipFill, this.align, this.chipGap];
+    slices: FormattingSettingsSlice[] = [this.layout, this.columns, this.wrap, this.collapse, this.chipFill, this.align, this.chipGap];
 }
 
 class ChipGroup extends formattingSettings.Group {

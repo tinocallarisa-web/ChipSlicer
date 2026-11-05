@@ -22,7 +22,9 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Steps": "Para empezar",
         "Landing_Tagline": "Filtra la página con un clic. Gratis, sin licencia.",
         "Landing_Video": "Vídeo",
-        "UI_Clear": "Borrar selección"
+        "UI_Clear": "Borrar selección",
+        "UI_ShowLess": "Mostrar menos",
+        "UI_ShowMore": "Mostrar {0} más"
     },
     "pt-BR": {
         "All": "Todos",
@@ -43,7 +45,9 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Steps": "Comece",
         "Landing_Tagline": "Filtre a página com um clique. Gratuito, sem licença.",
         "Landing_Video": "Vídeo",
-        "UI_Clear": "Limpar seleção"
+        "UI_Clear": "Limpar seleção",
+        "UI_ShowLess": "Mostrar menos",
+        "UI_ShowMore": "Mostrar mais {0}"
     },
     "pt-PT": {
         "All": "Todos",
@@ -64,7 +68,9 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Steps": "Comece",
         "Landing_Tagline": "Filtre a página com um clique. Gratuito, sem licença.",
         "Landing_Video": "Vídeo",
-        "UI_Clear": "Limpar seleção"
+        "UI_Clear": "Limpar seleção",
+        "UI_ShowLess": "Mostrar menos",
+        "UI_ShowMore": "Mostrar mais {0}"
     },
     "fr-FR": {
         "All": "Tout",
@@ -84,7 +90,9 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Steps": "Pour commencer",
         "Landing_Tagline": "Filtrez la page en un clic. Gratuit, sans licence.",
         "Landing_Video": "Vidéo",
-        "UI_Clear": "Effacer la sélection"
+        "UI_Clear": "Effacer la sélection",
+        "UI_ShowLess": "Afficher moins",
+        "UI_ShowMore": "Afficher {0} de plus"
     },
     "de-DE": {
         "All": "Alle",
@@ -104,7 +112,9 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Step3": "im Formatbereich: Aussehen mit einem Klick wählen",
         "Landing_Steps": "Erste Schritte",
         "Landing_Tagline": "Filtern Sie die Seite mit einem Klick. Kostenlos, ohne Lizenz.",
-        "UI_Clear": "Auswahl löschen"
+        "UI_Clear": "Auswahl löschen",
+        "UI_ShowLess": "Weniger anzeigen",
+        "UI_ShowMore": "{0} weitere anzeigen"
     },
     "it-IT": {
         "All": "Tutti",
@@ -124,7 +134,9 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Step3": "nel riquadro Formato: scegli un aspetto con un clic",
         "Landing_Steps": "Per iniziare",
         "Landing_Tagline": "Filtra la pagina con un clic. Gratuito, senza licenza.",
-        "UI_Clear": "Cancella selezione"
+        "UI_Clear": "Cancella selezione",
+        "UI_ShowLess": "Mostra meno",
+        "UI_ShowMore": "Mostra altri {0}"
     },
     "nl-NL": {
         "All": "Alles",
@@ -143,7 +155,9 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Step3": "in het deelvenster Opmaak: kies een stijl met één klik",
         "Landing_Steps": "Aan de slag",
         "Landing_Tagline": "Filter de pagina met één klik. Gratis, zonder licentie.",
-        "UI_Clear": "Selectie wissen"
+        "UI_Clear": "Selectie wissen",
+        "UI_ShowLess": "Minder weergeven",
+        "UI_ShowMore": "Nog {0} weergeven"
     },
     "pl-PL": {
         "All": "Wszystkie",
@@ -164,7 +178,9 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Steps": "Pierwsze kroki",
         "Landing_Tagline": "Filtruj stronę jednym kliknięciem. Bezpłatnie, bez licencji.",
         "Landing_Video": "Wideo",
-        "UI_Clear": "Wyczyść zaznaczenie"
+        "UI_Clear": "Wyczyść zaznaczenie",
+        "UI_ShowLess": "Pokaż mniej",
+        "UI_ShowMore": "Pokaż jeszcze {0}"
     },
     "ja-JP": {
         "All": "すべて",
@@ -185,7 +201,9 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Steps": "はじめに",
         "Landing_Tagline": "ワンクリックでページをフィルター。無料、ライセンス不要。",
         "Landing_Video": "動画",
-        "UI_Clear": "選択をクリア"
+        "UI_Clear": "選択をクリア",
+        "UI_ShowLess": "表示を減らす",
+        "UI_ShowMore": "さらに {0} 件を表示"
     },
     "zh-CN": {
         "All": "全部",
@@ -206,7 +224,9 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Steps": "开始使用",
         "Landing_Tagline": "一键筛选页面。免费，无需许可证。",
         "Landing_Video": "视频",
-        "UI_Clear": "清除选择"
+        "UI_Clear": "清除选择",
+        "UI_ShowLess": "收起",
+        "UI_ShowMore": "再显示 {0} 项"
     },
     "ko-KR": {
         "All": "모두",
@@ -227,6 +247,8 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Steps": "시작하기",
         "Landing_Tagline": "클릭 한 번으로 페이지를 필터링합니다. 무료, 라이선스 불필요.",
         "Landing_Video": "동영상",
-        "UI_Clear": "선택 지우기"
+        "UI_Clear": "선택 지우기",
+        "UI_ShowLess": "간단히 보기",
+        "UI_ShowMore": "{0}개 더 보기"
     }
 };

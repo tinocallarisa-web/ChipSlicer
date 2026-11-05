@@ -2,6 +2,8 @@
   "All": "Tout",
   "chipSettings": "Style des puces",
   "multiSelect": "Sélection multiple",
+  "forceSelection": "Forcer la sélection",
+  "collapse": "Regrouper les puces qui ne tiennent pas (+N)",
   "layout": "Disposition",
   "chipHeight": "Hauteur des puces",
   "chipRadius": "Rayon de bordure",
@@ -81,5 +83,7 @@
   "Guide_TryStyle": "Essayez un style :",
   "Guide_ValueTip": "Astuce : ajoutez une mesure à Valeur pour afficher les nombres sur les puces.",
   "Guide_Close": "Masquer les conseils (Format → Modèle de style)",
-  "Guide_Hierarchy": "Besoin de plusieurs niveaux (pays → ville) ? Essayez Chip Slicer Hierarchy."
+  "Guide_Hierarchy": "Besoin de plusieurs niveaux (pays → ville) ? Essayez Chip Slicer Hierarchy.",
+  "UI_ShowLess": "Afficher moins",
+  "UI_ShowMore": "Afficher {0} de plus"
 }

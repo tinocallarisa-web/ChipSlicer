@@ -2,6 +2,8 @@
   "All": "全部",
   "chipSettings": "标签样式",
   "multiSelect": "多选",
+  "forceSelection": "强制选择",
+  "collapse": "合并放不下的标签 (+N)",
   "layout": "布局",
   "chipHeight": "标签高度",
   "chipRadius": "圆角半径",
@@ -81,5 +83,7 @@
   "Guide_TryStyle": "试试样式：",
   "Guide_ValueTip": "提示：向“值”添加度量值即可在标签上显示计数。",
   "Guide_Close": "隐藏提示（格式 → 样式模板）",
-  "Guide_Hierarchy": "需要多个层级（国家 → 城市）？试试 Chip Slicer Hierarchy。"
+  "Guide_Hierarchy": "需要多个层级（国家 → 城市）？试试 Chip Slicer Hierarchy。",
+  "UI_ShowLess": "收起",
+  "UI_ShowMore": "再显示 {0} 项"
 }

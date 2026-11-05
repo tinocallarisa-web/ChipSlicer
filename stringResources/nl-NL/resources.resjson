@@ -2,6 +2,8 @@
   "All": "Alles",
   "chipSettings": "Chipstijl",
   "multiSelect": "Meervoudige selectie",
+  "forceSelection": "Selectie afdwingen",
+  "collapse": "Chips die niet passen groeperen (+N)",
   "layout": "Indeling",
   "chipHeight": "Chiphoogte",
   "chipRadius": "Hoekradius",
@@ -81,5 +83,7 @@
   "Guide_TryStyle": "Probeer een stijl:",
   "Guide_ValueTip": "Tip: voeg een meting toe aan Waarde om aantallen op de chips te tonen.",
   "Guide_Close": "Tips verbergen (Opmaak → Stijlsjabloon)",
-  "Guide_Hierarchy": "Meerdere niveaus nodig (land → stad)? Probeer Chip Slicer Hierarchy."
+  "Guide_Hierarchy": "Meerdere niveaus nodig (land → stad)? Probeer Chip Slicer Hierarchy.",
+  "UI_ShowLess": "Minder weergeven",
+  "UI_ShowMore": "Nog {0} weergeven"
 }

@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.6.0.0] — unreleased
+
+### Added
+- **"+N" for chips that do not fit**: in a horizontal layout with wrapping, when the chips need more rows than the
+  box has, the last ones are grouped into a "+N" chip. Clicking it (or Enter) shows them all, with "Show less" at
+  the start to close; Escape closes too. Selected chips are never hidden. *On by default: slicers whose chips
+  overflowed now show "+N" instead of a scroll bar.* Format → Chip Style → Layout → Group chips that don't fit.
+- **Force selection**: the slicer always keeps a value selected. With nothing selected it selects the default
+  selection, or else the first value; the "All" chip and the clear button are hidden, and the last selected value
+  cannot be removed. Off by default.
+- **Report theme** template: chips, header and clear button take the report theme's colours, as a native visual.
+
+### Changed
+- **The default template is now Report theme.** Reports that never chose a template change look after the update;
+  choose Classic to keep the earlier look. Colours set by hand are kept.
+- The clear button takes the inactive chip's colours instead of fixed greys, which could not be read on dark styles.
+- "Show setup tips" is now called "Setup guide", as in the rest of the TCViz collection.
+
 ## [1.5.0.0] — 2026-10-22
 
 ### Added

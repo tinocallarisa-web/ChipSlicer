@@ -94,6 +94,10 @@ export class Visual implements IVisual {
     /** Selección por defecto ya resuelta para este texto (ver applyDefaultSelection). */
     private defaultSig: string = null;
     private fmtCache = new Map<string, valueFormatter.IValueFormatter>();
+    /** "+N" opened by the reader. Session only: not saved. */
+    private expanded = false;
+    /** Force selection: value already applied while waiting for the filter to come back (no loop if it does not). */
+    private forcePending: string = null;
 
     constructor(options: VisualConstructorOptions) {
         this.host = options.host;
@@ -151,6 +155,7 @@ export class Visual implements IVisual {
 
             this.render(options, dataView);
             this.applyDefaultSelection(options);
+            this.ensureSelection();
             this.markSubSelectables();
             if (this.formatMode) this.subSelectionHelper.updateOutlinesFromSubSelections((options as any).subSelections ?? [], true);
             this.events.renderingFinished(options);
@@ -410,7 +415,8 @@ export class Visual implements IVisual {
 
         // Cabecera y botón de limpiar
         const hasSel = this.selectedValues.size > 0;
-        const showClear = !!sel.showClear.value && (hasSel || this.formatMode);
+        const force = !!sel.forceSelection.value;
+        const showClear = !!sel.showClear.value && !force && (hasSel || this.formatMode);
         let clearPlaced = false;
         if (s.headerCard.show.value) {
             const hd = document.createElement("div");
@@ -447,7 +453,7 @@ export class Visual implements IVisual {
             root.appendChild(b);
             root.classList.add("has-float-clear");
         }
-        if (sel.showClear.value && !s.headerCard.show.value) root.classList.add("reserve-clear");
+        if (sel.showClear.value && !force && !s.headerCard.show.value) root.classList.add("reserve-clear");
 
         const layout = String(lay.layout.value?.value ?? "horizontal");
         list.setAttribute("aria-orientation", layout === "vertical" ? "vertical" : "horizontal");
@@ -487,7 +493,7 @@ export class Visual implements IVisual {
         const pal: any = this.host.colorPalette;
         const hc = !!pal?.isHighContrast;
         const chips: HTMLElement[] = [];
-        if (sel.showSelectAll.value) {
+        if (sel.showSelectAll.value && !sel.forceSelection.value) {
             const label = sel.selectAllLabel.value || this.t("All", "All");
             chips.push(this.createChip(label, Visual.ALL_KEY, this.selectedValues.size === 0, true, null, "", hc, layout));
         }
@@ -500,13 +506,96 @@ export class Visual implements IVisual {
         });
 
         while (list.firstChild) list.removeChild(list.firstChild);
+        chips.forEach(c => list.appendChild(c));
+        const shown = this.collapseOverflow(list, chips, layout, hc);
         // Roving tabindex: una sola parada de Tab para todo el slicer
-        const focusChip = chips.find(c => c.dataset.key === this.focusKey)
-            ?? chips.find(c => c.getAttribute("aria-selected") === "true")
-            ?? chips[0];
-        chips.forEach(c => { c.tabIndex = c === focusChip ? 0 : -1; list.appendChild(c); });
+        const focusChip = shown.find(c => c.dataset.key === this.focusKey)
+            ?? shown.find(c => c.getAttribute("aria-selected") === "true")
+            ?? shown[0];
+        shown.forEach(c => { c.tabIndex = c === focusChip ? 0 : -1; });
         this.focusKey = focusChip?.dataset.key ?? null;
         this.markSubSelectables();
+    }
+
+    // ─── +N: chips that do not fit ───────────────────────────────────────────────
+
+    private static readonly MORE_KEY = "\u0000more";
+
+    /**
+     * Horizontal with wrap, when the chips need more rows than the box has: the last ones go into a "+N" chip that
+     * shows them all (with scroll) behind a "Show less" chip at the start. Selected chips are never hidden. Widths are read once
+     * and the rows are packed here, so a thousand values cost one layout, not one per chip.
+     */
+    private collapseOverflow(list: HTMLElement, chips: HTMLElement[], layout: string, hc: boolean): HTMLElement[] {
+        const lay = this.formattingSettings.chipSettingsCard.layoutGrp;
+        if (layout !== "horizontal" || !lay.wrap.value || !lay.collapse.value || chips.length < 2) return chips;
+        if (list.scrollHeight <= list.clientHeight + 1) return chips;
+        const cs = getComputedStyle(list);
+        const W = list.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+        const H = list.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+        if (W <= 0 || H <= 0) return chips;
+        if (this.expanded) {
+            const less = this.moreChip(this.t("UI_ShowLess", "Show less"), this.t("UI_ShowLess", "Show less"), hc, layout);
+            less.setAttribute("aria-expanded", "true");
+            // First, not last: at the end it would be below the scroll, out of sight in a one-row strip.
+            list.insertBefore(less, list.firstChild);
+            return [less].concat(chips);
+        }
+        const gap = lay.chipGap.value;
+        const rowH = this.formattingSettings.chipSettingsCard.chip.chipHeight.value;
+        const maxRows = Math.max(1, Math.floor((H + gap) / (rowH + gap)));
+        const widths = chips.map(c => c.getBoundingClientRect().width);
+        const probe = this.moreChip("+" + chips.length, "", hc, layout);
+        list.appendChild(probe);
+        const plusW = probe.getBoundingClientRect().width;
+        list.removeChild(probe);
+        const fixed = chips.map(c => c.getAttribute("aria-selected") === "true");
+        const others = chips.map((_c, i) => i).filter(i => !fixed[i]);
+        const fits = (k: number): boolean => {
+            const keep = new Set(others.slice(0, k));
+            let rows = 1, x = 0;
+            const place = (w: number) => {
+                if (x > 0 && x + gap + w > W) { rows++; x = w; } else x += (x > 0 ? gap : 0) + w;
+            };
+            chips.forEach((_c, i) => { if (fixed[i] || keep.has(i)) place(Math.min(widths[i], W)); });
+            place(Math.min(plusW, W));
+            return rows <= maxRows;
+        };
+        // Even the selected chips do not fit: leave the scroll as in 1.5.
+        if (!fits(0)) return chips;
+        let lo = 0, hi = others.length;
+        while (lo < hi) { const mid = Math.ceil((lo + hi) / 2); if (fits(mid)) lo = mid; else hi = mid - 1; }
+        const keep = new Set(others.slice(0, lo));
+        const shown = chips.filter((_c, i) => fixed[i] || keep.has(i));
+        const hidden = chips.length - shown.length;
+        if (hidden <= 0) return chips;
+        chips.forEach(c => { if (shown.indexOf(c) < 0) list.removeChild(c); });
+        const more = this.moreChip("+" + hidden, this.tf("UI_ShowMore", "Show {0} more", String(hidden)), hc, layout);
+        more.setAttribute("aria-expanded", "false");
+        list.appendChild(more);
+        this.firstHidden = chips.find(c => shown.indexOf(c) < 0)?.dataset.key ?? null;
+        return shown.concat([more]);
+    }
+
+    /** First chip behind "+N": it gets the focus when the reader opens it with the keyboard. */
+    private firstHidden: string = null;
+
+    private moreChip(label: string, aria: string, hc: boolean, layout: string): HTMLElement {
+        const el = this.createChip(label, Visual.MORE_KEY, false, false, null, "", hc, layout);
+        el.classList.add("chip-more");
+        el.removeAttribute("data-o");
+        if (aria) { el.setAttribute("aria-label", aria); el.title = aria; }
+        el.onclick = (e: MouseEvent) => { e.stopPropagation(); this.setExpanded(!this.expanded); };
+        return el;
+    }
+
+    private setExpanded(v: boolean): void {
+        if (this.formatMode || !this.interactionsAllowed()) return;
+        const hadFocus = this.container.contains(document.activeElement);
+        this.focusKey = v ? (this.firstHidden ?? Visual.MORE_KEY) : Visual.MORE_KEY;
+        this.expanded = v;
+        this.renderList();
+        if (hadFocus) (this.container.querySelector(".chip-item[tabindex='0']") as HTMLElement)?.focus();
     }
 
     // ─── Chip factory ────────────────────────────────────────────────────────────
@@ -712,6 +801,9 @@ export class Visual implements IVisual {
         if (!this.interactionsAllowed()) {
             return;
         }
+        const force = !!this.formattingSettings?.chipSettingsCard.selection.forceSelection.value;
+        // Force selection: nothing clears it and the last selected value stays.
+        if (force && (isAll || (this.selectedValues.has(key) && this.selectedValues.size === 1))) return;
         this.focusKey = key;
         if (isAll) {
             this.selectedValues.clear();
@@ -750,6 +842,23 @@ export class Visual implements IVisual {
         this.applyFilter();
     }
 
+    /**
+     * Force selection: with no valid value selected (new report, cleared bookmark, the value is gone after another
+     * slicer filtered this one) the first value is applied, as the native slicer does. Once per empty state.
+     */
+    private ensureSelection(): void {
+        if (!this.formattingSettings.chipSettingsCard.selection.forceSelection.value) { this.forcePending = null; return; }
+        if (!this.interactionsAllowed() || this.formatMode || !this.items.length) return;
+        if (Array.from(this.selectedValues).some(k => this.valuesByKey.has(k))) { this.forcePending = null; return; }
+        const it = this.items.find(x => x.key !== Visual.valueKey(null)) ?? this.items[0];
+        if (this.forcePending === it.key) return;
+        this.forcePending = it.key;
+        this.selectedValues.clear();
+        this.selectedValues.add(it.key);
+        this.applyFilter();
+        this.renderList();
+    }
+
     private onKeyDown(e: KeyboardEvent): void {
         const chips = Array.from(this.container.querySelectorAll<HTMLElement>(".chip-item"));
         const current = (e.target as HTMLElement).closest?.(".chip-item") as HTMLElement;
@@ -777,11 +886,13 @@ export class Visual implements IVisual {
             case " ": {
                 e.preventDefault();
                 if (this.formatMode) return;
+                if (current.dataset.key === Visual.MORE_KEY) { this.setExpanded(!this.expanded); return; }
                 const multi = this.formattingSettings?.chipSettingsCard.selection.multiSelect.value || e.ctrlKey || e.metaKey;
                 this.toggle(current.dataset.key, current.dataset.key === Visual.ALL_KEY, multi);
                 return;
             }
             case "Escape":
+                if (this.expanded) { e.preventDefault(); this.setExpanded(false); return; }
                 if (this.selectedValues.size > 0) {
                     e.preventDefault();
                     this.toggle(Visual.ALL_KEY, true, false);
@@ -961,7 +1072,12 @@ export class Visual implements IVisual {
         lay.columns.visible = layout === "grid";
         lay.wrap.visible = layout === "horizontal";
         lay.chipFill.visible = layout !== "grid";
-        s.chipSettingsCard.selection.selectAllLabel.visible = !!s.chipSettingsCard.selection.showSelectAll.value;
+        const sel = s.chipSettingsCard.selection;
+        const force = !!sel.forceSelection.value;
+        sel.showSelectAll.visible = !force;
+        sel.showClear.visible = !force;
+        sel.selectAllLabel.visible = !force && !!sel.showSelectAll.value;
+        lay.collapse.visible = layout === "horizontal" && !!lay.wrap.value;
         return this.formattingSettingsService.buildFormattingModel(s);
     }
 }

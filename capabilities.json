@@ -45,6 +45,20 @@
             "bool": true
           }
         },
+        "forceSelection": {
+          "displayName": "Force selection",
+          "displayNameKey": "forceSelection",
+          "type": {
+            "bool": true
+          }
+        },
+        "collapse": {
+          "displayName": "Group chips that don't fit (+N)",
+          "displayNameKey": "collapse",
+          "type": {
+            "bool": true
+          }
+        },
         "layout": {
           "displayName": "Layout",
           "displayNameKey": "layout",

@@ -2,6 +2,8 @@
   "All": "모두",
   "chipSettings": "칩 스타일",
   "multiSelect": "다중 선택",
+  "forceSelection": "선택 강제",
+  "collapse": "들어가지 않는 칩 묶기(+N)",
   "layout": "레이아웃",
   "chipHeight": "칩 높이",
   "chipRadius": "모서리 반경",
@@ -81,5 +83,7 @@
   "Guide_TryStyle": "스타일 사용해 보기:",
   "Guide_ValueTip": "팁: 값에 측정값을 추가하면 칩에 개수가 표시됩니다.",
   "Guide_Close": "팁 숨기기(서식 → 스타일 템플릿)",
-  "Guide_Hierarchy": "여러 수준(국가 → 도시)이 필요하세요? Chip Slicer Hierarchy를 사용해 보세요."
+  "Guide_Hierarchy": "여러 수준(국가 → 도시)이 필요하세요? Chip Slicer Hierarchy를 사용해 보세요.",
+  "UI_ShowLess": "간단히 보기",
+  "UI_ShowMore": "{0}개 더 보기"
 }
