@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=1366"/>
-<title>Chip Slicer 1.5 — TCViz Infographic</title>
+<title>Chip Slicer 1.6 — TCViz Infographic</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet"/>
@@ -147,8 +147,8 @@
 
     <div class="header-text">
       <h1><span>Chip Slicer</span> for Power BI</h1>
-      <p>Turn a field into a row of chips that filter the page with one click. Open the report on a chosen value, show a measure on each chip, clear with ✕, and restyle it with one of six templates.</p>
-      <div class="header-badge"><i class="ti ti-infinity"></i> v1.5.0.0 · FREE FOR EVERYONE — no Pro tier, no licence</div>
+      <p>Turn a field into a row of chips that filter the page with one click. Open on a chosen value or force one, group extra chips into +N, show a measure on each chip, match the report theme.</p>
+      <div class="header-badge"><i class="ti ti-infinity"></i> v1.6.0.0 · FREE FOR EVERYONE — no Pro tier, no licence</div>
     </div>
 
     <svg width="150" height="87" viewBox="0 0 190 110" xmlns="http://www.w3.org/2000/svg">
@@ -201,8 +201,8 @@
       <div class="feature-item">
         <i class="ti ti-pin"></i>
         <div class="feature-item-text">
-          <strong>Default Selection</strong>
-          <span>Type values separated by commas; the report opens with them selected when the slicer has no selection.</span>
+          <strong>Default &amp; Force Selection</strong>
+          <span>The report opens on the values you choose. Force selection keeps one value always selected.</span>
         </div>
       </div>
       <div class="feature-item">
@@ -216,14 +216,14 @@
         <i class="ti ti-toggle-right"></i>
         <div class="feature-item-text">
           <strong>Single &amp; Multi-select</strong>
-          <span>One chip or many. Ctrl+click adds chips even in single-select mode.</span>
+          <span>One chip or many; Ctrl+click adds. Sort by data, A to Z, Z to A or value.</span>
         </div>
       </div>
       <div class="feature-item">
-        <i class="ti ti-sort-ascending"></i>
+        <i class="ti ti-dots"></i>
         <div class="feature-item-text">
-          <strong>Sort</strong>
-          <span>Data order, A to Z, Z to A, or by the value of the measure.</span>
+          <strong>+N for Chips That Don't Fit</strong>
+          <span>In a narrow strip the extra chips group into +N; one click shows them all.</span>
         </div>
       </div>
       <div class="feature-item">
@@ -251,7 +251,7 @@
           <span class="stat-desc">Layouts</span>
         </div>
         <div class="stat-pill">
-          <span class="stat-num">6</span>
+          <span class="stat-num">7</span>
           <span class="stat-desc">Templates</span>
         </div>
         <div class="stat-pill">
@@ -267,8 +267,8 @@
       <div class="feature-item">
         <i class="ti ti-palette"></i>
         <div class="feature-item-text">
-          <strong>Six Style Templates</strong>
-          <span>Classic, Outline, Soft, Square, Segmented and Dark. Classic is the look of earlier versions.</span>
+          <strong>Seven Style Templates</strong>
+          <span>Report theme (default) follows your theme. Plus Classic, Outline, Soft, Square, Segmented, Dark.</span>
         </div>
       </div>
       <div class="feature-item">
@@ -330,7 +330,7 @@
       <div class="workflow-step">
         <div class="step-num">5</div>
         <div class="step-title">Pick a Template</div>
-        <div class="step-desc">Format pane → Style template changes the whole look in one click.</div>
+        <div class="step-desc">Chips follow the report theme; Style template changes the look in one click.</div>
       </div>
       <div class="workflow-step">
         <div class="step-num">6</div>
@@ -351,7 +351,7 @@
         <li>Free for everyone — every feature, no Pro tier, no licence</li>
         <li>Selected values are always visible at a glance</li>
         <li>Counts on the chips before the reader clicks</li>
-        <li>Earlier reports look the same — Classic is the default</li>
+        <li>Matches the report theme, light or dark, by default</li>
         <li>No network calls, no telemetry, no cookies</li>
       </ul>
     </div>
@@ -361,8 +361,8 @@
         <li>Year in Category + Default selection opens on the current year</li>
         <li>A count measure in Value + Sort by value shows sizes first</li>
         <li>COALESCE([Measure], 0) keeps items with no value visible</li>
-        <li>Grid with 0 columns fits long lists in a small tile</li>
-        <li>Segmented template + Multi-select reads like a switch</li>
+        <li>Narrow strip? The chips that don't fit go into +N</li>
+        <li>Force selection keeps one period always selected</li>
         <li>Several levels? Use Chip Slicer Hierarchy</li>
       </ul>
     </div>
@@ -370,11 +370,11 @@
       <div class="bottom-card-title"><i class="ti ti-adjustments"></i> Format Pane</div>
       <div class="format-grid">
       <div class="format-row"><i class="ti ti-palette"></i> Style template</div>
-      <div class="format-row"><i class="ti ti-toggle-right"></i> Multi-select</div>
+      <div class="format-row"><i class="ti ti-toggle-right"></i> Multi &amp; Force select</div>
       <div class="format-row"><i class="ti ti-pin"></i> Default selection</div>
       <div class="format-row"><i class="ti ti-x"></i> Clear button + "All"</div>
       <div class="format-row"><i class="ti ti-sort-ascending"></i> Sort</div>
-      <div class="format-row"><i class="ti ti-layout-grid"></i> Layout &amp; columns</div>
+      <div class="format-row"><i class="ti ti-layout-grid"></i> Layout, columns, +N</div>
       <div class="format-row"><i class="ti ti-border-radius"></i> Chip size &amp; font</div>
       <div class="format-row"><i class="ti ti-color-swatch"></i> Active / inactive colors</div>
       <div class="format-row"><i class="ti ti-heading"></i> Header</div>

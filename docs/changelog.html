@@ -23,11 +23,24 @@
 </head>
 <body>
   <h1>Changelog — Chip Slicer</h1>
-  <p class="meta">Current version <strong>1.5.0.0</strong> &nbsp;|&nbsp;
+  <p class="meta">Current version <strong>1.6.0.0</strong> &nbsp;|&nbsp;
     <a href="support.html">Support</a> &nbsp;|&nbsp;
     <a href="mailto:support@tcviz.com">support@tcviz.com</a></p>
 
   <p>All notable changes to this project will be documented in this file.</p>
+  <h2 id="v1.6.0.0">1.6.0.0 <span class="date">unreleased</span></h2>
+  <h3 class="kind kind-added">Added</h3>
+  <ul>
+  <li><strong>"+N" for chips that do not fit</strong>: in a horizontal layout with wrapping, when the chips need more rows than the box has, the last ones are grouped into a "+N" chip. Clicking it (or Enter) shows them all, with "Show less" at the start to close; Escape closes too. Selected chips are never hidden. *On by default: slicers whose chips overflowed now show "+N" instead of a scroll bar.* Format → Chip Style → Layout → Group chips that don't fit.</li>
+  <li><strong>Force selection</strong>: the slicer always keeps a value selected. With nothing selected it selects the default selection, or else the first value; the "All" chip and the clear button are hidden, and the last selected value cannot be removed. Off by default.</li>
+  <li><strong>Report theme</strong> template: chips, header and clear button take the report theme's colours, as a native visual.</li>
+  </ul>
+  <h3 class="kind kind-changed">Changed</h3>
+  <ul>
+  <li><strong>The default template is now Report theme.</strong> Reports that never chose a template change look after the update; choose Classic to keep the earlier look. Colours set by hand are kept.</li>
+  <li>The clear button takes the inactive chip's colours instead of fixed greys, which could not be read on dark styles.</li>
+  <li>"Show setup tips" is now called "Setup guide", as in the rest of the TCViz collection.</li>
+  </ul>
   <h2 id="v1.5.0.0">1.5.0.0 <span class="date">2026-10-22</span></h2>
   <h3 class="kind kind-added">Added</h3>
   <ul>

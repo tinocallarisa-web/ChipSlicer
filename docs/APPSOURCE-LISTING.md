@@ -1,4 +1,4 @@
-# Chip Slicer — ficha de AppSource (1.5.0.0, 22-10-2026)
+# Chip Slicer — ficha de AppSource (1.6.0.0, borrador 05-11-2026, aún no enviada)
 
 Texto para pegar en Partner Center → oferta Chip Slicer → Offer listing. **Editar este fichero no cambia la oferta:**
 cada campo hay que pegarlo a mano en la consola.
@@ -17,7 +17,7 @@ Chip Slicer by TCViz
 
 ## Resumen de resultados de búsqueda (≤ 100)
 
-Free button slicer for Power BI: default selection, clear button, counts and style templates.
+Free button slicer for Power BI: default or forced selection, +N for overflow, report theme colors.
 
 ## Descripción (≤ 5.000)
 
@@ -26,18 +26,23 @@ starts on "all years" even when everyone wants this year. Buttons are faster, an
 click on every visit.
 
 Chip Slicer turns a field into a row of buttons — chips — that filter the page with one click. It is free for
-everyone, with every feature: no Pro tier, no licence, no watermark.
+everyone, with every feature: no Pro tier, no watermark.
 
 WHAT IT ADDS TO A SLICER
 • Default selection: type "2026" or "Spain, France" and the report opens with them selected. If the reader clears
   it, it stays clear until the page is opened again.
+• Force selection: the slicer always keeps a value selected — your default selection, or else the first value. The
+  "All" chip and the clear button are hidden, so the page never shows everything mixed. Off by default.
+• "+N" for chips that do not fit: in a narrow strip the last chips are grouped into a "+N" chip. One click shows them
+  all, "Show less" closes. Selected chips are never hidden.
 • Clear button (✕) and an optional "All" chip.
 • Counts on the chips: put a measure in Value and each chip shows its count or total, with your model's format.
   Items without a value are hidden.
 • Sort by data order, A to Z, Z to A or by value.
 • Horizontal, vertical or grid layout, with automatic or fixed columns, one scrolling row, stretch to fill and
   alignment. Long labels end with "…".
-• Six style templates — Classic, Outline, Soft, Square, Segmented, Dark — plus colors, font, check mark and shadow.
+• Seven style templates. Report theme, the default, takes the colors of your report theme, light or dark, like a
+  native visual. Also Classic, Outline, Soft, Square, Segmented and Dark, plus colors, font, check mark and shadow.
 • Optional header.
 
 WORKS LIKE A NATIVE SLICER
@@ -48,7 +53,8 @@ WORKS LIKE A NATIVE SLICER
 • Tooltips with the value and the measure.
 
 ACCESSIBLE AND IN YOUR LANGUAGE
-• Keyboard: one Tab stop, arrow keys, Enter or Space, Escape to clear, Shift+F10 for the context menu.
+• Keyboard: one Tab stop, arrow keys, Enter or Space, Escape to clear, Shift+F10 for the context menu. "+N" opens
+  with Enter or Space and closes with Escape.
 • Screen readers hear a list with each chip's state.
 • High-contrast themes.
 • 12 languages: English, Spanish, Portuguese, French, German, Italian, Dutch, Polish, Japanese, Chinese, Korean.
@@ -63,16 +69,20 @@ when you click them.
 GETTING STARTED
 1. Drag a column into Category: one chip per value.
 2. Optional: drag a measure into Value to show counts.
-3. Format pane → Style template: pick a look in one click.
+3. Format pane → Style template: keep Report theme or pick another look in one click.
 
 Documentation, FAQ and use cases: https://tinocallarisa-web.github.io/ChipSlicer/support.html
 Support: support@tcviz.com — a person answers.
 
-WHAT'S NEW IN 1.5
-Default selection, clear button, counts on chips, sort, grid layout, header, six style templates, on-object
-formatting, tooltips and 12 languages. Reports made with earlier versions look the same.
+WHAT'S NEW IN 1.6
+Report theme template, now the default: the chips take your report theme's colors. "+N" groups the chips that do not
+fit. Force selection keeps one value always selected. The clear button follows the chip colors. Reports that never
+chose a template take Report theme after the update; choose Classic to keep the earlier look. Colors set by hand are
+kept.
 
 ## Palabras clave (3)
+
+Se mantienen las de la 1.5: ninguna novedad de la 1.6 es una búsqueda con más volumen que estas.
 
 1. `button slicer` — lo teclea quien quiere botones en vez de la lista desplegable del nativo: problema concreto.
 2. `default selection` — el nativo no la tiene y es una queja clásica de Power BI; quien la busca ya tiene el problema.
@@ -81,7 +91,8 @@ formatting, tooltips and 12 languages. Reports made with earlier versions look t
 
 ## Vídeo
 
-URL canónica `https://www.youtube.com/watch?v=<id>` (nunca acortada). Vídeo de la 1.5:
+URL canónica `https://www.youtube.com/watch?v=<id>` (nunca acortada). El vídeo sigue siendo el de la 1.5 (no muestra
+Report theme, +N ni Force selection; se puede dejar):
 `https://www.youtube.com/watch?v=cbJ_VHPA5Sk`.
 
 ## Notas para la certificación
@@ -91,4 +102,16 @@ Ver `docs/CERTIFICATION-NOTES-SHORT.txt` (el campo se vacía en cada reenvío: p
 ## Imágenes (Partner Center → Offer listing)
 
 - Logo 300×300: `assets/icon_300x300.png` (icono nuevo de la serie)
-- Capturas 1366×768: `assets/Screenshot_1.png` y `assets/chip-slicer-infographic.png` (fuente: `docs/infographic.html`)
+- Capturas 1366×768: `assets/Screenshot_1.png` y `assets/chip-slicer-infographic.png` (fuente: `docs/infographic.html`).
+  La infografía cambia en la 1.6 (siete plantillas, +N, Force selection): volver a exportar el PNG desde
+  `docs/infographic.html` antes de subirla.
+
+## Qué hay que pegar a mano en Partner Center (1.6.0.0)
+
+1. Offer listing → **Search results summary**: el resumen de arriba (cambia).
+2. Offer listing → **Description**: la descripción de arriba entera (cambia: Force selection, +N, siete plantillas,
+   WHAT'S NEW IN 1.6).
+3. Offer listing → **Screenshots**: la infografía re-exportada (cambia).
+4. Technical configuration / Submission → **Notes for certification**: `docs/CERTIFICATION-NOTES-SHORT.txt` (siempre).
+5. Package: el `.pbiviz` 1.6.0.0 y el `.pbix` de muestra.
+6. Sin cambios, solo comprobar: palabras clave, vídeo (URL canónica de arriba), enlace de soporte (`support.html`).

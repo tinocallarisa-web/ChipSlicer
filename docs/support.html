@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Support — Chip Slicer | TCViz</title>
-  <meta name="description" content="Chip Slicer for Power BI, free: field wells, default selection, clear button, values on chips, style templates, on-object formatting, keyboard, languages, troubleshooting and FAQ." />
+  <meta name="description" content="Chip Slicer for Power BI, free: field wells, default selection, force selection, +N for chips that do not fit, clear button, values on chips, style templates, on-object formatting, keyboard, languages, troubleshooting and FAQ." />
   <style>
     body { font-family: 'Segoe UI', Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 24px; color: #333; line-height: 1.7; }
     h1   { color: #0078D4; margin-bottom: 4px; }
@@ -35,9 +35,9 @@
   <h1>Support — Chip Slicer</h1>
   <p><strong>Publisher:</strong> TCViz &nbsp;|&nbsp;
      <strong>Email:</strong> <a href="mailto:support@tcviz.com">support@tcviz.com</a> &nbsp;|&nbsp;
-     <strong>Version:</strong> 1.5.0.0 &nbsp;|&nbsp;
+     <strong>Version:</strong> 1.6.0.0 &nbsp;|&nbsp;
      <strong>Price:</strong> free, no licence &nbsp;|&nbsp;
-     <span class="muted">docs updated 22 Oct 2026</span></p>
+     <span class="muted">docs updated 5 Nov 2026</span></p>
 
   <nav>
     <a href="#quick-start">Quick start</a>
@@ -57,7 +57,8 @@
      It is free for everyone: there is no Pro tier, no licence and no watermark. It works like a
      native Power BI slicer (sync slicers, bookmarks, edit interactions, cross-page filters) and adds
      what the native one does not have: a default selection, a clear button, the value of a measure on
-     each chip, a grid layout and style templates.</p>
+     each chip, a grid layout, a "+N" chip for the values that do not fit, a forced selection and style templates
+     that follow the report theme.</p>
 
   <!-- VIDEO -->
   <h2>Overview video</h2>
@@ -66,7 +67,25 @@
   </div>
   <p class="muted">Also on YouTube: <a href="https://www.youtube.com/watch?v=cbJ_VHPA5Sk">https://www.youtube.com/watch?v=cbJ_VHPA5Sk</a></p>
 
-  <h2 id="whats-new">What's new in 1.5.0.0</h2>
+  <h2 id="whats-new">What's new in 1.6.0.0</h2>
+  <ul>
+    <li><strong>Report theme template, now the default.</strong> The selected chip takes the first data colour of the
+        report theme, with black or white text, whichever reads better; inactive chips, the header and the clear button
+        take the page colours of the theme. Flat, no shadow. It works on light and dark themes.</li>
+    <li><strong>“+N” for chips that do not fit</strong> (horizontal layout with wrapping): when the chips need more rows
+        than the box has, the last ones are grouped into a “+N” chip. Click it to see them all; “Show less” closes.
+        Selected chips are never hidden. On by default.</li>
+    <li><strong>Force selection</strong>: the slicer always keeps a value selected — the default selection, or else the
+        first value. The “All” chip and the clear button are hidden. Off by default.</li>
+    <li>The clear button ✕ takes the colours of the inactive chips instead of fixed greys.</li>
+    <li>“Show setup tips” is now called <strong>Setup guide</strong>. The tips bar also offers Report theme.</li>
+  </ul>
+  <p><strong>Updating from 1.5 or earlier:</strong> reports that never chose a template switch to Report theme after
+     the update; choose <em>Classic</em> in Format → Style template to keep the earlier look. Colours you set by hand
+     are kept, and no saved setting was renamed or moved. Slicers whose chips overflowed now show “+N” instead of a
+     scroll bar; turn off Group chips that don't fit (+N) to keep the scroll.</p>
+
+  <h3>1.5.0.0</h3>
   <ul>
     <li><strong>Clear button</strong> (✕) that removes the selection in one click.</li>
     <li><strong>Default selection</strong>: the report opens with the values you choose already selected.</li>
@@ -74,13 +93,11 @@
     <li><strong>Sort</strong> A to Z, Z to A or by value.</li>
     <li>Optional <strong>header</strong>.</li>
     <li><strong>Grid layout</strong> with fixed or automatic columns, no-wrap row, stretch to fill and alignment. Long labels end with “…”.</li>
-    <li><strong>Six style templates</strong>, a check mark on selected chips, shadow and font.</li>
+    <li><strong>Six style templates</strong> (Classic was the default until 1.5), a check mark on selected chips, shadow and font.</li>
     <li><strong>On-object formatting</strong>: click a chip, the header or a value to format it.</li>
     <li>Power BI <strong>tooltips</strong> on each chip, a <strong>start screen</strong> with the steps, and <strong>setup tips</strong> while you edit.</li>
     <li><strong>12 languages</strong> and a new icon.</li>
   </ul>
-  <p>Reports made with earlier versions look exactly the same: the default template, Classic, is the 1.4 look,
-     and no saved setting moved.</p>
 
   <!-- QUICK START -->
   <h2 id="quick-start">Quick start</h2>
@@ -89,10 +106,11 @@
     <li>Drag a column into <strong>Category</strong>: one chip per value.</li>
     <li>Optional: drag a measure into <strong>Value</strong> to show a count or total on each chip.</li>
     <li>Click a chip to filter the page. Click it again, the ✕ button or <em>All</em> to clear.</li>
-    <li>In the Format pane, <strong>Style template</strong> changes the whole look in one click.</li>
+    <li>The chips take the colours of the report theme (Report theme template). In the Format pane,
+        <strong>Style template</strong> changes the whole look in one click.</li>
   </ol>
-  <p>While you edit, a tips bar at the bottom of the visual offers the templates; hide it with ✕
-     (it comes back from Format → Style template → Show setup tips). It never shows in reading view.</p>
+  <p>While you edit, a tips bar at the bottom of the visual offers the templates, Report theme included; hide it with ✕
+     (it comes back from Format → Style template → Setup guide). It never shows in reading view.</p>
 
   <!-- FIELDS -->
   <h2 id="fields">Field wells</h2>
@@ -114,22 +132,44 @@
         the report opens with nothing selected in this slicer, those values are selected. If the user clears
         them, the slicer stays clear until the page is opened again. Values match the chip text, without case or accents.
         In single-select mode the first match is used.</li>
+    <li><strong>Force selection</strong> (Format → Chip Style → Selection, off by default): the slicer always keeps a
+        value selected. When nothing valid is selected it applies the Default selection if you set one, otherwise the
+        first non-blank value in the order shown. This also happens when a bookmark without a filter is applied, or when
+        the selected value disappears because another slicer filtered this one. The All chip, its text setting and the
+        clear button are hidden (in the visual and in the Format pane); clicking the selected chip or pressing Escape
+        does not clear it, and with Multi-select the last selected value cannot be removed. It does not act in format
+        mode or where Power BI disallows interactions.</li>
   </ul>
   <p>The selection is a standard Power BI filter: it follows <strong>sync slicers</strong>, is saved in
      <strong>bookmarks</strong>, respects <strong>edit interactions</strong> and appears in the filter pane.</p>
+
+  <!-- MORE -->
+  <h2 id="more">Chips that do not fit: “+N”</h2>
+  <p>In a <strong>Horizontal</strong> layout with <strong>Wrap to next line</strong> on, when the chips need more rows than
+     the box has, the last ones are grouped into a <strong>“+N”</strong> chip with a dashed border, N being how many
+     are hidden. Click it, or press Enter or Space on it: all the chips are shown with a vertical scroll and a
+     <strong>“Show less”</strong> chip at the start. “Show less” or Escape closes the list again.</p>
+  <ul>
+    <li>Selected chips are never hidden behind “+N”. If even the selected chips do not fit, the slicer scrolls as before.</li>
+    <li>With the keyboard, opening moves the focus to the first chip revealed, and closing returns it to “+N”.</li>
+    <li>Opening and closing is only the reader's view: nothing is saved in the report.</li>
+    <li>Vertical and Grid layouts, or Wrap to next line off, scroll as before.</li>
+    <li>Setting: Format → Chip Style → Layout → <em>Group chips that don't fit (+N)</em>, on by default.</li>
+  </ul>
 
   <!-- TEMPLATES -->
   <h2 id="templates">Style templates</h2>
   <div class="tbl-wrap"><table>
     <tr><th>Template</th><th>Look</th></tr>
-    <tr><td>Classic</td><td>Grey pills, blue when selected. The look of earlier versions.</td></tr>
+    <tr><td>Report theme <span class="badge">default</span></td><td>The selected chip takes the report theme's first data colour, with black or white text, whichever reads better; inactive chips, the header and the clear button take the theme's page colours. Flat, no shadow. Works on light and dark themes.</td></tr>
+    <tr><td>Classic</td><td>Grey pills, blue when selected. The look of versions 1.4 and 1.5, and the default until 1.5.</td></tr>
     <tr><td>Outline</td><td>White pills with a blue outline and a check mark when selected.</td></tr>
     <tr><td>Soft</td><td>Pale blue pills, solid blue when selected.</td></tr>
     <tr><td>Square</td><td>Small corners, black when selected.</td></tr>
     <tr><td>Segmented</td><td>Joined square buttons, like a segmented control.</td></tr>
     <tr><td>Dark</td><td>For dark report backgrounds.</td></tr>
   </table></div>
-  <p>A template fills in what you have not changed yourself. When you pick a template, the colours and shapes it
+  <p>Seven templates in all. A template fills in what you have not changed yourself. When you pick a template, the colours and shapes it
      defines replace yours, so it looks as designed; anything else you changed stays.</p>
 
   <!-- ON-OBJECT -->
@@ -142,12 +182,12 @@
   <!-- FORMAT -->
   <h2 id="format">Format pane reference</h2>
   <h3>Style template</h3>
-  <p>Template · Show setup tips.</p>
+  <p>Template (Report theme by default) · Setup guide.</p>
   <h3>Chip Style</h3>
   <div class="tbl-wrap"><table>
     <tr><th>Group</th><th>Settings</th></tr>
-    <tr><td>Selection</td><td>Multi-select · Show 'All' button · 'All' button text · Show clear button · Default selection · Sort (data order, A to Z, Z to A, value largest first)</td></tr>
-    <tr><td>Layout</td><td>Layout (horizontal, vertical, grid) · Columns (grid, 0 = automatic) · Wrap to next line (horizontal) · Stretch chips to fill · Alignment · Gap</td></tr>
+    <tr><td>Selection</td><td>Multi-select · Force selection (off) · Show 'All' button · 'All' button text · Show clear button · Default selection · Sort (data order, A to Z, Z to A, value largest first)</td></tr>
+    <tr><td>Layout</td><td>Layout (horizontal, vertical, grid) · Columns (grid, 0 = automatic) · Wrap to next line (horizontal) · Group chips that don't fit (+N) (horizontal with wrap, on) · Stretch chips to fill · Alignment · Gap</td></tr>
     <tr><td>Chips</td><td>Height · Border radius · Horizontal padding · Font · Font size · Check mark on selected · Shadow</td></tr>
     <tr><td>Colors</td><td>Inactive background, border and text · Active background, border and text</td></tr>
   </table></div>
@@ -166,7 +206,9 @@
         Enter or Space select (Ctrl adds); Escape clears; Shift+F10 opens the context menu.</li>
     <li><strong>Screen readers</strong>: announced as a list, with each chip's state (selected or not) and its value.</li>
     <li><strong>High contrast</strong>: the chips take the colours of the Windows high-contrast theme.</li>
-    <li><strong>Themes</strong>: the header and fonts follow the report theme where you leave them unset.</li>
+    <li><strong>Themes</strong>: with the Report theme template (the default) the chips, header and clear button take
+        the colours of the report theme, light or dark; the header and fonts follow the theme where you leave them unset.</li>
+    <li><strong>“+N”</strong>: reachable with the keyboard like any chip; Enter or Space opens it and Escape closes.</li>
   </ul>
 
   <!-- USE CASES -->
@@ -182,6 +224,12 @@
      tile and scroll inside it.</p>
   <h3>4. Status toggles</h3>
   <p>Status (Open, In progress, Closed) with the Segmented template and Multi-select on: it reads like a switch.</p>
+  <h3>5. Always one period selected</h3>
+  <p>Month or Year in Category with Force selection on: the page never shows all periods mixed. Set a Default
+     selection for the period it should open on; otherwise the first value is used.</p>
+  <h3>6. Many values in a narrow strip</h3>
+  <p>A one- or two-row strip at the top of the page, layout Horizontal with wrapping: the values that do not fit go
+     into “+N”, and the reader opens it when needed.</p>
 
   <!-- TROUBLESHOOTING -->
   <h2 id="troubleshooting">Troubleshooting</h2>
@@ -208,13 +256,28 @@
     </ul>
   </details>
   <details>
+    <summary>After updating, my slicer looks different</summary>
+    <p>Since 1.6 the default template is Report theme. Reports that never chose a template take it after the update.
+       Choose <em>Classic</em> in Format → Style template to get the earlier look back. Colours you had set by hand are kept.</p>
+  </details>
+  <details>
+    <summary>A “+N” chip appeared instead of the scroll bar</summary>
+    <p>Since 1.6, in a horizontal layout with wrapping, the chips that do not fit are grouped into “+N”. To scroll as
+       before, turn off Format → Chip Style → Layout → Group chips that don't fit (+N).</p>
+  </details>
+  <details>
+    <summary>The All chip or the clear button ✕ disappeared, and I cannot clear the selection</summary>
+    <p>Force selection is on (Format → Chip Style → Selection). It keeps one value always selected, so it hides the
+       ways to clear. Turn it off to clear the slicer again.</p>
+  </details>
+  <details>
     <summary>I chose a template and some colours did not change</summary>
     <p>A template changes only what it defines; the others keep your settings. Use <em>Reset to default</em> on a
        colour to let the template decide it.</p>
   </details>
   <details>
     <summary>The tips bar covers my chips</summary>
-    <p>It only appears while you edit. Close it with ✕ or turn off Format → Style template → Show setup tips.</p>
+    <p>It only appears while you edit. Close it with ✕ or turn off Format → Style template → Setup guide.</p>
   </details>
   <details>
     <summary>Dates appear in a different format than in my table</summary>
@@ -236,7 +299,22 @@
   </details>
   <details>
     <summary>How do I clear the selection?</summary>
-    <p>Click ✕, the All chip, the selected chip again (single select), or press Escape with the keyboard.</p>
+    <p>Click ✕, the All chip, the selected chip again (single select), or press Escape with the keyboard.
+       With Force selection on, the selection cannot be cleared.</p>
+  </details>
+  <details>
+    <summary>Can the slicer always keep one value selected?</summary>
+    <p>Yes: Format → Chip Style → Selection → Force selection. It applies the Default selection, or else the first
+       value, whenever nothing is selected.</p>
+  </details>
+  <details>
+    <summary>What is the “+N” chip?</summary>
+    <p>The chips that do not fit in the box, grouped. Click it to see them all and “Show less” to close. See
+       <a href="#more">Chips that do not fit</a>.</p>
+  </details>
+  <details>
+    <summary>Can it use the colours of my report theme?</summary>
+    <p>Yes. The Report theme template, the default since 1.6, takes them from the theme, light or dark.</p>
   </details>
   <details>
     <summary>Can the report open with a value already selected?</summary>
@@ -308,12 +386,12 @@
     <p>Questions, bugs or ideas: write to <a href="mailto:support@tcviz.com">support@tcviz.com</a>. A person answers —
        the developer of the visual, not a bot.</p>
     <p>Bug reports are also welcome on <a href="https://github.com/tinocallarisa-web/ChipSlicer/issues">GitHub Issues</a>.
-       Please include the visual version (1.5.0.0), Power BI Desktop or service, and a screenshot.</p>
+       Please include the visual version (1.6.0.0), Power BI Desktop or service, and a screenshot.</p>
     <p>Version history: <a href="changelog.html">Changelog</a>.</p>
   </div>
 
   <footer>
-    Chip Slicer 1.5.0.0 by TCViz &nbsp;|&nbsp;
+    Chip Slicer 1.6.0.0 by TCViz &nbsp;|&nbsp;
     <a href="https://tcviz.com/product/chip-slicer/">tcviz.com</a> &nbsp;|&nbsp;
     <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
     <a href="terms.html">Terms of Use</a>
