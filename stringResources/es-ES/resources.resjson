@@ -54,6 +54,7 @@
   "badge_color": "Color",
   "style": "Plantilla de estilo",
   "style_template": "Plantilla",
+  "Enum_report": "Tema del informe",
   "Enum_classic": "Clásico",
   "Enum_outline": "Contorno",
   "Enum_soft": "Suave",

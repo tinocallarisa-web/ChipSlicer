@@ -2,6 +2,8 @@
 """Traducciones de Chip Slicer por TEXTO inglés. Columnas: pt, fr, de, it, nl, pl, ja, zh, ko, es."""
 
 P = {
+    "Report theme": ["Tema do relatório", "Thème du rapport", "Berichtsdesign", "Tema del report", "Rapportthema", "Motyw raportu", "レポートのテーマ", "报表主题", "보고서 테마", "Tema del informe"],
+    "Setup guide": ["Guia de configuração", "Guide de configuration", "Einrichtungsleitfaden", "Guida alla configurazione", "Instellingsgids", "Przewodnik konfiguracji", "セットアップ ガイド", "设置指南", "설정 가이드", "Guía de configuración"],
     "'All' button text": ["Texto do botão 'Todos'", "Texte du bouton « Tout »", "Text der Schaltfläche „Alle“", "Testo del pulsante 'Tutti'", "Tekst van knop 'Alles'", "Tekst przycisku 'Wszystkie'", "「すべて」ボタンのテキスト", "“全部”按钮文本", "'모두' 단추 텍스트", "Texto del botón 'Todo'"],
     "(Blank)": ["(Em branco)", "(Vide)", "(Leer)", "(Vuoto)", "(Leeg)", "(Puste)", "(空白)", "(空白)", "(비어 있음)", "(En blanco)"],
     "A count or total shown on each chip; items without a value are hidden": [

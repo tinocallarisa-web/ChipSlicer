@@ -386,6 +386,11 @@
           "type": {
             "enumeration": [
               {
+                "value": "report",
+                "displayName": "Report theme",
+                "displayNameKey": "Enum_report"
+              },
+              {
                 "value": "classic",
                 "displayName": "Classic",
                 "displayNameKey": "Enum_classic"
@@ -419,7 +424,7 @@
           }
         },
         "guide": {
-          "displayName": "Show setup tips",
+          "displayName": "Setup guide",
           "displayNameKey": "style_guide",
           "type": {
             "bool": true

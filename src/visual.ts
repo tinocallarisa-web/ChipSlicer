@@ -20,6 +20,29 @@ import {
 // Formatting Model
 import { FormattingSettingsService, formattingSettings } from "powerbi-visuals-utils-formattingmodel";
 import { VisualSettingsModel, TEMPLATES } from "./settings";
+
+function rgb(hex: string): [number, number, number] | null {
+    const m = /^#?([0-9a-f]{6})$/i.exec(String(hex).trim());
+    if (!m) return null;
+    const n = parseInt(m[1], 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+}
+
+/** a with a share of b; if either is not #RRGGBB, a as it is. */
+function mezcla(a: string, b: string, parte: number): string {
+    const x = rgb(a), y = rgb(b);
+    if (!x || !y) return a;
+    return "#" + x.map((v, i) => Math.round(v + (y[i] - v) * parte).toString(16).padStart(2, "0")).join("");
+}
+
+/** Black or white, whichever reads better on this colour. */
+function textoSobre(fondo: string): string {
+    const c = rgb(fondo);
+    if (!c) return "#FFFFFF";
+    const [r, g, b] = c.map(v => { const s = v / 255; return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4); });
+    const l = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    return (l + 0.05) / 0.05 > 1.05 / (l + 0.05) ? "#000000" : "#FFFFFF";
+}
 import { STRINGS } from "./strings";
 import { LANDING_ICON } from "./landingIcon";
 
@@ -121,7 +144,7 @@ export class Visual implements IVisual {
             }
 
             const objs: any = dataView.metadata?.objects ?? {};
-            const tpl = String(objs?.style?.template ?? "classic");
+            const tpl = String(objs?.style?.template ?? "report");
             this.applyTemplateDefaults(tpl, objs);
             if (this.editing && this.tplVisto !== null && this.tplVisto !== tpl) this.aplicarPlantilla(tpl);
             this.tplVisto = tpl;
@@ -156,10 +179,30 @@ export class Visual implements IVisual {
 
     // ─── Plantillas ──────────────────────────────────────────────────────────────
 
+    /** The report's theme, as a native visual: page colours for the chips, its first data colour for the active one. */
+    private reportTemplate(): Record<string, string | number | boolean> {
+        const pal: any = this.host.colorPalette;
+        const bg = pal?.background?.value ?? "#FFFFFF";
+        const fg = pal?.foreground?.value ?? "#252423";
+        const acento = pal?.getColor?.("chip-active")?.value ?? "#2B6CB0";
+        return {
+            defaultBg: mezcla(bg, fg, 0.06), defaultBorder: mezcla(bg, fg, 0.18), defaultText: fg,
+            activeBg: acento, activeBorder: acento, activeText: textoSobre(acento), shadow: false
+        };
+    }
+
+    private plantilla(nombre: string): Record<string, string | number | boolean> | undefined {
+        return nombre === "report" ? this.reportTemplate() : TEMPLATES[nombre];
+    }
+
     /** Lo que el autor no ha fijado toma el valor de la plantilla. "classic" no cambia nada: es el aspecto de 1.4. */
     private applyTemplateDefaults(tpl: string, objs: any): void {
-        const tp = TEMPLATES[tpl];
+        const tp = this.plantilla(tpl);
         if (!tp) return;
+        // Dark text by default on a dark theme could not be read.
+        if (tpl === "report" && objs?.header?.color === undefined) {
+            this.formattingSettings.headerCard.color.value = { value: String(tp.defaultText) };
+        }
         const card = this.formattingSettings.chipSettingsCard;
         const slices: formattingSettings.SimpleSlice[] = [];
         card.groups.forEach(g => (g.slices ?? []).forEach(s => slices.push(s as formattingSettings.SimpleSlice)));
@@ -173,7 +216,7 @@ export class Visual implements IVisual {
 
     /** Al ELEGIR una plantilla se borran los ajustes guardados que ella define, para que se vea. */
     private aplicarPlantilla(nombre: string): void {
-        const tp = TEMPLATES[nombre] ?? {};
+        const tp = this.plantilla(nombre) ?? {};
         const props = Object.keys(tp);
         if (!props.length) return;
         const properties = props.reduce((acc: any, p) => { acc[p] = null; return acc; }, {});
@@ -582,6 +625,11 @@ export class Visual implements IVisual {
         b.textContent = "✕";
         b.disabled = this.selectedValues.size === 0;
         if (hc) Object.assign(b.style, { color: fgHC, borderColor: fgHC });
+        else {
+            // The same colours as an inactive chip: fixed greys could not be read on a dark theme or style.
+            const col = this.formattingSettings.chipSettingsCard.colors;
+            Object.assign(b.style, { color: col.defaultText.value.value, borderColor: col.defaultBorder.value.value });
+        }
         b.addEventListener("click", (e) => {
             e.stopPropagation();
             if (this.formatMode) return;
@@ -614,8 +662,8 @@ export class Visual implements IVisual {
         lbl.className = "chip-g-lbl";
         lbl.textContent = this.t("Guide_TryStyle", "Try a style:");
         g.appendChild(lbl);
-        const actual = String(s.styleCard.template.value?.value ?? "classic");
-        ([["classic", "Classic"], ["outline", "Outline"], ["soft", "Soft"], ["square", "Square"], ["segmented", "Segmented"], ["dark", "Dark"]] as [string, string][])
+        const actual = String(s.styleCard.template.value?.value ?? "report");
+        ([["report", "Report theme"], ["classic", "Classic"], ["outline", "Outline"], ["soft", "Soft"], ["square", "Square"], ["segmented", "Segmented"], ["dark", "Dark"]] as [string, string][])
             .forEach(([v, d]) => {
                 const b = document.createElement("button");
                 b.type = "button";

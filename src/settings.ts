@@ -161,6 +161,7 @@ export class StyleCard extends FormattingSettingsCard {
     public template = new formattingSettings.ItemDropdown({
         name: "template", displayNameKey: "style_template", displayName: "Template",
         items: [
+            { value: "report", displayName: "Report theme", displayNameKey: "Enum_report" } as any,
             { value: "classic", displayName: "Classic", displayNameKey: "Enum_classic" } as any,
             { value: "outline", displayName: "Outline", displayNameKey: "Enum_outline" } as any,
             { value: "soft", displayName: "Soft", displayNameKey: "Enum_soft" } as any,
@@ -168,9 +169,9 @@ export class StyleCard extends FormattingSettingsCard {
             { value: "segmented", displayName: "Segmented", displayNameKey: "Enum_segmented" } as any,
             { value: "dark", displayName: "Dark", displayNameKey: "Enum_dark" } as any
         ],
-        value: { value: "classic", displayName: "Classic", displayNameKey: "Enum_classic" } as any
+        value: { value: "report", displayName: "Report theme", displayNameKey: "Enum_report" } as any
     });
-    public guide = new formattingSettings.ToggleSwitch({ name: "guide", displayNameKey: "style_guide", displayName: "Show setup tips", value: true });
+    public guide = new formattingSettings.ToggleSwitch({ name: "guide", displayNameKey: "style_guide", displayName: "Setup guide", value: true });
     name = "style";
     displayName = "Style template";
     displayNameKey = "style";
@@ -187,7 +188,7 @@ export class VisualSettingsModel extends FormattingSettingsModel {
 
 /**
  * Plantillas: valores de chipSettings que la plantilla pone cuando el autor no los ha fijado. "classic" es el aspecto
- * de 1.4 (los informes guardados sin plantilla se ven igual). Al ELEGIR una, el visual borra esas propiedades
+ * de 1.4; desde la 1.6 el valor por defecto es "report", que sale del tema (visual.ts, reportTemplate). Al ELEGIR una, el visual borra esas propiedades
  * guardadas para que se vea (aplicarPlantilla).
  */
 export const TEMPLATES: Record<string, Record<string, string | number | boolean>> = {
