@@ -41,8 +41,10 @@ WHAT IT ADDS TO A SLICER
 • Sort by data order, A to Z, Z to A or by value.
 • Horizontal, vertical or grid layout, with automatic or fixed columns, one scrolling row, stretch to fill and
   alignment. Long labels end with "…".
-• Seven style templates. Report theme, the default, takes the colors of your report theme, light or dark, like a
-  native visual. Also Classic, Outline, Soft, Square, Segmented and Dark, plus colors, font, check mark and shadow.
+• Thirteen style templates. Report theme, the default, takes the colors of your report theme, light or dark, like
+  a native visual. Boardroom, Ledger, Editorial, Signal, Aurora and Terrace are the styles of the TCViz collection,
+  the same looks as in KPI Card and Histogram, so a page that uses them looks consistent. Also Classic, Outline,
+  Soft, Square, Segmented and Dark, plus colors, font, check mark and shadow.
 • Optional header.
 
 WORKS LIKE A NATIVE SLICER
@@ -76,7 +78,8 @@ Support: support@tcviz.com — a person answers.
 
 WHAT'S NEW IN 1.6
 Report theme template, now the default: the chips take your report theme's colors. "+N" groups the chips that do not
-fit. Force selection keeps one value always selected. The clear button follows the chip colors. Reports that never
+fit. Force selection keeps one value always selected. Six TCViz collection styles join the templates (thirteen in all).
+The clear button follows the chip colors. Reports that never
 chose a template take Report theme after the update; choose Classic to keep the earlier look. Colors set by hand are
 kept.
 
@@ -103,13 +106,13 @@ Ver `docs/CERTIFICATION-NOTES-SHORT.txt` (el campo se vacía en cada reenvío: p
 
 - Logo 300×300: `assets/icon_300x300.png` (icono nuevo de la serie)
 - Capturas 1366×768: `assets/Screenshot_1.png` y `assets/chip-slicer-infographic.png` (fuente: `docs/infographic.html`).
-  La infografía cambia en la 1.6 (siete plantillas, +N, Force selection): volver a exportar el PNG desde
+  La infografía cambia en la 1.6 (trece plantillas, +N, Force selection): volver a exportar el PNG desde
   `docs/infographic.html` antes de subirla.
 
 ## Qué hay que pegar a mano en Partner Center (1.6.0.0)
 
 1. Offer listing → **Search results summary**: el resumen de arriba (cambia).
-2. Offer listing → **Description**: la descripción de arriba entera (cambia: Force selection, +N, siete plantillas,
+2. Offer listing → **Description**: la descripción de arriba entera (cambia: Force selection, +N, trece plantillas,
    WHAT'S NEW IN 1.6).
 3. Offer listing → **Screenshots**: la infografía re-exportada (cambia).
 4. Technical configuration / Submission → **Notes for certification**: `docs/CERTIFICATION-NOTES-SHORT.txt` (siempre).

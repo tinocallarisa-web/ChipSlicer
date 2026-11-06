@@ -12,7 +12,7 @@ Versión 1.6.0.0 · Gratuito para todos · Software propietario — ver [LICENSE
 - **"+N" para los chips que no caben** (activado por defecto, horizontal con salto de línea): los últimos chips se agrupan en un chip "+N"; un clic los muestra todos y "Show less" los vuelve a recoger. Los seleccionados nunca se ocultan.
 - **Campo Valor** (opcional): una medida en cada chip con el formato del modelo. Orden por datos, A-Z, Z-A o por valor.
 - **Diseño** horizontal, vertical o en cuadrícula; encabezado opcional; formato sobre el objeto; tooltips de Power BI.
-- **Siete plantillas**: Report theme (por defecto: toma los colores del tema del informe, claro u oscuro), Classic, Outline, Soft, Square, Segmented y Dark.
+- **Trece plantillas**: Report theme (por defecto: toma los colores del tema del informe, claro u oscuro), Classic, los seis estilos de la colección TCViz (Boardroom, Ledger, Editorial, Signal, Aurora y Terrace, los mismos que en KPI Card e Histogram, aquí gratis), Outline, Soft, Square, Segmented y Dark.
 - Funciona como un slicer nativo: sincronización de slicers, marcadores e interacciones.
 - Teclado, lectores de pantalla y alto contraste. **12 idiomas**: inglés, español, portugués (Brasil y Portugal), francés, alemán, italiano, neerlandés, polaco, japonés, chino simplificado y coreano.
 

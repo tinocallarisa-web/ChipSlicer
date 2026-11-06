@@ -28,7 +28,7 @@ Chip Slicer renders each value of a field as a clickable chip. Selected chips ar
 - **Value on each chip** — put a measure in Value and each chip shows its count or total, with the model's format
 - **Force selection** — the slicer always keeps a value selected: your default selection, or else the first value
 - **"+N" for chips that do not fit** — a narrow strip groups the extra chips into "+N"; one click shows them all
-- **Seven style templates, following your report theme by default** — Report theme, Classic, Outline, Soft, Square, Segmented, Dark
+- **Thirteen style templates, following your report theme by default** — Report theme, Classic, Boardroom, Ledger, Editorial, Signal, Aurora, Terrace, Outline, Soft, Square, Segmented, Dark. Six of them are the TCViz collection styles, free here
 - **Grid layout** — fixed or automatic columns
 - **Free for everyone** — every feature included, no Pro tier, no licence
 
@@ -41,7 +41,8 @@ Chip Slicer renders each value of a field as a clickable chip. Selected chips ar
 - ✅ Sort: data order, A to Z, Z to A, by value
 - ✅ Horizontal, vertical and grid layout
 - ✅ "+N" chip for the chips that do not fit
-- ✅ Seven style templates; Report theme (the default) follows light and dark report themes
+- ✅ Thirteen style templates; Report theme (the default) follows light and dark report themes
+- ✅ The six TCViz collection styles (Boardroom, Ledger, Editorial, Signal, Aurora, Terrace), free
 - ✅ Optional header
 - ✅ On-object formatting
 - ✅ Power BI tooltips on each chip
@@ -79,7 +80,7 @@ Overview: https://www.youtube.com/watch?v=cbJ_VHPA5Sk
 **Tooltips** — Power BI tooltips on each chip with the value and the measure.
 
 ### Appearance
-**Style templates** — Seven: Report theme (the default), Classic (the look of 1.4 and 1.5), Outline, Soft, Square, Segmented and Dark. With Report theme the selected chip takes the report theme's first data colour, with black or white text, whichever reads better; inactive chips, the header and the clear button take the theme's page colours; flat, no shadow. It works on light and dark themes. A template fills in what you have not changed yourself.
+**Style templates** — Thirteen: Report theme (the default), Classic (the look of 1.4 and 1.5), Boardroom, Ledger, Editorial, Signal, Aurora, Terrace, Outline, Soft, Square, Segmented and Dark. With Report theme the selected chip takes the report theme's first data colour, with black or white text, whichever reads better; inactive chips, the header and the clear button take the theme's page colours; flat, no shadow. It works on light and dark themes. Boardroom (navy, gold selected), Ledger (cream, deep red, Georgia serif, 3 px corners), Editorial (white, black, Georgia serif, square), Signal (white, green, 6 px corners), Aurora (deep blue, aqua) and Terrace (warm cream, terracotta) are the styles of the TCViz collection, the same looks as in KPI Card and Histogram, free here so a page that uses them looks consistent; all flat. A template fills in what you have not changed yourself.
 
 **Layout** — Horizontal (wrapping or a single row with horizontal scrolling), Vertical, or Grid with fixed or automatic columns. Stretch chips to fill and alignment. Long labels end with "…".
 
@@ -93,7 +94,7 @@ Overview: https://www.youtube.com/watch?v=cbJ_VHPA5Sk
 
 **On-object formatting** — With Format on, click a chip, the header or a chip value to format it on the canvas.
 
-**Start screen and setup guide** — A start screen with the steps when no field is assigned, and a tips bar while editing that offers the templates in one click, Report theme included (Format → Style template → Setup guide). It never shows in reading view.
+**Start screen and setup guide** — A start screen with the steps when no field is assigned, and a tips bar while editing that offers Report theme, Classic and the six collection styles in one click (Format → Style template → Setup guide). It never shows in reading view.
 
 ### Accessibility and languages
 **Keyboard** — One Tab stop for the whole slicer; arrow keys, Home and End move between chips; Enter or Space select (Ctrl adds); Escape clears; Shift+F10 opens the context menu. On "+N", Enter or Space opens it and moves the focus to the first chip revealed; Escape closes it and returns the focus to "+N".
@@ -128,7 +129,7 @@ Chip Slicer uses one level: if you drop a hierarchy into Category it filters by 
 ### Format Pane
 | Card / group | Settings |
 |---|---|
-| Style template | Template (Report theme — default, Classic, Outline, Soft, Square, Segmented, Dark) · Setup guide |
+| Style template | Template (Report theme — default, Classic, Boardroom, Ledger, Editorial, Signal, Aurora, Terrace, Outline, Soft, Square, Segmented, Dark) · Setup guide |
 | Chip Style → Selection | Multi-select · Force selection (off) · Show 'All' button · 'All' button text · Show clear button · Default selection · Sort |
 | Chip Style → Layout | Layout (Horizontal, Vertical, Grid) · Columns (0 = automatic) · Wrap to next line · Group chips that don't fit (+N) (horizontal with wrap, on) · Stretch chips to fill · Alignment · Gap |
 | Chip Style → Chips | Chip height · Border radius · Horizontal padding · Font · Font size · Check mark on selected · Shadow |
@@ -171,6 +172,7 @@ Updating from 1.5 or earlier: reports that never chose a template switch to Repo
 - "+N" for chips that do not fit: in a horizontal layout with wrapping, when the chips need more rows than the box has, the last ones are grouped into a "+N" chip. Clicking it (or Enter) shows them all, with "Show less" at the start to close; Escape closes too. Selected chips are never hidden. On by default: slicers whose chips overflowed now show "+N" instead of a scroll bar. Format → Chip Style → Layout → Group chips that don't fit.
 - Force selection: the slicer always keeps a value selected. With nothing selected it selects the default selection, or else the first value; the "All" chip and the clear button are hidden, and the last selected value cannot be removed. Off by default.
 - Report theme template: chips, header and clear button take the report theme's colours, as a native visual.
+- Six collection styles as templates: Boardroom, Ledger, Editorial, Signal, Aurora and Terrace, the same looks as the other visuals of the TCViz collection (KPI Card, Histogram), so a page that uses them looks consistent. Free, like the rest of Chip Slicer. Thirteen templates in all; the tips bar offers Report theme, Classic and these six.
 
 **Changed**
 - The default template is now Report theme. Reports that never chose a template change look after the update; choose Classic to keep the earlier look. Colours set by hand are kept.

@@ -77,8 +77,11 @@
         Selected chips are never hidden. On by default.</li>
     <li><strong>Force selection</strong>: the slicer always keeps a value selected — the default selection, or else the
         first value. The “All” chip and the clear button are hidden. Off by default.</li>
+    <li><strong>Six collection styles</strong> as templates — Boardroom, Ledger, Editorial, Signal, Aurora and Terrace:
+        the same looks as the other TCViz visuals (KPI Card, Histogram), so a page that uses them looks consistent.
+        Free, like everything in Chip Slicer. Thirteen templates in all.</li>
     <li>The clear button ✕ takes the colours of the inactive chips instead of fixed greys.</li>
-    <li>“Show setup tips” is now called <strong>Setup guide</strong>. The tips bar also offers Report theme.</li>
+    <li>“Show setup tips” is now called <strong>Setup guide</strong>. The tips bar offers Report theme, Classic and the six collection styles.</li>
   </ul>
   <p><strong>Updating from 1.5 or earlier:</strong> reports that never chose a template switch to Report theme after
      the update; choose <em>Classic</em> in Format → Style template to keep the earlier look. Colours you set by hand
@@ -109,7 +112,7 @@
     <li>The chips take the colours of the report theme (Report theme template). In the Format pane,
         <strong>Style template</strong> changes the whole look in one click.</li>
   </ol>
-  <p>While you edit, a tips bar at the bottom of the visual offers the templates, Report theme included; hide it with ✕
+  <p>While you edit, a tips bar at the bottom of the visual offers Report theme, Classic and the six collection styles; hide it with ✕
      (it comes back from Format → Style template → Setup guide). It never shows in reading view.</p>
 
   <!-- FIELDS -->
@@ -163,13 +166,21 @@
     <tr><th>Template</th><th>Look</th></tr>
     <tr><td>Report theme <span class="badge">default</span></td><td>The selected chip takes the report theme's first data colour, with black or white text, whichever reads better; inactive chips, the header and the clear button take the theme's page colours. Flat, no shadow. Works on light and dark themes.</td></tr>
     <tr><td>Classic</td><td>Grey pills, blue when selected. The look of versions 1.4 and 1.5, and the default until 1.5.</td></tr>
+    <tr><td>Boardroom</td><td>Navy chips, gold when selected. Pills.</td></tr>
+    <tr><td>Ledger</td><td>Cream chips, deep red when selected. Georgia serif font, nearly square corners (3 px).</td></tr>
+    <tr><td>Editorial</td><td>White chips, black when selected. Georgia serif font, square corners.</td></tr>
+    <tr><td>Signal</td><td>White chips, green when selected. 6 px corners.</td></tr>
+    <tr><td>Aurora</td><td>Deep blue chips, aqua when selected. Pills.</td></tr>
+    <tr><td>Terrace</td><td>Warm cream chips, terracotta when selected. Pills.</td></tr>
     <tr><td>Outline</td><td>White pills with a blue outline and a check mark when selected.</td></tr>
     <tr><td>Soft</td><td>Pale blue pills, solid blue when selected.</td></tr>
     <tr><td>Square</td><td>Small corners, black when selected.</td></tr>
     <tr><td>Segmented</td><td>Joined square buttons, like a segmented control.</td></tr>
     <tr><td>Dark</td><td>For dark report backgrounds.</td></tr>
   </table></div>
-  <p>Seven templates in all. A template fills in what you have not changed yourself. When you pick a template, the colours and shapes it
+  <p>Thirteen templates in all. Boardroom, Ledger, Editorial, Signal, Aurora and Terrace are the styles of the TCViz
+     collection (the same looks as in KPI Card and Histogram), free here, so a page that uses them looks consistent;
+     like Report theme, they are flat, with no shadow. A template fills in what you have not changed yourself. When you pick a template, the colours and shapes it
      defines replace yours, so it looks as designed; anything else you changed stays.</p>
 
   <!-- ON-OBJECT -->
@@ -315,6 +326,11 @@
   <details>
     <summary>Can it use the colours of my report theme?</summary>
     <p>Yes. The Report theme template, the default since 1.6, takes them from the theme, light or dark.</p>
+  </details>
+  <details>
+    <summary>Can it match my other TCViz visuals?</summary>
+    <p>Yes. Pick Boardroom, Ledger, Editorial, Signal, Aurora or Terrace: the same styles as KPI Card, Histogram and the
+       rest of the collection. They are free in Chip Slicer.</p>
   </details>
   <details>
     <summary>Can the report open with a value already selected?</summary>

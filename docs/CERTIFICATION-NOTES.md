@@ -9,8 +9,8 @@ Docs: https://tinocallarisa-web.github.io/ChipSlicer/support.html (+privacy.html
 Video: https://www.youtube.com/watch?v=cbJ_VHPA5Sk
 
 WHY THIS SUBMISSION
-Replaces 1.5.0.0. New: Report theme template (now the default), "+N" chip for chips
-that do not fit, Force selection. Clear button takes the chip colours. API 5.11.1.
+Replaces 1.5.0.0. New: Report theme template (now the default), six more templates,
+"+N" chip for chips that do not fit, Force selection. Clear button takes the chip colours. API 5.11.1.
 
 TESTING
 1. Sample .pbix: click a chip: the page filters. Again: clears.
@@ -27,8 +27,9 @@ clicking it does not clear.
 8. Remove the field: start screen. allowInteractions false: filter unchanged.
 
 CAPABILITIES CHANGES IN 1.6
-chipSettings.forceSelection (bool, new), chipSettings.collapse (bool, new),
-style.template enumeration gains "report" (now the default). Nothing renamed or removed.
+chipSettings.forceSelection, chipSettings.collapse (bool, new). style.template enum
+gains report (now the default), boardroom, ledger, editorial, signal, aurora, terrace.
+Nothing renamed or removed.
 
 FILTER
 BasicFilter "In" via applyJsonFilter on the Category column, original value types.
@@ -41,7 +42,7 @@ Only on a click in the tips bar and once when the template is changed while edit
 Never in a selection callback. +N state is local, never persisted.
 
 PRIVACY
-No network, telemetry, cookies or storage. privileges: []. No innerHTML. Links open only
+No network, telemetry, cookies or storage. privileges: []. No innerHTML. Links only
 on click via host.launchUrl. ESLint clean; npm audit --omit=dev 0.
 
 LICENSING
@@ -54,7 +55,9 @@ repaints chips and raises none.
 
 CAPABILITIES CHANGES IN 1.6
 - objects.chipSettings: new "forceSelection" (bool, default false) and "collapse" (bool, default true).
-- objects.style.template: the enumeration gains "report" (Report theme), which is now the default value.
+- objects.style.template: the enumeration gains "report" (Report theme), which is now the default value, and
+  "boardroom", "ledger", "editorial", "signal", "aurora", "terrace" (the TCViz collection styles; static colour sets
+  in src/settings.ts TEMPLATES, flat, no shadow; Ledger and Editorial also set fontFamily to Georgia, serif).
 - Nothing renamed, moved or removed. dataRoles, dataViewMappings (top 1000 categories) and the rest of the 1.5
   capabilities are unchanged.
 

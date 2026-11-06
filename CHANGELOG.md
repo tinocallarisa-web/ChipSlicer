@@ -15,6 +15,9 @@ All notable changes to this project will be documented in this file.
   selection, or else the first value; the "All" chip and the clear button are hidden, and the last selected value
   cannot be removed. Off by default.
 - **Report theme** template: chips, header and clear button take the report theme's colours, as a native visual.
+- **Six collection styles** as templates: Boardroom, Ledger, Editorial, Signal, Aurora and Terrace, the same looks
+  as the other visuals of the TCViz collection (KPI Card, Histogram), so a page that uses them looks consistent.
+  Free, like the rest of Chip Slicer. Thirteen templates in all; the tips bar offers Report theme, Classic and these six.
 
 ### Changed
 - **The default template is now Report theme.** Reports that never chose a template change look after the update;

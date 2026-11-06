@@ -12,8 +12,12 @@ WHAT'S NEW IN 1.6.0.0
   "Show less" or Escape closes. Selected chips are never hidden. On by default.
 · Force selection — the slicer always keeps a value selected (the Default selection, or else
   the first value). The "All" chip and the clear button are hidden. Off by default.
+· Six collection styles — Boardroom, Ledger, Editorial, Signal, Aurora and Terrace: the same
+  looks as the other TCViz visuals (KPI Card, Histogram), free here, so a page that uses them
+  looks consistent. Thirteen templates in all.
 · The clear button ✕ takes the inactive chip's colours instead of fixed greys.
-· "Show setup tips" is now called Setup guide; the tips bar also offers Report theme.
+· "Show setup tips" is now called Setup guide; the tips bar offers Report theme,
+  Classic and the six collection styles.
 
 Updating from 1.5 or earlier: reports that never chose a template switch to Report theme after
 the update; choose Classic to keep the earlier look. Colours set by hand are kept, and no saved
@@ -30,8 +34,8 @@ GETTING STARTED
 5. Pick a look — The chips follow the report theme by default. Format pane > Style template
    changes the whole look in one click.
 
-While you edit, a tips bar at the bottom of the visual offers the templates, Report theme
-included. Hide it with ✕ (it comes back from Format > Style template > Setup guide). It never shows in reading view.
+While you edit, a tips bar at the bottom of the visual offers Report theme, Classic
+and the six collection styles. Hide it with ✕ (it comes back from Format > Style template > Setup guide). It never shows in reading view.
 
 Overview video: https://www.youtube.com/watch?v=cbJ_VHPA5Sk
 
@@ -51,16 +55,26 @@ FORMAT PANE
 -----------
 
 STYLE TEMPLATE
-· Template .................. Default: Report theme. Report theme, Classic, Outline, Soft, Square,
+· Template .................. Default: Report theme. Report theme, Classic, Boardroom, Ledger,
+                              Editorial, Signal, Aurora, Terrace, Outline, Soft, Square,
                               Segmented or Dark.
 · Setup guide ............... Default: On. Tips bar while editing (never in reading view).
 
-TEMPLATES (seven)
+TEMPLATES (thirteen)
 · Report theme (default) .... Selected chip in the theme's first data colour with black or white
                               text; inactive chips, header and clear button in the theme's page
                               colours. Flat, no shadow. Light and dark themes.
 · Classic ................... Grey pills, blue when selected. The look of 1.4 and 1.5 (the
                               default until 1.5).
+· Boardroom ................. Navy chips, gold when selected. Pills.
+· Ledger .................... Cream chips, deep red when selected. Georgia serif, nearly square
+                              corners (3 px).
+· Editorial ................. White chips, black when selected. Georgia serif, square corners.
+· Signal .................... White chips, green when selected. 6 px corners.
+· Aurora .................... Deep blue chips, aqua when selected. Pills.
+· Terrace ................... Warm cream chips, terracotta when selected. Pills.
+Boardroom to Terrace are the styles of the TCViz collection (as in KPI Card and Histogram),
+free here and flat like Report theme.
 · Outline ................... White pills with a blue outline and a check mark when selected.
 · Soft ...................... Pale blue pills, solid blue when selected.
 · Square .................... Small corners, black when selected.
@@ -136,6 +150,8 @@ TIPS & BEST PRACTICES
   otherwise the first value is used.
 · Many values in a narrow strip — Horizontal layout with wrapping in a one- or two-row box:
   the chips that do not fit go into "+N" and the reader opens it when needed.
+· Match your other TCViz visuals — Use the same collection style (Boardroom, Ledger,
+  Editorial, Signal, Aurora or Terrace) as your KPI Cards or Histograms.
 · Match the report — Keep the Report theme template: the chips change with the report theme.
 · Open on the current period — Put Year in Category and type it in Default selection;
   the ✕ goes back to all years.
