@@ -102,7 +102,7 @@ Thirteen templates. Boardroom to Terrace are the styles of the TCViz collection 
 | Font | Segoe UI | Chip label font |
 | Font size | 12 | Label size |
 | Check mark on selected | Off | ✓ on selected chips |
-| Shadow | On (Off in Report theme) | Soft shadow under the chips |
+| Shadow | On in Classic; off in every other template | Soft shadow under the chips |
 
 ### Chip Style — Colors
 
@@ -123,7 +123,7 @@ With Report theme (the default) these colours come from the report theme; the va
 |---|---|---|
 | Show header | Off | Title above the chips |
 | Text | (field name) | Empty = the field name |
-| Font · Font size · Bold · Color | Segoe UI Semibold · 12 · Off · #252423 | Header text style |
+| Font · Font size · Bold · Color | Segoe UI Semibold · 12 · Off · #252423 in Classic; the theme's text colour in Report theme | Header text style |
 
 ### Values
 
@@ -135,6 +135,10 @@ With Report theme (the default) these colours come from the report theme; the va
 ### On-object formatting
 
 With Format on, click a chip, the header or a chip value to see its options next to it. In format mode a click chooses what to format and does not filter.
+
+### Highlighting and context menu
+
+When another visual on the page highlights part of the data, the chips without data in that highlight are dimmed. Right-click a chip (or Shift+F10) for the Power BI context menu.
 
 ---
 
@@ -162,7 +166,7 @@ With Format on, click a chip, the header or a chip value to see its options next
 
 ## Keyboard
 
-One Tab stop for the whole slicer. Arrow keys, Home and End move between chips; Enter or Space select (Ctrl adds); Escape clears; Shift+F10 opens the context menu. On "+N", Enter or Space opens it and moves the focus to the first chip revealed; Escape closes it and returns the focus to "+N".
+One Tab stop for the whole slicer. Arrow keys, Home and End move between chips; Enter or Space select (Ctrl adds); Escape clears (unless Force selection is on; with "+N" open, Escape first closes it); Shift+F10 opens the context menu. On "+N", Enter or Space opens it and moves the focus to the first chip revealed; Escape closes it and returns the focus to "+N".
 
 ---
 

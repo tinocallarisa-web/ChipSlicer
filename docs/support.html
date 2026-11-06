@@ -54,11 +54,11 @@
   </nav>
 
   <p>Chip Slicer turns a field into a row of buttons — chips — that filter the page with one click.
-     It is free for everyone: there is no Pro tier, no licence and no watermark. It works like a
-     native Power BI slicer (sync slicers, bookmarks, edit interactions, cross-page filters) and adds
-     what the native one does not have: a default selection, a clear button, the value of a measure on
-     each chip, a grid layout, a "+N" chip for the values that do not fit, a forced selection and style templates
-     that follow the report theme.</p>
+     It is free for everyone: there is no Pro tier, no licence and no watermark. The selection is a standard
+     Power BI filter (sync slicers, bookmarks, edit interactions). It opens on the values you choose, even after the
+     reader cleared them last time, can keep one value always selected, shows the value of a measure on each chip,
+     groups the chips that do not fit into “+N” and changes its whole look in one click, following the report theme
+     by default.</p>
 
   <!-- VIDEO -->
   <h2>Overview video</h2>
@@ -144,7 +144,12 @@
         mode or where Power BI disallows interactions.</li>
   </ul>
   <p>The selection is a standard Power BI filter: it follows <strong>sync slicers</strong>, is saved in
-     <strong>bookmarks</strong>, respects <strong>edit interactions</strong> and appears in the filter pane.</p>
+     <strong>bookmarks</strong>, respects <strong>edit interactions</strong> and filters the other visuals of the page.</p>
+  <ul>
+    <li><strong>Highlighting</strong>: when another visual on the page highlights part of the data, the chips without
+        data in that highlight are dimmed.</li>
+    <li><strong>Context menu</strong>: right-click a chip (or Shift+F10) for the Power BI context menu.</li>
+  </ul>
 
   <!-- MORE -->
   <h2 id="more">Chips that do not fit: “+N”</h2>
@@ -214,11 +219,12 @@
     <li>Dates and numbers in the chips, and the values from the Value well, use the format of the model and the
         report locale. Dynamic format strings of the measure are respected.</li>
     <li><strong>Keyboard</strong>: one Tab stop for the whole slicer; arrow keys, Home and End move between chips;
-        Enter or Space select (Ctrl adds); Escape clears; Shift+F10 opens the context menu.</li>
+        Enter or Space select (Ctrl adds); Escape clears (unless Force selection is on; with "+N" open, Escape first closes it); Shift+F10 opens the context menu.</li>
     <li><strong>Screen readers</strong>: announced as a list, with each chip's state (selected or not) and its value.</li>
     <li><strong>High contrast</strong>: the chips take the colours of the Windows high-contrast theme.</li>
     <li><strong>Themes</strong>: with the Report theme template (the default) the chips, header and clear button take
-        the colours of the report theme, light or dark; the header and fonts follow the theme where you leave them unset.</li>
+        the colours of the report theme, light or dark, and the header colour follows the theme where you leave it
+        unset. Fonts do not change with the theme.</li>
     <li><strong>“+N”</strong>: reachable with the keyboard like any chip; Enter or Space opens it and Escape closes.</li>
   </ul>
 
@@ -285,6 +291,16 @@
     <summary>I chose a template and some colours did not change</summary>
     <p>A template changes only what it defines; the others keep your settings. Use <em>Reset to default</em> on a
        colour to let the template decide it.</p>
+  </details>
+  <details>
+    <summary>“+N” does not open</summary>
+    <p>“+N” cannot be opened where the report does not allow interactions (for example a dashboard tile); the grouped
+       chips stay hidden there.</p>
+  </details>
+  <details>
+    <summary>The Setup guide bar does not appear</summary>
+    <p>The Setup guide bar only appears while editing and when the visual is at least 300 × 150 px. Check also
+       Format → Style template → Setup guide.</p>
   </details>
   <details>
     <summary>The tips bar covers my chips</summary>
@@ -376,7 +392,7 @@
     <p>Yes, since 1.4.1.</p>
   </details>
   <details>
-    <summary>Does it work in the Power BI service, apps, mobile and Report Server?</summary>
+    <summary>Does it work in the Power BI service, apps and mobile?</summary>
     <p>It works wherever custom visuals from AppSource work. Where Power BI disallows interactions (some exports and
        embedded views), the chips are shown but do not change the filter.</p>
   </details>

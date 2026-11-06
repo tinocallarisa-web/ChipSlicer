@@ -21,9 +21,9 @@ Free button slicer for Power BI: default or forced selection, +N for overflow, r
 
 ## Descripción (≤ 5.000)
 
-The native slicer makes the reader open a list to filter, and it always opens with nothing selected: every report
-starts on "all years" even when everyone wants this year. Buttons are faster, and a sensible starting point saves a
-click on every visit.
+Most readers want the same starting point every time: this year, their region, the open cases. Chip Slicer opens on
+the values you choose, even after the reader cleared them last time, and shows every option as a button, with the value
+of a measure on each chip and a look picked in one click.
 
 Chip Slicer turns a field into a row of buttons — chips — that filter the page with one click. It is free for
 everyone, with every feature: no Pro tier, no watermark.
@@ -33,7 +33,7 @@ WHAT IT ADDS TO A SLICER
   it, it stays clear until the page is opened again.
 • Force selection: the slicer always keeps a value selected — your default selection, or else the first value. The
   "All" chip and the clear button are hidden, so the page never shows everything mixed. Off by default.
-• "+N" for chips that do not fit: in a narrow strip the last chips are grouped into a "+N" chip. One click shows them
+• "+N" for chips that do not fit (horizontal layout with wrapping): in a narrow strip the last chips are grouped into a "+N" chip. One click shows them
   all, "Show less" closes. Selected chips are never hidden.
 • Clear button (✕) and an optional "All" chip.
 • Counts on the chips: put a measure in Value and each chip shows its count or total, with your model's format.
@@ -47,16 +47,19 @@ WHAT IT ADDS TO A SLICER
   Soft, Square, Segmented and Dark, plus colors, font, check mark and shadow.
 • Optional header.
 
-WORKS LIKE A NATIVE SLICER
-• A standard Power BI filter: sync slicers, bookmarks, edit interactions and the filter pane all work.
+WORKS LIKE A SLICER
+• A standard Power BI filter: it filters the other visuals and works with sync slicers, bookmarks and edit
+  interactions.
 • Single or multi-select; Ctrl+click adds.
 • Text, numbers, dates and hierarchy levels; codes keep their leading zeros.
 • On-object formatting: click a chip or the header to format it on the canvas.
-• Tooltips with the value and the measure.
+• Tooltips with the value and the measure. Right-click a chip for the Power BI context menu.
+• Chips dim when another visual on the page highlights part of the data.
+• Up to 1,000 values per slicer; one field in Category, one optional measure in Value.
 
 ACCESSIBLE AND IN YOUR LANGUAGE
-• Keyboard: one Tab stop, arrow keys, Enter or Space, Escape to clear, Shift+F10 for the context menu. "+N" opens
-  with Enter or Space and closes with Escape.
+• Keyboard: one Tab stop, arrow keys, Enter or Space, Escape to clear (unless Force selection is on; with "+N" open,
+  Escape first closes it), Shift+F10 for the context menu. "+N" opens with Enter or Space.
 • Screen readers hear a list with each chip's state.
 • High-contrast themes.
 • 12 languages: English, Spanish, Portuguese, French, German, Italian, Dutch, Polish, Japanese, Chinese, Korean.

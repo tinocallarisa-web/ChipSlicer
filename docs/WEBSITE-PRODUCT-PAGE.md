@@ -12,10 +12,10 @@
 Turn a field into a row of buttons that filter the page with one click. Free for everyone: no Pro tier, no licence, no watermark.
 
 ### The Problem
-The default Power BI list slicer takes up space and looks out of place in polished dashboards, and a dropdown hides the values until it is opened. Neither opens the report on a chosen value, keeps one value always selected, shows a count next to each item, or clears the selection with one button.
+Most readers want the same starting point every time: this year, their region, the open cases. They also want to see the options and how big each one is before they click, in a filter that matches the look of the report.
 
 ### How It Works
-Chip Slicer renders each value of a field as a clickable chip. Selected chips are visible at a glance. Click to select, click again (or ✕, or All) to clear. The selection is a standard Power BI filter: it follows sync slicers, is saved in bookmarks, respects edit interactions and appears in the filter pane.
+Chip Slicer renders each value of a field as a clickable chip. Selected chips are visible at a glance. Click to select, click again (or ✕, or All) to clear. The selection is a standard Power BI filter: it follows sync slicers, is saved in bookmarks, respects edit interactions and filters the other visuals of the page. It opens on the values you choose, even after the reader cleared them last time, shows the value of a measure on each chip, and takes a new look in one click.
 
 ### Who It's For
 - Power BI report developers who want a cleaner, button-style filter
@@ -27,7 +27,7 @@ Chip Slicer renders each value of a field as a clickable chip. Selected chips ar
 - **Clear button (✕)** — removes the selection in one click
 - **Value on each chip** — put a measure in Value and each chip shows its count or total, with the model's format
 - **Force selection** — the slicer always keeps a value selected: your default selection, or else the first value
-- **"+N" for chips that do not fit** — a narrow strip groups the extra chips into "+N"; one click shows them all
+- **"+N" for chips that do not fit** (horizontal layout with wrapping) — a narrow strip groups the extra chips into "+N"; one click shows them all
 - **Thirteen style templates, following your report theme by default** — Report theme, Classic, Boardroom, Ledger, Editorial, Signal, Aurora, Terrace, Outline, Soft, Square, Segmented, Dark. Six of them are the TCViz collection styles, free here
 - **Grid layout** — fixed or automatic columns
 - **Free for everyone** — every feature included, no Pro tier, no licence
@@ -72,7 +72,11 @@ Overview: https://www.youtube.com/watch?v=cbJ_VHPA5Sk
 
 **Sort** — Data order (the model's sort, including Sort by column), A to Z, Z to A, or by value when there is a measure.
 
-**Works like a native slicer** — The selection is a standard Power BI filter: sync slicers, bookmarks, edit interactions and cross-page filters.
+**Works like a slicer** — The selection is a standard Power BI filter: it filters the other visuals and works with sync slicers, bookmarks and edit interactions.
+
+**Highlighting** — When another visual on the page highlights part of the data, the chips without data in that highlight are dimmed.
+
+**Context menu** — Right-click a chip (or Shift+F10) for the Power BI context menu.
 
 ### Values
 **Value field (optional)** — Put a measure in Value and each chip shows it (a count, a total, a percentage), with the model's format, dynamic format strings included. As in any Power BI visual with a measure, items for which the measure is blank are not shown.
@@ -97,7 +101,7 @@ Overview: https://www.youtube.com/watch?v=cbJ_VHPA5Sk
 **Start screen and setup guide** — A start screen with the steps when no field is assigned, and a tips bar while editing that offers Report theme, Classic and the six collection styles in one click (Format → Style template → Setup guide). It never shows in reading view.
 
 ### Accessibility and languages
-**Keyboard** — One Tab stop for the whole slicer; arrow keys, Home and End move between chips; Enter or Space select (Ctrl adds); Escape clears; Shift+F10 opens the context menu. On "+N", Enter or Space opens it and moves the focus to the first chip revealed; Escape closes it and returns the focus to "+N".
+**Keyboard** — One Tab stop for the whole slicer; arrow keys, Home and End move between chips; Enter or Space select (Ctrl adds); Escape clears (unless Force selection is on; with "+N" open, Escape first closes it); Shift+F10 opens the context menu. On "+N", Enter or Space opens it and moves the focus to the first chip revealed; Escape closes it and returns the focus to "+N".
 
 **Screen readers** — Announced as a list, with each chip's state and its value.
 
@@ -146,7 +150,7 @@ Updating from 1.5 or earlier: reports that never chose a template switch to Repo
 - `supportsKeyboardFocus: true`
 - `supportsMultiVisualSelection: true`
 - `supportsOnObjectFormatting: true`
-- Tooltips (default and canvas)
+- Tooltips on each chip
 
 ### Privacy & Network
 - No network calls

@@ -115,7 +115,7 @@ CHIP STYLE — CHIPS
 · Font ...................... Default: Segoe UI
 · Font size ................. Default: 12
 · Check mark on selected .... Default: Off
-· Shadow .................... Default: On (Off in Report theme)
+· Shadow .................... Default: On in Classic; off in every other template
 
 CHIP STYLE — COLORS (Classic defaults; with Report theme, the default, they come from the
 report theme. A colour set by hand always wins.)
@@ -129,7 +129,8 @@ report theme. A colour set by hand always wins.)
 HEADER
 · Show header ............... Default: Off. Title above the chips.
 · Text ...................... Empty = the field name.
-· Font, Font size, Bold, Color  Defaults: Segoe UI Semibold, 12, Off, #252423
+· Font, Font size, Bold, Color  Defaults: Segoe UI Semibold, 12, Off, #252423 in Classic
+                              (the theme's text colour in Report theme)
 
 VALUES (appears only when there is a measure in Value)
 · Show value on chips ....... Default: On
@@ -138,6 +139,10 @@ VALUES (appears only when there is a measure in Value)
 ON-OBJECT FORMATTING
 With Format on, click a chip, the header or a chip value to see its options next to it.
 In format mode a click chooses what to format and does not filter.
+
+HIGHLIGHTING AND CONTEXT MENU
+When another visual on the page highlights part of the data, the chips without data in that
+highlight are dimmed. Right-click a chip (or Shift+F10) for the Power BI context menu.
 
 ________________________________________
 
@@ -173,7 +178,8 @@ ________________________________________
 KEYBOARD
 --------
 One Tab stop for the whole slicer. Arrow keys, Home and End move between chips;
-Enter or Space select (Ctrl adds); Escape clears; Shift+F10 opens the context menu.
+Enter or Space select (Ctrl adds); Escape clears (unless Force selection is on; with "+N"
+open, Escape first closes it); Shift+F10 opens the context menu.
 On "+N", Enter or Space opens it and moves the focus to the first chip revealed; Escape
 closes it and returns the focus to "+N".
 

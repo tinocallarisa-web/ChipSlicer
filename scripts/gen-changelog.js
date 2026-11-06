@@ -39,6 +39,9 @@ function inline(s) {
     out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g,
         '<a href="$2" target="_blank" rel="noopener">$1</a>');
     out = out.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    // Cursiva *texto*: despues de la negrita, asi los ** ya no estan. Solo un * pegado al texto por dentro
+    // y sin letra/numero por fuera, para no tocar un asterisco suelto (p. ej. "2 * 3").
+    out = out.replace(/(^|[^*\w])\*(?=\S)([^*]*?\S)\*(?![*\w])/g, "$1<em>$2</em>");
     out = out.replace(/`([^`]+)`/g, "<code>$1</code>");
     return out;
 }
