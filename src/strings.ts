@@ -24,7 +24,11 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Video": "Vídeo",
         "UI_Clear": "Borrar selección",
         "UI_ShowLess": "Mostrar menos",
-        "UI_ShowMore": "Mostrar {0} más"
+        "UI_ShowMore": "Mostrar {0} más",
+        "grpChip": "Pastillas",
+        "grpColors": "Colores",
+        "grpLayout": "Diseño",
+        "grpSelection": "Selección"
     },
     "pt-BR": {
         "All": "Todos",
@@ -47,7 +51,9 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Video": "Vídeo",
         "UI_Clear": "Limpar seleção",
         "UI_ShowLess": "Mostrar menos",
-        "UI_ShowMore": "Mostrar mais {0}"
+        "UI_ShowMore": "Mostrar mais {0}",
+        "grpColors": "Cores",
+        "grpSelection": "Seleção"
     },
     "pt-PT": {
         "All": "Todos",
@@ -70,7 +76,9 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Video": "Vídeo",
         "UI_Clear": "Limpar seleção",
         "UI_ShowLess": "Mostrar menos",
-        "UI_ShowMore": "Mostrar mais {0}"
+        "UI_ShowMore": "Mostrar mais {0}",
+        "grpColors": "Cores",
+        "grpSelection": "Seleção"
     },
     "fr-FR": {
         "All": "Tout",
@@ -92,7 +100,11 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Video": "Vidéo",
         "UI_Clear": "Effacer la sélection",
         "UI_ShowLess": "Afficher moins",
-        "UI_ShowMore": "Afficher {0} de plus"
+        "UI_ShowMore": "Afficher {0} de plus",
+        "grpChip": "Puces",
+        "grpColors": "Couleurs",
+        "grpLayout": "Disposition",
+        "grpSelection": "Sélection"
     },
     "de-DE": {
         "All": "Alle",
@@ -114,7 +126,9 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Tagline": "Filtern Sie die Seite mit einem Klick. Kostenlos, ohne Lizenz.",
         "UI_Clear": "Auswahl löschen",
         "UI_ShowLess": "Weniger anzeigen",
-        "UI_ShowMore": "{0} weitere anzeigen"
+        "UI_ShowMore": "{0} weitere anzeigen",
+        "grpColors": "Farben",
+        "grpSelection": "Auswahl"
     },
     "it-IT": {
         "All": "Tutti",
@@ -136,7 +150,10 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Tagline": "Filtra la pagina con un clic. Gratuito, senza licenza.",
         "UI_Clear": "Cancella selezione",
         "UI_ShowLess": "Mostra meno",
-        "UI_ShowMore": "Mostra altri {0}"
+        "UI_ShowMore": "Mostra altri {0}",
+        "grpChip": "Chip",
+        "grpColors": "Colori",
+        "grpSelection": "Selezione"
     },
     "nl-NL": {
         "All": "Alles",
@@ -157,7 +174,10 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Tagline": "Filter de pagina met één klik. Gratis, zonder licentie.",
         "UI_Clear": "Selectie wissen",
         "UI_ShowLess": "Minder weergeven",
-        "UI_ShowMore": "Nog {0} weergeven"
+        "UI_ShowMore": "Nog {0} weergeven",
+        "grpColors": "Kleuren",
+        "grpLayout": "Indeling",
+        "grpSelection": "Selectie"
     },
     "pl-PL": {
         "All": "Wszystkie",
@@ -180,7 +200,11 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Video": "Wideo",
         "UI_Clear": "Wyczyść zaznaczenie",
         "UI_ShowLess": "Pokaż mniej",
-        "UI_ShowMore": "Pokaż jeszcze {0}"
+        "UI_ShowMore": "Pokaż jeszcze {0}",
+        "grpChip": "Chipy",
+        "grpColors": "Kolory",
+        "grpLayout": "Układ",
+        "grpSelection": "Zaznaczenie"
     },
     "ja-JP": {
         "All": "すべて",
@@ -203,7 +227,11 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Video": "動画",
         "UI_Clear": "選択をクリア",
         "UI_ShowLess": "表示を減らす",
-        "UI_ShowMore": "さらに {0} 件を表示"
+        "UI_ShowMore": "さらに {0} 件を表示",
+        "grpChip": "チップ",
+        "grpColors": "色",
+        "grpLayout": "レイアウト",
+        "grpSelection": "選択"
     },
     "zh-CN": {
         "All": "全部",
@@ -226,7 +254,11 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Video": "视频",
         "UI_Clear": "清除选择",
         "UI_ShowLess": "收起",
-        "UI_ShowMore": "再显示 {0} 项"
+        "UI_ShowMore": "再显示 {0} 项",
+        "grpChip": "标签",
+        "grpColors": "颜色",
+        "grpLayout": "布局",
+        "grpSelection": "选择"
     },
     "ko-KR": {
         "All": "모두",
@@ -249,6 +281,10 @@ export const STRINGS: Record<string, Record<string, string>> = {
         "Landing_Video": "동영상",
         "UI_Clear": "선택 지우기",
         "UI_ShowLess": "간단히 보기",
-        "UI_ShowMore": "{0}개 더 보기"
+        "UI_ShowMore": "{0}개 더 보기",
+        "grpChip": "칩",
+        "grpColors": "색",
+        "grpLayout": "레이아웃",
+        "grpSelection": "선택"
     }
 };

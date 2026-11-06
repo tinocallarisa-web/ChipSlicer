@@ -833,8 +833,7 @@ export class Visual implements IVisual {
         if (!txt) { this.defaultSig = txt; return; }
         if (hayFiltro && !(cambio && this.editing)) { this.defaultSig = txt; return; }
         if (!this.interactionsAllowed() || this.formatMode) return;
-        const tokens = txt.split(/[,;|]/).map(t => Visual.norm(t.trim())).filter(t => t);
-        const hits = this.items.filter(it => tokens.indexOf(Visual.norm(it.label)) >= 0 || tokens.indexOf(Visual.norm(String(it.value))) >= 0);
+        const hits = this.defaultHits(txt);
         if (!hits.length) return;   // sin coincidencias todavía (datos filtrados): se reintenta en la próxima actualización
         this.defaultSig = txt;
         this.selectedValues.clear();
@@ -842,19 +841,31 @@ export class Visual implements IVisual {
         this.applyFilter();
     }
 
+    /** Items named in Default selection (label or value, without case or accents). */
+    private defaultHits(txt: string): ChipItem[] {
+        const tokens = txt.split(/[,;|]/).map(t => Visual.norm(t.trim())).filter(t => t);
+        return this.items.filter(it => tokens.indexOf(Visual.norm(it.label)) >= 0 || tokens.indexOf(Visual.norm(String(it.value))) >= 0);
+    }
+
     /**
      * Force selection: with no valid value selected (new report, cleared bookmark, the value is gone after another
      * slicer filtered this one) the first value is applied, as the native slicer does. Once per empty state.
      */
     private ensureSelection(): void {
-        if (!this.formattingSettings.chipSettingsCard.selection.forceSelection.value) { this.forcePending = null; return; }
-        if (!this.interactionsAllowed() || this.formatMode || !this.items.length) return;
+        const sel = this.formattingSettings.chipSettingsCard.selection;
+        if (!sel.forceSelection.value) { this.forcePending = null; return; }
+        // Without a filter target the filter cannot be applied: drawing a chip as selected would be a lie.
+        if (!this.interactionsAllowed() || this.formatMode || !this.items.length || !this.filterTarget) return;
         if (Array.from(this.selectedValues).some(k => this.valuesByKey.has(k))) { this.forcePending = null; return; }
-        const it = this.items.find(x => x.key !== Visual.valueKey(null)) ?? this.items[0];
-        if (this.forcePending === it.key) return;
-        this.forcePending = it.key;
+        // The Default selection every time the slicer is left empty, not only when the report opens; else the first value.
+        let hits = this.defaultHits(String(sel.defaultSelection.value ?? "").trim());
+        if (!sel.multiSelect.value) hits = hits.slice(0, 1);
+        if (!hits.length) hits = [this.items.find(x => x.key !== Visual.valueKey(null)) ?? this.items[0]];
+        const sig = hits.map(h => h.key).join("\u0001");
+        if (this.forcePending === sig) return;
+        this.forcePending = sig;
         this.selectedValues.clear();
-        this.selectedValues.add(it.key);
+        hits.forEach(h => this.selectedValues.add(h.key));
         this.applyFilter();
         this.renderList();
     }
@@ -1073,6 +1084,12 @@ export class Visual implements IVisual {
         lay.wrap.visible = layout === "horizontal";
         lay.chipFill.visible = layout !== "grid";
         const sel = s.chipSettingsCard.selection;
+        sel.displayName = this.t("grpSelection", "Selection");
+        lay.displayName = this.t("grpLayout", "Layout");
+        s.chipSettingsCard.chip.displayName = this.t("grpChip", "Chips");
+        s.chipSettingsCard.colors.displayName = this.t("grpColors", "Colors");
+        // Without the key, the service keeps the text above instead of asking Desktop for a key it does not know.
+        [sel, lay, s.chipSettingsCard.chip, s.chipSettingsCard.colors].forEach(g => { (g as any).displayNameKey = undefined; });
         const force = !!sel.forceSelection.value;
         sel.showSelectAll.visible = !force;
         sel.showClear.visible = !force;
