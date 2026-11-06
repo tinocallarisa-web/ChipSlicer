@@ -410,6 +410,36 @@
                 "displayNameKey": "Enum_classic"
               },
               {
+                "value": "boardroom",
+                "displayName": "Boardroom",
+                "displayNameKey": "Enum_boardroom"
+              },
+              {
+                "value": "ledger",
+                "displayName": "Ledger",
+                "displayNameKey": "Enum_ledger"
+              },
+              {
+                "value": "editorial",
+                "displayName": "Editorial",
+                "displayNameKey": "Enum_editorial"
+              },
+              {
+                "value": "signal",
+                "displayName": "Signal",
+                "displayNameKey": "Enum_signal"
+              },
+              {
+                "value": "aurora",
+                "displayName": "Aurora",
+                "displayNameKey": "Enum_aurora"
+              },
+              {
+                "value": "terrace",
+                "displayName": "Terrace",
+                "displayNameKey": "Enum_terrace"
+              },
+              {
                 "value": "outline",
                 "displayName": "Outline",
                 "displayNameKey": "Enum_outline"

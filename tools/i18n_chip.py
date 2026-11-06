@@ -2,6 +2,12 @@
 """Traducciones de Chip Slicer por TEXTO inglés. Columnas: pt, fr, de, it, nl, pl, ja, zh, ko, es."""
 
 P = {
+    "Boardroom": ["Boardroom", "Boardroom", "Boardroom", "Boardroom", "Boardroom", "Boardroom", "Boardroom", "Boardroom", "Boardroom", "Boardroom"],
+    "Ledger": ["Ledger", "Ledger", "Ledger", "Ledger", "Ledger", "Ledger", "Ledger", "Ledger", "Ledger", "Ledger"],
+    "Editorial": ["Editorial", "Editorial", "Editorial", "Editorial", "Editorial", "Editorial", "Editorial", "Editorial", "Editorial", "Editorial"],
+    "Signal": ["Signal", "Signal", "Signal", "Signal", "Signal", "Signal", "Signal", "Signal", "Signal", "Signal"],
+    "Aurora": ["Aurora", "Aurora", "Aurora", "Aurora", "Aurora", "Aurora", "Aurora", "Aurora", "Aurora", "Aurora"],
+    "Terrace": ["Terrace", "Terrace", "Terrace", "Terrace", "Terrace", "Terrace", "Terrace", "Terrace", "Terrace", "Terrace"],
     "Force selection": ["Forçar seleção", "Forcer la sélection", "Auswahl erzwingen", "Forza selezione", "Selectie afdwingen", "Wymuś zaznaczenie", "選択を強制", "强制选择", "선택 강제", "Forzar selección"],
     "Group chips that don't fit (+N)": ["Agrupar os chips que não cabem (+N)", "Regrouper les puces qui ne tiennent pas (+N)", "Nicht passende Chips zusammenfassen (+N)", "Raggruppa i chip che non entrano (+N)", "Chips die niet passen groeperen (+N)", "Grupuj chipy, które się nie mieszczą (+N)", "収まらないチップをまとめる (+N)", "合并放不下的标签 (+N)", "들어가지 않는 칩 묶기(+N)", "Agrupar las pastillas que no caben (+N)"],
     "Show {0} more": ["Mostrar mais {0}", "Afficher {0} de plus", "{0} weitere anzeigen", "Mostra altri {0}", "Nog {0} weergeven", "Pokaż jeszcze {0}", "さらに {0} 件を表示", "再显示 {0} 项", "{0}개 더 보기", "Mostrar {0} más"],

@@ -752,7 +752,7 @@ export class Visual implements IVisual {
         lbl.textContent = this.t("Guide_TryStyle", "Try a style:");
         g.appendChild(lbl);
         const actual = String(s.styleCard.template.value?.value ?? "report");
-        ([["report", "Report theme"], ["classic", "Classic"], ["outline", "Outline"], ["soft", "Soft"], ["square", "Square"], ["segmented", "Segmented"], ["dark", "Dark"]] as [string, string][])
+        ([["report", "Report theme"], ["classic", "Classic"], ["boardroom", "Boardroom"], ["ledger", "Ledger"], ["editorial", "Editorial"], ["signal", "Signal"], ["aurora", "Aurora"], ["terrace", "Terrace"]] as [string, string][])
             .forEach(([v, d]) => {
                 const b = document.createElement("button");
                 b.type = "button";

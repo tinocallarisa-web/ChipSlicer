@@ -171,6 +171,12 @@ export class StyleCard extends FormattingSettingsCard {
         items: [
             { value: "report", displayName: "Report theme", displayNameKey: "Enum_report" } as any,
             { value: "classic", displayName: "Classic", displayNameKey: "Enum_classic" } as any,
+            { value: "boardroom", displayName: "Boardroom", displayNameKey: "Enum_boardroom" } as any,
+            { value: "ledger", displayName: "Ledger", displayNameKey: "Enum_ledger" } as any,
+            { value: "editorial", displayName: "Editorial", displayNameKey: "Enum_editorial" } as any,
+            { value: "signal", displayName: "Signal", displayNameKey: "Enum_signal" } as any,
+            { value: "aurora", displayName: "Aurora", displayNameKey: "Enum_aurora" } as any,
+            { value: "terrace", displayName: "Terrace", displayNameKey: "Enum_terrace" } as any,
             { value: "outline", displayName: "Outline", displayNameKey: "Enum_outline" } as any,
             { value: "soft", displayName: "Soft", displayNameKey: "Enum_soft" } as any,
             { value: "square", displayName: "Square", displayNameKey: "Enum_square" } as any,
@@ -205,5 +211,13 @@ export const TEMPLATES: Record<string, Record<string, string | number | boolean>
     soft: { defaultBg: "#EEF3F9", defaultBorder: "#EEF3F9", defaultText: "#1F4E80", activeBg: "#2B6CB0", activeBorder: "#2B6CB0", activeText: "#FFFFFF", shadow: false },
     square: { chipRadius: 4, defaultBg: "#FFFFFF", defaultBorder: "#D2D0CE", defaultText: "#252423", activeBg: "#252423", activeBorder: "#252423", activeText: "#FFFFFF", shadow: false },
     segmented: { chipRadius: 0, chipGap: 0, defaultBg: "#FFFFFF", defaultBorder: "#C8C6C4", defaultText: "#323130", activeBg: "#2F7A47", activeBorder: "#2F7A47", activeText: "#FFFFFF", shadow: false },
+    // The six styles of the TCViz collection (KPI Card, Histogram): free here, so a page with them matches.
+    // Inactive chip = the style's card; active chip = its accent colour.
+    boardroom: { defaultBg: "#16263D", defaultBorder: "#2A3E5C", defaultText: "#C5D3E3", activeBg: "#C9A45C", activeBorder: "#C9A45C", activeText: "#16263D", shadow: false },
+    ledger: { chipRadius: 3, fontFamily: "Georgia, serif", defaultBg: "#FBF8EF", defaultBorder: "#D9D2BE", defaultText: "#231F16", activeBg: "#7A1F1F", activeBorder: "#7A1F1F", activeText: "#FFFFFF", shadow: false },
+    editorial: { chipRadius: 0, fontFamily: "Georgia, serif", defaultBg: "#FFFFFF", defaultBorder: "#E2E2E2", defaultText: "#111111", activeBg: "#111111", activeBorder: "#111111", activeText: "#FFFFFF", shadow: false },
+    signal: { chipRadius: 6, defaultBg: "#FFFFFF", defaultBorder: "#D9DEE4", defaultText: "#14202B", activeBg: "#1F7A4D", activeBorder: "#1F7A4D", activeText: "#FFFFFF", shadow: false },
+    aurora: { defaultBg: "#10395E", defaultBorder: "#3A5C7E", defaultText: "#FFFFFF", activeBg: "#7CE7D0", activeBorder: "#7CE7D0", activeText: "#10395E", shadow: false },
+    terrace: { defaultBg: "#FBF5EC", defaultBorder: "#E5D6C2", defaultText: "#3A2A1E", activeBg: "#B5532A", activeBorder: "#B5532A", activeText: "#FFFFFF", shadow: false },
     dark: { defaultBg: "#2B2B2B", defaultBorder: "#3B3A39", defaultText: "#E1DFDD", activeBg: "#9DC3E6", activeBorder: "#9DC3E6", activeText: "#10263F", shadow: false }
 };
