@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [1.6.0.0] — unreleased
+## [1.6.0.0] — 2026-11-06
 
 ### Added
 - **"+N" for chips that do not fit**: in a horizontal layout with wrapping, when the chips need more rows than the
