@@ -3,7 +3,7 @@
  *
  * Genera un .pbiviz de TEST que convive con la versión de AppSource:
  *   - GUID: chipSlicerPro_test
- *   - Versión con el último dígito por build (Desktop cachea por guid + versión)
+ *   - Versión con el último dígito por build (Desktop cachea por guid + versión); la primera, sin sumar
  *
  * Uso:
  *   node build-test.js                  se llama "Chip Slicer (TEST)"
@@ -41,9 +41,10 @@ try {
         throw new Error(`GUID inesperado en pbiviz.json: "${pbiviz.visual.guid}" (se esperaba "${ORIGINAL_GUID}")`);
     }
     pbiviz.visual.guid = TEST_GUID;
-    const CONTADOR = path.join(ROOT, '.tmp', 'test-build-counter');
+    // Contador por versión: la primera build de test de una versión sale con su número (1.7.0.0), las siguientes +1, +2...
+    const CONTADOR = path.join(ROOT, '.tmp', 'test-build-counter-' + pbiviz.visual.version);
     fs.mkdirSync(path.dirname(CONTADOR), { recursive: true });
-    const n = (parseInt(fs.existsSync(CONTADOR) ? fs.readFileSync(CONTADOR, 'utf8') : '0', 10) || 0) + 1;
+    const n = fs.existsSync(CONTADOR) ? (parseInt(fs.readFileSync(CONTADOR, 'utf8'), 10) || 0) + 1 : 0;
     fs.writeFileSync(CONTADOR, String(n), 'utf8');
     const partes = pbiviz.visual.version.split('.');
     partes[3] = String(Number(partes[3]) + n);

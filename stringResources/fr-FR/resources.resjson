@@ -91,5 +91,14 @@
   "Guide_Close": "Masquer les conseils (Format → Modèle de style)",
   "Guide_Hierarchy": "Besoin de plusieurs niveaux (pays → ville) ? Essayez Chip Slicer Hierarchy.",
   "UI_ShowLess": "Afficher moins",
-  "UI_ShowMore": "Afficher {0} de plus"
+  "UI_ShowMore": "Afficher {0} de plus",
+  "Obj_accessibility": "Accessibilité",
+  "Prop_accessibility_highContrast": "Contraste élevé",
+  "Enum_hc_auto": "Automatique (paramètre Windows)",
+  "Enum_hc_on": "Activé",
+  "Prop_accessibility_focusColor": "Couleur du focus",
+  "Prop_accessibility_focusWidth": "Épaisseur du focus",
+  "Prop_accessibility_minTextSize": "Taille de texte minimale",
+  "Role_tooltips": "Info-bulles",
+  "Role_tooltips_Desc": "Valeurs supplémentaires affichées dans l'info-bulle de la puce"
 }

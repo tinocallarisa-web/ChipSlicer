@@ -91,5 +91,14 @@
   "Guide_Close": "Tips verbergen (Opmaak → Stijlsjabloon)",
   "Guide_Hierarchy": "Meerdere niveaus nodig (land → stad)? Probeer Chip Slicer Hierarchy.",
   "UI_ShowLess": "Minder weergeven",
-  "UI_ShowMore": "Nog {0} weergeven"
+  "UI_ShowMore": "Nog {0} weergeven",
+  "Obj_accessibility": "Toegankelijkheid",
+  "Prop_accessibility_highContrast": "Hoog contrast",
+  "Enum_hc_auto": "Automatisch (Windows-instelling)",
+  "Enum_hc_on": "Aan",
+  "Prop_accessibility_focusColor": "Kleur focus",
+  "Prop_accessibility_focusWidth": "Breedte focus",
+  "Prop_accessibility_minTextSize": "Minimale tekstgrootte",
+  "Role_tooltips": "Knopinfo",
+  "Role_tooltips_Desc": "Extra waarden in de knopinfo van de chip"
 }

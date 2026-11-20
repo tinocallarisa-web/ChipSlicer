@@ -91,5 +91,14 @@
   "Guide_Close": "Nascondi suggerimenti (Formato → Modello di stile)",
   "Guide_Hierarchy": "Ti servono più livelli (paese → città)? Prova Chip Slicer Hierarchy.",
   "UI_ShowLess": "Mostra meno",
-  "UI_ShowMore": "Mostra altri {0}"
+  "UI_ShowMore": "Mostra altri {0}",
+  "Obj_accessibility": "Accessibilità",
+  "Prop_accessibility_highContrast": "Contrasto elevato",
+  "Enum_hc_auto": "Automatico (impostazione di Windows)",
+  "Enum_hc_on": "Attivato",
+  "Prop_accessibility_focusColor": "Colore del focus",
+  "Prop_accessibility_focusWidth": "Spessore del focus",
+  "Prop_accessibility_minTextSize": "Dimensione minima del testo",
+  "Role_tooltips": "Descrizioni comandi",
+  "Role_tooltips_Desc": "Valori aggiuntivi mostrati nella descrizione del chip"
 }

@@ -91,5 +91,14 @@
   "Guide_Close": "Hide tips (Format → Style template)",
   "Guide_Hierarchy": "Need several levels (country → city)? Try Chip Slicer Hierarchy.",
   "UI_ShowLess": "Show less",
-  "UI_ShowMore": "Show {0} more"
+  "UI_ShowMore": "Show {0} more",
+  "Obj_accessibility": "Accessibility",
+  "Prop_accessibility_highContrast": "High contrast",
+  "Enum_hc_auto": "Automatic (Windows setting)",
+  "Enum_hc_on": "On",
+  "Prop_accessibility_focusColor": "Focus color",
+  "Prop_accessibility_focusWidth": "Focus width",
+  "Prop_accessibility_minTextSize": "Minimum text size",
+  "Role_tooltips": "Tooltips",
+  "Role_tooltips_Desc": "Extra values shown in the chip tooltip"
 }

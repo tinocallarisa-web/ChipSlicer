@@ -91,5 +91,14 @@
   "Guide_Close": "Ocultar consejos (Formato → Plantilla de estilo)",
   "Guide_Hierarchy": "¿Necesitas varios niveles (país → ciudad)? Prueba Chip Slicer Hierarchy.",
   "UI_ShowLess": "Mostrar menos",
-  "UI_ShowMore": "Mostrar {0} más"
+  "UI_ShowMore": "Mostrar {0} más",
+  "Obj_accessibility": "Accesibilidad",
+  "Prop_accessibility_highContrast": "Alto contraste",
+  "Enum_hc_auto": "Automático (ajuste de Windows)",
+  "Enum_hc_on": "Activado",
+  "Prop_accessibility_focusColor": "Color del foco",
+  "Prop_accessibility_focusWidth": "Grosor del foco",
+  "Prop_accessibility_minTextSize": "Tamaño mínimo del texto",
+  "Role_tooltips": "Información sobre herramientas",
+  "Role_tooltips_Desc": "Valores extra que se muestran en la información sobre herramientas de la pastilla"
 }

@@ -15,6 +15,14 @@
       "kind": "Measure",
       "description": "A count or total shown on each chip; items without a value are hidden",
       "descriptionKey": "Role_Value_Desc"
+    },
+    {
+      "displayName": "Tooltips",
+      "displayNameKey": "Role_tooltips",
+      "name": "tooltips",
+      "kind": "Measure",
+      "description": "Extra values shown in the chip tooltip",
+      "descriptionKey": "Role_tooltips_Desc"
     }
   ],
   "objects": {
@@ -128,6 +136,16 @@
                 "color": true
               }
             }
+          },
+          "description": "Supports conditional formatting (fx): the rule is resolved per chip.",
+          "rule": {
+            "inputRole": "measure",
+            "output": {
+              "property": "defaultBg",
+              "selector": [
+                "category"
+              ]
+            }
           }
         },
         "defaultBorder": {
@@ -150,6 +168,16 @@
                 "color": true
               }
             }
+          },
+          "description": "Supports conditional formatting (fx): the rule is resolved per chip.",
+          "rule": {
+            "inputRole": "measure",
+            "output": {
+              "property": "defaultText",
+              "selector": [
+                "category"
+              ]
+            }
           }
         },
         "activeBg": {
@@ -160,6 +188,16 @@
               "solid": {
                 "color": true
               }
+            }
+          },
+          "description": "Supports conditional formatting (fx): the rule is resolved per chip.",
+          "rule": {
+            "inputRole": "measure",
+            "output": {
+              "property": "activeBg",
+              "selector": [
+                "category"
+              ]
             }
           }
         },
@@ -182,6 +220,16 @@
               "solid": {
                 "color": true
               }
+            }
+          },
+          "description": "Supports conditional formatting (fx): the rule is resolved per chip.",
+          "rule": {
+            "inputRole": "measure",
+            "output": {
+              "property": "activeText",
+              "selector": [
+                "category"
+              ]
             }
           }
         },
@@ -475,6 +523,55 @@
           }
         }
       }
+    },
+    "accessibility": {
+      "displayName": "Accessibility",
+      "displayNameKey": "Obj_accessibility",
+      "properties": {
+        "highContrast": {
+          "displayName": "High contrast",
+          "displayNameKey": "Prop_accessibility_highContrast",
+          "type": {
+            "enumeration": [
+              {
+                "value": "auto",
+                "displayName": "Automatic (Windows setting)",
+                "displayNameKey": "Enum_hc_auto"
+              },
+              {
+                "value": "on",
+                "displayName": "On",
+                "displayNameKey": "Enum_hc_on"
+              }
+            ]
+          }
+        },
+        "focusColor": {
+          "displayName": "Focus color",
+          "displayNameKey": "Prop_accessibility_focusColor",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "focusWidth": {
+          "displayName": "Focus width",
+          "displayNameKey": "Prop_accessibility_focusWidth",
+          "type": {
+            "numeric": true
+          }
+        },
+        "minTextSize": {
+          "displayName": "Minimum text size",
+          "displayNameKey": "Prop_accessibility_minTextSize",
+          "type": {
+            "numeric": true
+          }
+        }
+      }
     }
   },
   "privileges": [],
@@ -507,6 +604,11 @@
               "bind": {
                 "to": "measure"
               }
+            },
+            {
+              "bind": {
+                "to": "tooltips"
+              }
             }
           ]
         }
@@ -524,7 +626,10 @@
     "supportedTypes": {
       "default": true,
       "canvas": true
-    }
+    },
+    "roles": [
+      "tooltips"
+    ]
   },
   "supportsEmptyDataView": true
 }

@@ -91,5 +91,14 @@
   "Guide_Close": "팁 숨기기(서식 → 스타일 템플릿)",
   "Guide_Hierarchy": "여러 수준(국가 → 도시)이 필요하세요? Chip Slicer Hierarchy를 사용해 보세요.",
   "UI_ShowLess": "간단히 보기",
-  "UI_ShowMore": "{0}개 더 보기"
+  "UI_ShowMore": "{0}개 더 보기",
+  "Obj_accessibility": "접근성",
+  "Prop_accessibility_highContrast": "고대비",
+  "Enum_hc_auto": "자동(Windows 설정)",
+  "Enum_hc_on": "켜기",
+  "Prop_accessibility_focusColor": "포커스 색",
+  "Prop_accessibility_focusWidth": "포커스 두께",
+  "Prop_accessibility_minTextSize": "최소 텍스트 크기",
+  "Role_tooltips": "도구 설명",
+  "Role_tooltips_Desc": "칩 도구 설명에 표시되는 추가 값"
 }

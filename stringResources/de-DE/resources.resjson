@@ -91,5 +91,14 @@
   "Guide_Close": "Tipps ausblenden (Format → Stilvorlage)",
   "Guide_Hierarchy": "Mehrere Ebenen nötig (Land → Stadt)? Probieren Sie Chip Slicer Hierarchy.",
   "UI_ShowLess": "Weniger anzeigen",
-  "UI_ShowMore": "{0} weitere anzeigen"
+  "UI_ShowMore": "{0} weitere anzeigen",
+  "Obj_accessibility": "Barrierefreiheit",
+  "Prop_accessibility_highContrast": "Hoher Kontrast",
+  "Enum_hc_auto": "Automatisch (Windows-Einstellung)",
+  "Enum_hc_on": "Ein",
+  "Prop_accessibility_focusColor": "Fokusfarbe",
+  "Prop_accessibility_focusWidth": "Fokusbreite",
+  "Prop_accessibility_minTextSize": "Minimale Textgröße",
+  "Role_tooltips": "QuickInfos",
+  "Role_tooltips_Desc": "Zusätzliche Werte in der QuickInfo des Chips"
 }

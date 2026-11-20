@@ -91,5 +91,14 @@
   "Guide_Close": "隐藏提示（格式 → 样式模板）",
   "Guide_Hierarchy": "需要多个层级（国家 → 城市）？试试 Chip Slicer Hierarchy。",
   "UI_ShowLess": "收起",
-  "UI_ShowMore": "再显示 {0} 项"
+  "UI_ShowMore": "再显示 {0} 项",
+  "Obj_accessibility": "辅助功能",
+  "Prop_accessibility_highContrast": "高对比度",
+  "Enum_hc_auto": "自动 (Windows 设置)",
+  "Enum_hc_on": "开",
+  "Prop_accessibility_focusColor": "焦点颜色",
+  "Prop_accessibility_focusWidth": "焦点宽度",
+  "Prop_accessibility_minTextSize": "最小文本大小",
+  "Role_tooltips": "工具提示",
+  "Role_tooltips_Desc": "标签工具提示中显示的其他值"
 }

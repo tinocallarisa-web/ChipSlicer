@@ -91,5 +91,14 @@
   "Guide_Close": "ヒントを非表示 (書式 → スタイル テンプレート)",
   "Guide_Hierarchy": "複数の階層 (国 → 都市) が必要ですか? Chip Slicer Hierarchy をお試しください。",
   "UI_ShowLess": "表示を減らす",
-  "UI_ShowMore": "さらに {0} 件を表示"
+  "UI_ShowMore": "さらに {0} 件を表示",
+  "Obj_accessibility": "アクセシビリティ",
+  "Prop_accessibility_highContrast": "ハイ コントラスト",
+  "Enum_hc_auto": "自動 (Windows の設定)",
+  "Enum_hc_on": "オン",
+  "Prop_accessibility_focusColor": "フォーカスの色",
+  "Prop_accessibility_focusWidth": "フォーカスの幅",
+  "Prop_accessibility_minTextSize": "最小のテキスト サイズ",
+  "Role_tooltips": "ツールヒント",
+  "Role_tooltips_Desc": "チップのツールヒントに表示する追加の値"
 }

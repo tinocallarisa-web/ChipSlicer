@@ -1,4 +1,6 @@
+import powerbi from "powerbi-visuals-api";
 import { formattingSettings } from "powerbi-visuals-utils-formattingmodel";
+import { dataViewWildcard } from "powerbi-visuals-utils-dataviewutils";
 
 import FormattingSettingsCard = formattingSettings.SimpleCard;
 import FormattingSettingsSlice = formattingSettings.Slice;
@@ -117,13 +119,27 @@ class ChipGroup extends formattingSettings.Group {
     slices: FormattingSettingsSlice[] = [this.chipHeight, this.chipRadius, this.chipPaddingH, this.fontFamily, this.fontSize, this.showCheck, this.shadow];
 }
 
+/** Chip colours with the fx button (1.7). */
+export const FX_COLORS = ["defaultBg", "defaultText", "activeBg", "activeText"];
+
+/**
+ * fx (1.7): ConstantOrRule with the wildcard selector, created with dataviewutils (a literal selector is not detected as
+ * conditional formatting). Power BI resolves the rule per chip in categorical.categories[0].objects[i]. The FIXED colour
+ * stays saved at the general level (altConstantSelector null): reports from 1.6 keep their colours and the pane remembers them.
+ */
+const fx = () => ({
+    selector: dataViewWildcard.createDataViewWildcardSelector(dataViewWildcard.DataViewWildcardMatchingOption.InstancesAndTotals) as any,
+    altConstantSelector: null as any,
+    instanceKind: powerbi.VisualEnumerationInstanceKinds.ConstantOrRule
+});
+
 class ColorsGroup extends formattingSettings.Group {
-    public defaultBg = new formattingSettings.ColorPicker({ name: "defaultBg", displayNameKey: "defaultBg", displayName: "Inactive background", value: { value: "#F3F4F6" } });
+    public defaultBg = new formattingSettings.ColorPicker({ name: "defaultBg", displayNameKey: "defaultBg", displayName: "Inactive background", value: { value: "#F3F4F6" }, ...fx() });
     public defaultBorder = new formattingSettings.ColorPicker({ name: "defaultBorder", displayNameKey: "defaultBorder", displayName: "Inactive border", value: { value: "#E5E7EB" } });
-    public defaultText = new formattingSettings.ColorPicker({ name: "defaultText", displayNameKey: "defaultText", displayName: "Inactive text", value: { value: "#374151" } });
-    public activeBg = new formattingSettings.ColorPicker({ name: "activeBg", displayNameKey: "activeBg", displayName: "Active background", value: { value: "#378ADD" } });
+    public defaultText = new formattingSettings.ColorPicker({ name: "defaultText", displayNameKey: "defaultText", displayName: "Inactive text", value: { value: "#374151" }, ...fx() });
+    public activeBg = new formattingSettings.ColorPicker({ name: "activeBg", displayNameKey: "activeBg", displayName: "Active background", value: { value: "#378ADD" }, ...fx() });
     public activeBorder = new formattingSettings.ColorPicker({ name: "activeBorder", displayNameKey: "activeBorder", displayName: "Active border", value: { value: "#378ADD" } });
-    public activeText = new formattingSettings.ColorPicker({ name: "activeText", displayNameKey: "activeText", displayName: "Active text", value: { value: "#FFFFFF" } });
+    public activeText = new formattingSettings.ColorPicker({ name: "activeText", displayNameKey: "activeText", displayName: "Active text", value: { value: "#FFFFFF" }, ...fx() });
     name = "grpColors";
     displayName = "Colors";
     displayNameKey = "grpColors";
@@ -192,12 +208,32 @@ export class StyleCard extends FormattingSettingsCard {
     slices: FormattingSettingsSlice[] = [this.template, this.guide];
 }
 
+const HC_ITEMS = [
+    { value: "auto", displayName: "Automatic (Windows setting)", displayNameKey: "Enum_hc_auto" },
+    { value: "on", displayName: "On", displayNameKey: "Enum_hc_on" }
+];
+
+/** Accessibility (1.7), as in the rest of the collection: high contrast without the Windows theme, focus ring, minimum text size. */
+export class AccessibilityCard extends FormattingSettingsCard {
+    public highContrast = new formattingSettings.ItemDropdown({
+        name: "highContrast", displayNameKey: "Prop_accessibility_highContrast", displayName: "High contrast", items: HC_ITEMS as any, value: HC_ITEMS[0] as any
+    });
+    public focusColor = new formattingSettings.ColorPicker({ name: "focusColor", displayNameKey: "Prop_accessibility_focusColor", displayName: "Focus color", value: { value: "#005A9E" } });
+    public focusWidth = new formattingSettings.NumUpDown({ name: "focusWidth", displayNameKey: "Prop_accessibility_focusWidth", displayName: "Focus width", value: 2, options: rango(1, 6) });
+    public minTextSize = new formattingSettings.NumUpDown({ name: "minTextSize", displayNameKey: "Prop_accessibility_minTextSize", displayName: "Minimum text size", value: 8, options: rango(6, 24) });
+    name = "accessibility";
+    displayName = "Accessibility";
+    displayNameKey = "Obj_accessibility";
+    slices: FormattingSettingsSlice[] = [this.highContrast, this.focusColor, this.focusWidth, this.minTextSize];
+}
+
 export class VisualSettingsModel extends FormattingSettingsModel {
     public styleCard = new StyleCard();
     public chipSettingsCard = new ChipSettingsCard();
     public headerCard = new HeaderCard();
     public badgeCard = new BadgeCard();
-    cards: Array<FormattingSettingsCard | formattingSettings.CompositeCard> = [this.styleCard, this.chipSettingsCard, this.headerCard, this.badgeCard];
+    public accessibilityCard = new AccessibilityCard();
+    cards: Array<FormattingSettingsCard | formattingSettings.CompositeCard> = [this.styleCard, this.chipSettingsCard, this.headerCard, this.badgeCard, this.accessibilityCard];
 }
 
 /**

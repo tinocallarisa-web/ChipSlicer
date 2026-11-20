@@ -19,7 +19,7 @@ import {
 
 // Formatting Model
 import { FormattingSettingsService, formattingSettings } from "powerbi-visuals-utils-formattingmodel";
-import { VisualSettingsModel, TEMPLATES } from "./settings";
+import { VisualSettingsModel, TEMPLATES, FX_COLORS } from "./settings";
 
 function rgb(hex: string): [number, number, number] | null {
     const m = /^#?([0-9a-f]{6})$/i.exec(String(hex).trim());
@@ -43,6 +43,23 @@ function textoSobre(fondo: string): string {
     const l = 0.2126 * r + 0.7152 * g + 0.0722 * b;
     return (l + 0.05) / 0.05 > 1.05 / (l + 0.05) ? "#000000" : "#FFFFFF";
 }
+
+function luminancia(hex: string): number | null {
+    const c = rgb(hex);
+    if (!c) return null;
+    const [r, g, b] = c.map(v => { const s = v / 255; return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4); });
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+/** Contrast ratio between two #RRGGBB colours (21 = black on white); null if either is not #RRGGBB. */
+function contraste(a: string, b: string): number | null {
+    const x = luminancia(a), y = luminancia(b);
+    if (x === null || y === null) return null;
+    return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+}
+
+/** High contrast colours: the Windows theme, or black on white with Accessibility → High contrast = On. */
+interface HcColors { fg: string; bg: string; sel: string; }
 import { STRINGS } from "./strings";
 import { LANDING_ICON } from "./landingIcon";
 
@@ -62,6 +79,10 @@ interface ChipItem {
     measureText: string;
     selectionId: powerbi.visuals.ISelectionId;
     index: number;
+    /** Colours from an fx rule for this chip (categories[0].objects[i].chipSettings), 1.7. */
+    fx: Record<string, string>;
+    /** Tooltips well (1.7): extra measures, already formatted. */
+    tips: { name: string; value: string }[];
 }
 
 export class Visual implements IVisual {
@@ -98,6 +119,8 @@ export class Visual implements IVisual {
     private expanded = false;
     /** Force selection: value already applied while waiting for the filter to come back (no loop if it does not). */
     private forcePending: string = null;
+    /** High contrast colours for this update, or null (readHighContrast). */
+    private hc: HcColors = null;
 
     constructor(options: VisualConstructorOptions) {
         this.host = options.host;
@@ -135,11 +158,14 @@ export class Visual implements IVisual {
             this.formatMode = !!(options as any).formatMode;
             this.subSelectionHelper.setFormatMode(this.formatMode);
             this.container.classList.toggle("fmt", this.formatMode);
-            const pal: any = this.host.colorPalette;
-            this.container.style.setProperty("--chip-focus", pal?.isHighContrast ? (pal.foregroundSelected?.value || pal.foreground?.value || "#FFFF00") : "#005A9E");
 
             const dataView = options.dataViews?.[0];
             this.formattingSettings = this.formattingSettingsService.populateFormattingSettingsModel(VisualSettingsModel, dataView);
+            this.readHighContrast();
+            const acc = this.formattingSettings.accessibilityCard;
+            const focusW = Math.min(6, Math.max(1, Math.round(Number(acc.focusWidth.value) || 2)));
+            this.container.style.setProperty("--chip-focus", this.hc ? this.hc.sel : (acc.focusColor.value?.value || "#005A9E"));
+            this.container.style.setProperty("--chip-focus-w", focusW + "px");
 
             if (!dataView?.categorical?.categories?.length) {
                 this.renderLandingPage(options.viewport);
@@ -162,6 +188,37 @@ export class Visual implements IVisual {
         } catch (e) {
             this.events.renderingFailed(options, String(e));
         }
+    }
+
+    // ─── Accesibilidad (1.7) ──────────────────────────────────────────────────────
+
+    /** Windows high contrast wins; otherwise "On" in the Accessibility card forces black on white. */
+    private readHighContrast(): void {
+        const pal: any = this.host.colorPalette;
+        if (pal?.isHighContrast) {
+            const fg = pal.foreground?.value || "#FFFFFF";
+            this.hc = { fg, bg: pal.background?.value || "#000000", sel: pal.foregroundSelected?.value || fg };
+            return;
+        }
+        const on = String(this.formattingSettings?.accessibilityCard?.highContrast?.value?.value ?? "auto") === "on";
+        this.hc = on ? { fg: "#000000", bg: "#FFFFFF", sel: "#000000" } : null;
+    }
+
+    /** Text size with the Accessibility minimum. */
+    private fsz(px: number): number {
+        const min = Math.min(24, Math.max(6, Number(this.formattingSettings?.accessibilityCard?.minTextSize?.value) || 8));
+        return Math.max(min, Number(px) || min);
+    }
+
+    /** Chip height: the chosen one, or more if the text (with the minimum size) would not fit in it. */
+    private chipH(): number {
+        const c = this.formattingSettings.chipSettingsCard.chip;
+        return Math.max(Number(c.chipHeight.value) || 34, Math.ceil(this.fsz(c.fontSize.value) * 1.3 + 8));
+    }
+
+    /** The measure in the Value well (the Tooltips well also sends measures, after 1.7). */
+    private static measureCol(dv: powerbi.DataView): powerbi.DataViewValueColumn | undefined {
+        return dv?.categorical?.values?.find(v => v.source?.roles?.["measure"]);
     }
 
     // ─── Textos ──────────────────────────────────────────────────────────────────
@@ -238,12 +295,11 @@ export class Visual implements IVisual {
     private renderLandingPage(vp: powerbi.IViewport): void {
         const w = vp?.width || 0, h = vp?.height || 0;
         const size = (w >= 560 && h >= 300) ? "l" : (w >= 320 && h >= 200) ? "m" : "s";
-        const pal: any = this.host.colorPalette;
-        const hc = !!pal?.isHighContrast;
-        const fg = hc ? (pal.foreground?.value || "#FFFFFF") : "";
+        const hc = !!this.hc;
+        const fg = hc ? this.hc.fg : "";
         const el = document.createElement("div");
         el.className = "chip-landing chip-landing-" + size;
-        if (hc) el.style.background = pal.background?.value || "#000000";
+        if (hc) el.style.background = this.hc.bg;
         const mk = (tag: string, cls?: string, text?: string): HTMLElement => {
             const n = document.createElement(tag);
             if (cls) n.className = cls;
@@ -315,7 +371,8 @@ export class Visual implements IVisual {
 
     private buildItems(dataView: powerbi.DataView): ChipItem[] {
         const category = dataView.categorical.categories[0];
-        const mcol = dataView.categorical.values?.[0];
+        const mcol = Visual.measureCol(dataView);
+        const tipCols = (dataView.categorical.values ?? []).filter(v => v.source?.roles?.["tooltips"] && !v.source?.roles?.["measure"]);
         const blankLabel = this.t("Blank", "(Blank)");
         const catFmt = this.categoryFormatter(category.source);
         const out: ChipItem[] = [];
@@ -331,7 +388,12 @@ export class Visual implements IVisual {
                 lit: !hl || (hl[i] !== null && hl[i] !== undefined && hl[i] !== 0),
                 measureText: mcol && m !== null && m !== undefined ? this.formatValue(m, this.fmtOf(mcol, i)) : "",
                 selectionId: this.host.createSelectionIdBuilder().withCategory(category, i).createSelectionId(),
-                index: i
+                index: i,
+                fx: Visual.fxColors(category, i),
+                tips: tipCols.map(tc => ({
+                    name: tc.source?.displayName ?? "",
+                    value: tc.values[i] === null || tc.values[i] === undefined ? "" : this.formatValue(tc.values[i], this.fmtOf(tc, i))
+                }))
             });
         });
         const sort = String(this.formattingSettings.chipSettingsCard.selection.sort.value?.value ?? "data");
@@ -344,6 +406,21 @@ export class Visual implements IVisual {
         if (sort === "asc") out.sort(cmp);
         else if (sort === "desc") out.sort((a, b) => cmp(b, a));
         else if (sort === "valueDesc" && mcol) out.sort((a, b) => ((b.measure ?? -Infinity) - (a.measure ?? -Infinity)) || a.index - b.index);
+        return out;
+    }
+
+    /**
+     * fx (1.7): colours that a rule gives this chip. Only solid colours: the fixed colour is saved at the general level
+     * (altConstantSelector null), so anything here comes from a rule and wins over the fixed colour and the template.
+     */
+    private static fxColors(category: powerbi.DataViewCategoryColumn, i: number): Record<string, string> {
+        const o: any = (category as any).objects?.[i]?.chipSettings;
+        const out: Record<string, string> = {};
+        if (!o) return out;
+        FX_COLORS.forEach(p => {
+            const c = o[p]?.solid?.color;
+            if (typeof c === "string" && c) out[p] = c;
+        });
         return out;
     }
 
@@ -389,15 +466,14 @@ export class Visual implements IVisual {
         const category = dataView.categorical.categories[0];
         const s = this.formattingSettings;
         const sel = s.chipSettingsCard.selection, lay = s.chipSettingsCard.layoutGrp;
-        const pal: any = this.host.colorPalette;
-        const hc = !!pal?.isHighContrast;
-        const fgHC = pal?.foreground?.value ?? "#FFFFFF";
+        const hc = !!this.hc;
+        const fgHC = this.hc?.fg ?? "#FFFFFF";
 
         this.filterTarget = Visual.getFilterTarget(category.source);
         if (this.lastLocale !== this.host.locale) { this.fmtCache.clear(); this.lastLocale = this.host.locale; }
         this.items = this.buildItems(dataView);
         this.categoryName = category.source.displayName;
-        this.measureName = dataView.categorical.values?.[0]?.source?.displayName ?? "";
+        this.measureName = Visual.measureCol(dataView)?.source?.displayName ?? "";
         this.valuesByKey.clear();
         this.items.forEach(it => this.valuesByKey.set(it.key, it.value));
 
@@ -427,7 +503,7 @@ export class Visual implements IVisual {
             tx.textContent = s.headerCard.text.value || category.source.displayName;
             Object.assign(tx.style, {
                 fontFamily: s.headerCard.fontFamily.value,
-                fontSize: `${s.headerCard.fontSize.value}px`,
+                fontSize: `${this.fsz(s.headerCard.fontSize.value)}px`,
                 fontWeight: s.headerCard.bold.value ? "700" : "",
                 color: hc ? fgHC : s.headerCard.color.value.value
             });
@@ -481,7 +557,7 @@ export class Visual implements IVisual {
         Object.assign(list.style, { display: "", gridTemplateColumns: "", flexDirection: "", flexWrap: "", justifyContent: "", alignItems: "", overflowX: "", gap: `${gap}px` });
         if (layout === "grid") {
             const n = Math.round(lay.columns.value || 0);
-            const minW = Math.max(56, chip.fontSize.value * 5 + chip.chipPaddingH.value * 2);
+            const minW = Math.max(56, this.fsz(chip.fontSize.value) * 5 + chip.chipPaddingH.value * 2);
             Object.assign(list.style, { display: "grid", gridTemplateColumns: n > 0 ? `repeat(${n}, minmax(0, 1fr))` : `repeat(auto-fill, minmax(${minW}px, 1fr))`, alignContent: "start" });
         } else if (layout === "vertical") {
             Object.assign(list.style, { display: "flex", flexDirection: "column", alignItems: lay.chipFill.value ? "stretch" : justify });
@@ -490,8 +566,7 @@ export class Visual implements IVisual {
             Object.assign(list.style, { display: "flex", flexDirection: "row", flexWrap: wrap ? "wrap" : "nowrap", justifyContent: justify, alignContent: "flex-start", overflowX: wrap ? "hidden" : "auto" });
         }
 
-        const pal: any = this.host.colorPalette;
-        const hc = !!pal?.isHighContrast;
+        const hc = !!this.hc;
         const chips: HTMLElement[] = [];
         if (sel.showSelectAll.value && !sel.forceSelection.value) {
             const label = sel.selectAllLabel.value || this.t("All", "All");
@@ -499,7 +574,7 @@ export class Visual implements IVisual {
         }
         const badgeOn = !!s.badgeCard.show.value;
         this.items.forEach(it => {
-            const c = this.createChip(it.label, it.key, this.selectedValues.has(it.key), false, it.selectionId, badgeOn ? it.measureText : "", hc, layout);
+            const c = this.createChip(it.label, it.key, this.selectedValues.has(it.key), false, it.selectionId, badgeOn ? it.measureText : "", hc, layout, it.fx);
             if (!it.lit) c.classList.add("dim");
             this.bindTooltip(c, it);
             chips.push(c);
@@ -542,7 +617,7 @@ export class Visual implements IVisual {
             return [less].concat(chips);
         }
         const gap = lay.chipGap.value;
-        const rowH = this.formattingSettings.chipSettingsCard.chip.chipHeight.value;
+        const rowH = this.chipH();
         const maxRows = Math.max(1, Math.floor((H + gap) / (rowH + gap)));
         const widths = chips.map(c => c.getBoundingClientRect().width);
         const probe = this.moreChip("+" + chips.length, "", hc, layout);
@@ -601,7 +676,7 @@ export class Visual implements IVisual {
     // ─── Chip factory ────────────────────────────────────────────────────────────
 
     private createChip(label: string, key: string, isActive: boolean, isAll: boolean,
-        selectionId: powerbi.visuals.ISelectionId | null, badge: string, hc: boolean, layout: string): HTMLElement {
+        selectionId: powerbi.visuals.ISelectionId | null, badge: string, hc: boolean, layout: string, fxc?: Record<string, string>): HTMLElement {
         const s = this.formattingSettings;
         const c = s.chipSettingsCard.chip, col = s.chipSettingsCard.colors, lay = s.chipSettingsCard.layoutGrp;
         const el = document.createElement("div");
@@ -615,17 +690,23 @@ export class Visual implements IVisual {
 
         let bg: string, borderColor: string, textColor: string;
         if (hc) {
-            const pal: any = this.host.colorPalette;
-            const fg = pal.foreground?.value ?? "#FFFFFF";
-            const bk = pal.background?.value ?? "#000000";
-            const selc = pal.foregroundSelected?.value ?? fg;
+            // High contrast wins over everything, fx rules included.
+            const { fg, bg: bk, sel: selc } = this.hc;
             bg = isActive ? selc : bk;
             borderColor = isActive ? selc : fg;
             textColor = isActive ? bk : fg;
         } else {
-            bg = isActive ? col.activeBg.value.value : col.defaultBg.value.value;
-            borderColor = isActive ? col.activeBorder.value.value : col.defaultBorder.value.value;
-            textColor = isActive ? col.activeText.value.value : col.defaultText.value.value;
+            const fijoBg = isActive ? col.activeBg.value.value : col.defaultBg.value.value;
+            const fijoBorde = isActive ? col.activeBorder.value.value : col.defaultBorder.value.value;
+            const fijoTexto = isActive ? col.activeText.value.value : col.defaultText.value.value;
+            const fxBg = fxc?.[isActive ? "activeBg" : "defaultBg"];
+            const fxTexto = fxc?.[isActive ? "activeText" : "defaultText"];
+            bg = fxBg || fijoBg;
+            // A border that matched the fixed background follows the rule's background.
+            borderColor = fxBg && String(fijoBorde).toLowerCase() === String(fijoBg).toLowerCase() ? fxBg : fijoBorde;
+            textColor = fxTexto || fijoTexto;
+            // Background from a rule and no rule for the text: if the fixed text could not be read on it, black or white.
+            if (fxBg && !fxTexto && (contraste(textColor, bg) ?? 21) < 3) textColor = textoSobre(bg);
         }
 
         if (isActive && !isAll && c.showCheck.value) {
@@ -644,6 +725,7 @@ export class Visual implements IVisual {
             svg.appendChild(p);
             el.appendChild(svg);
         }
+        const fs = this.fsz(c.fontSize.value);
         const tx = document.createElement("span");
         tx.className = "chip-label";
         tx.textContent = label;
@@ -653,6 +735,7 @@ export class Visual implements IVisual {
             b.className = "chip-badge";
             b.textContent = badge;
             b.setAttribute("data-o", "badge");
+            b.style.fontSize = `${this.fsz(Math.round(fs * 0.9))}px`;
             const bc = s.badgeCard.color.value?.value;
             if (bc && !hc) { b.style.color = bc; b.style.opacity = "1"; }
             el.appendChild(b);
@@ -660,10 +743,10 @@ export class Visual implements IVisual {
 
         const fill = layout === "grid" || (layout === "vertical" && lay.chipFill.value) || (layout === "horizontal" && lay.chipFill.value);
         Object.assign(el.style, {
-            height: `${c.chipHeight.value}px`,
+            height: `${this.chipH()}px`,
             borderRadius: `${c.chipRadius.value}px`,
             padding: `0 ${c.chipPaddingH.value}px`,
-            fontSize: `${c.fontSize.value}px`,
+            fontSize: `${fs}px`,
             fontFamily: c.fontFamily.value,
             fontWeight: isActive ? "600" : "400",
             border: `1.5px solid ${borderColor}`,
@@ -696,6 +779,7 @@ export class Visual implements IVisual {
         const datos = (): powerbi.extensibility.VisualTooltipDataItem[] => {
             const d: powerbi.extensibility.VisualTooltipDataItem[] = [{ displayName: this.categoryName, value: it.label }];
             if (this.measureName && it.measureText) d.push({ displayName: this.measureName, value: it.measureText });
+            it.tips.forEach(tp => { if (tp.value) d.push({ displayName: tp.name, value: tp.value }); });
             return d;
         };
         const args = (e: MouseEvent) => ({ coordinates: [e.clientX, e.clientY], isTouchEvent: false, dataItems: datos(), identities: [it.selectionId] });
@@ -713,7 +797,8 @@ export class Visual implements IVisual {
         b.setAttribute("aria-label", label);
         b.textContent = "✕";
         b.disabled = this.selectedValues.size === 0;
-        if (hc) Object.assign(b.style, { color: fgHC, borderColor: fgHC });
+        b.style.fontSize = `${this.fsz(11)}px`;
+        if (hc) Object.assign(b.style, { color: fgHC, borderColor: fgHC, background: this.hc?.bg ?? "transparent" });
         else {
             // The same colours as an inactive chip: fixed greys could not be read on a dark theme or style.
             const col = this.formattingSettings.chipSettingsCard.colors;
@@ -737,14 +822,15 @@ export class Visual implements IVisual {
         const s = this.formattingSettings;
         if (!this.editing || this.formatMode || !s.styleCard.guide.value || !this.interactionsAllowed()) return;
         if (!vp || vp.width < 300 || vp.height < 150) return;
-        const pal: any = this.host.colorPalette;
-        const hc = !!pal?.isHighContrast;
-        const azul = hc ? (pal.foregroundSelected?.value || "#FFFF00") : "#2B6CB0";
+        const hc = !!this.hc;
+        const pal = { background: { value: this.hc?.bg }, foreground: { value: this.hc?.fg } };
+        const azul = hc ? this.hc.sel : "#2B6CB0";
         const g = document.createElement("div");
         g.className = "chip-guide";
         g.setAttribute("role", "region");
         g.setAttribute("aria-label", this.t("Guide_Title", "Setup tips"));
         if (hc) Object.assign(g.style, { background: pal.background?.value || "#000", color: pal.foreground?.value || "#FFF", borderColor: azul });
+        g.style.fontSize = `${this.fsz(11.5)}px`;
         g.onclick = e => e.stopPropagation();
         g.onkeydown = e => e.stopPropagation();
         const lbl = document.createElement("span");
@@ -774,7 +860,7 @@ export class Visual implements IVisual {
             a.addEventListener("click", (e) => { e.preventDefault(); if (this.interactionsAllowed()) this.host.launchUrl(URL_HIERARCHY); });
             if (hc) a.style.color = azul;
             g.appendChild(a);
-        } else if (!this.lastOptions?.dataViews?.[0]?.categorical?.values?.length && vp.width >= 520) {
+        } else if (!Visual.measureCol(this.lastOptions?.dataViews?.[0]) && vp.width >= 520) {
             const tip = document.createElement("span");
             tip.className = "chip-g-tip";
             tip.textContent = this.t("Guide_ValueTip", "Tip: add a measure to Value to show counts on the chips.");
@@ -1076,7 +1162,7 @@ export class Visual implements IVisual {
 
     public getFormattingModel(): powerbi.visuals.FormattingModel {
         const s = this.formattingSettings ?? new VisualSettingsModel();
-        const hasMeasure = !!this.lastOptions?.dataViews?.[0]?.categorical?.values?.length;
+        const hasMeasure = !!Visual.measureCol(this.lastOptions?.dataViews?.[0]);
         s.badgeCard.visible = hasMeasure;
         const lay = s.chipSettingsCard.layoutGrp;
         const layout = String(lay.layout.value?.value ?? "horizontal");
