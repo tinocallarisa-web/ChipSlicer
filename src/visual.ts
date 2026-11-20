@@ -210,10 +210,15 @@ export class Visual implements IVisual {
         return Math.max(min, Number(px) || min);
     }
 
-    /** Chip height: the chosen one, or more if the text (with the minimum size) would not fit in it. */
+    /**
+     * Chip height: the chosen one, or more when the Accessibility minimum raised the text and it would not fit.
+     * Without the minimum acting, the height is the author's, as in 1.6 (reports keep their look).
+     */
     private chipH(): number {
         const c = this.formattingSettings.chipSettingsCard.chip;
-        return Math.max(Number(c.chipHeight.value) || 34, Math.ceil(this.fsz(c.fontSize.value) * 1.3 + 8));
+        const h = Number(c.chipHeight.value) || 34;
+        const fs = this.fsz(c.fontSize.value);
+        return fs > (Number(c.fontSize.value) || 0) ? Math.max(h, Math.ceil(fs * 1.3 + 8)) : h;
     }
 
     /** The measure in the Value well (the Tooltips well also sends measures, after 1.7). */
