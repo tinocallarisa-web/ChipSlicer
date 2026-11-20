@@ -1,7 +1,7 @@
 {
   "name": "chip-slicer",
   "description": "A modern chip/pill style slicer for Power BI. 100% free.",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "pbiviz": "pbiviz",
@@ -11,8 +11,9 @@
     "lint": "npx eslint ."
   },
   "dependencies": {
-    "powerbi-visuals-api": "~5.11.1",
     "powerbi-models": "^2.0.1",
+    "powerbi-visuals-api": "~5.11.1",
+    "powerbi-visuals-utils-dataviewutils": "^6.1.0",
     "powerbi-visuals-utils-formattingmodel": "^7.1.0",
     "powerbi-visuals-utils-formattingutils": "^6.1.2",
     "powerbi-visuals-utils-onobjectutils": "^6.0.3"
