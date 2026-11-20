@@ -12,3 +12,5 @@ _releases/
 webpack.statistics.*.html
 
 __pycache__/
+
+tools/simulador/capturas/
