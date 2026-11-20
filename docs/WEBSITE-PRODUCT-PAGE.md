@@ -1,5 +1,5 @@
 # Chip Slicer — Website Product Page Content
-**Version 1.6.0.0**
+**Version 1.7.0.0**
 
 ---
 
@@ -45,9 +45,11 @@ Chip Slicer renders each value of a field as a clickable chip. Selected chips ar
 - ✅ The six TCViz collection styles (Boardroom, Ledger, Editorial, Signal, Aurora, Terrace), free
 - ✅ Optional header
 - ✅ On-object formatting
-- ✅ Power BI tooltips on each chip
+- ✅ Power BI tooltips on each chip, a Tooltips well and report page tooltips
+- ✅ Conditional formatting (fx) on chip colours
 - ✅ Sync slicers and bookmarks
-- ✅ Keyboard, screen reader and high contrast support
+- ✅ Accessibility card: high contrast on demand, focus ring, minimum text size
+- ✅ Keyboard, screen reader and Windows high contrast support
 - ✅ 12 languages
 - ✅ Up to 1,000 values
 - ✅ Free for everyone
@@ -81,7 +83,7 @@ Overview: https://www.youtube.com/watch?v=cbJ_VHPA5Sk
 ### Values
 **Value field (optional)** — Put a measure in Value and each chip shows it (a count, a total, a percentage), with the model's format, dynamic format strings included. As in any Power BI visual with a measure, items for which the measure is blank are not shown.
 
-**Tooltips** — Power BI tooltips on each chip with the value and the measure.
+**Tooltips** — Power BI tooltips on each chip with the value, the measure and any measures in the Tooltips well. Report page tooltips work too: they receive the chip under the mouse.
 
 ### Appearance
 **Style templates** — Thirteen: Report theme (the default), Classic (the look of 1.4 and 1.5), Boardroom, Ledger, Editorial, Signal, Aurora, Terrace, Outline, Soft, Square, Segmented and Dark. With Report theme the selected chip takes the report theme's first data colour, with black or white text, whichever reads better; inactive chips, the header and the clear button take the theme's page colours; flat, no shadow. It works on light and dark themes. Boardroom (navy, gold selected), Ledger (cream, deep red, Georgia serif, 3 px corners), Editorial (white, black, Georgia serif, square), Signal (white, green, 6 px corners), Aurora (deep blue, aqua) and Terrace (warm cream, terracotta) are the styles of the TCViz collection, the same looks as in KPI Card and Histogram, free here so a page that uses them looks consistent; all flat. A template fills in what you have not changed yourself.
@@ -94,6 +96,8 @@ Overview: https://www.youtube.com/watch?v=cbJ_VHPA5Sk
 
 **Colors** — Background, border and text for selected and unselected chips.
 
+**Conditional formatting (fx)** — Backgrounds and texts of selected and unselected chips have the fx button: rules, gradient or field value, worked out chip by chip. A rule wins over the fixed colour and the template; with a background rule and no text rule, the text turns black or white if it could not be read. The "All" chip keeps the fixed colours.
+
 **Header** — Optional title with its own text, font, size, bold and color.
 
 **On-object formatting** — With Format on, click a chip, the header or a chip value to format it on the canvas.
@@ -105,7 +109,7 @@ Overview: https://www.youtube.com/watch?v=cbJ_VHPA5Sk
 
 **Screen readers** — Announced as a list, with each chip's state and its value.
 
-**High contrast** — The chips take the colours of the Windows high-contrast theme.
+**Accessibility card** — High contrast: Automatic follows the Windows high-contrast theme; On draws the slicer black on white even when Windows is not in high contrast, and wins over fx rules and templates. Focus color and Focus width (1–6 px) for the keyboard ring. Minimum text size (6–24) for the chips, header, values and clear button; the chip grows taller if the text no longer fits, and long labels end with "…".
 
 **12 languages** — English, Spanish, Portuguese (Brazil and Portugal), French, German, Italian, Dutch, Polish, Japanese, Chinese (Simplified) and Korean, following the language of Power BI.
 
@@ -119,7 +123,7 @@ Chip Slicer uses one level: if you drop a hierarchy into Category it filters by 
 ## TAB 3: Technical
 
 ### Specifications
-- Version: 1.6.0.0
+- Version: 1.7.0.0
 - Power BI visuals API: 5.11.1
 - Package: Microsoft AppSource
 - Price: free for everyone, no Pro tier, no licence
@@ -129,6 +133,7 @@ Chip Slicer uses one level: if you drop a hierarchy into Category it filters by 
 |---|---|---|
 | Category | 1 column (text, number, date, true/false) or a hierarchy level | Up to 1,000 values |
 | Value (optional) | 1 measure | Shown on each chip with the model's format |
+| Tooltips (optional) | Measures | Shown in the chip tooltip |
 
 ### Format Pane
 | Card / group | Settings |
@@ -137,9 +142,10 @@ Chip Slicer uses one level: if you drop a hierarchy into Category it filters by 
 | Chip Style → Selection | Multi-select · Force selection (off) · Show 'All' button · 'All' button text · Show clear button · Default selection · Sort |
 | Chip Style → Layout | Layout (Horizontal, Vertical, Grid) · Columns (0 = automatic) · Wrap to next line · Group chips that don't fit (+N) (horizontal with wrap, on) · Stretch chips to fill · Alignment · Gap |
 | Chip Style → Chips | Chip height · Border radius · Horizontal padding · Font · Font size · Check mark on selected · Shadow |
-| Chip Style → Colors | Inactive background, border, text · Active background, border, text |
+| Chip Style → Colors | Inactive background, border, text · Active background, border, text (backgrounds and texts with fx) |
 | Header | Show header · Text (empty = field name) · Font · Font size · Bold · Color |
 | Values | Show value on chips · Color (appears when a measure is in Value) |
+| Accessibility | High contrast (Automatic, On) · Focus color · Focus width · Minimum text size |
 
 Updating from 1.5 or earlier: reports that never chose a template switch to Report theme after the update; choose Classic to keep the earlier look. Colours set by hand are kept, and no saved setting was renamed or moved. Slicers whose chips overflowed now show "+N" instead of a scroll bar.
 
@@ -150,7 +156,9 @@ Updating from 1.5 or earlier: reports that never chose a template switch to Repo
 - `supportsKeyboardFocus: true`
 - `supportsMultiVisualSelection: true`
 - `supportsOnObjectFormatting: true`
-- Tooltips on each chip
+- Tooltips on each chip, `tooltips` role (Measure) and report page tooltips
+- Conditional formatting (fx) on chip colours
+- Accessibility card (`accessibility` object)
 
 ### Privacy & Network
 - No network calls
@@ -170,6 +178,16 @@ Updating from 1.5 or earlier: reports that never chose a template switch to Repo
 ---
 
 ## TAB 4: Changelog
+
+### [1.7.0.0] — 2026-11-20
+**Added**
+- Accessibility card: High contrast (Automatic follows Windows; On draws the slicer black on white), Focus color, Focus width and Minimum text size (chips, header, values, clear button; the chip grows if the text no longer fits).
+- Conditional formatting (fx) on Inactive background, Inactive text, Active background and Active text, resolved chip by chip. A rule wins over the fixed colour and the template.
+- Tooltips well: measures shown in the chip tooltip; report page tooltips receive the chip under the mouse.
+
+**Changed**
+- Fixed colours are still saved for the whole visual: reports made with 1.6 keep their colours.
+- High contrast wins over fx rules and templates.
 
 ### [1.6.0.0] — 2026-11-06
 **Added**

@@ -1,59 +1,82 @@
-# Certification notes — Chip Slicer 1.6.0.0
+# Certification notes — Chip Slicer 1.7.0.0
 
 The block below is what is pasted in Partner Center (docs/CERTIFICATION-NOTES-SHORT.txt).
 
 ```
-Chip Slicer 1.6.0.0 - GUID chipSlicerPro
+Chip Slicer 1.7.0.0 - GUID chipSlicerPro
 Repo, branch certification: https://github.com/tinocallarisa-web/ChipSlicer/tree/certification
-Docs: https://tinocallarisa-web.github.io/ChipSlicer/support.html (+privacy.html, terms.html, changelog.html)
+Support: https://tinocallarisa-web.github.io/ChipSlicer/support.html
+Privacy: https://tinocallarisa-web.github.io/ChipSlicer/privacy.html
+Terms: https://tinocallarisa-web.github.io/ChipSlicer/terms.html
 Video: https://www.youtube.com/watch?v=cbJ_VHPA5Sk
 
 WHY THIS SUBMISSION
-Replaces 1.5.0.0. New: Report theme template (now the default), six more templates,
-"+N" chip for chips that do not fit, Force selection. Clear button takes the chip colours. API 5.11.1.
+Replaces 1.6.0.0. New: Accessibility card, fx on chip colours, Tooltips well and
+report page tooltips. API 5.11.1.
 
 TESTING
-1. Sample .pbix: click a chip: the page filters. Again: clears.
-2. Multi-select or Ctrl+click: several chips. X and "All" clear. Keyboard: Tab, arrows,
-Enter/Space, Esc, Shift+F10.
-3. Default selection = a chip value: applied when the slicer loads with no filter.
-4. Measure in Value: number on each chip; Sort > Value.
-5. Style template > Outline, then Report theme: chips follow the theme. Edit mode:
-tips bar, close with X. Format mode: click a chip (on-object).
-6. Selection > Force selection on: "All" and X disappear, the first value is selected;
-clicking it does not clear.
-7. Layout Horizontal, Wrap on, narrow box: a "+N" chip appears. Click: all chips with
-"Show less" first; click it or Esc: closes.
-8. Remove the field: start screen. allowInteractions false: filter unchanged.
+1. Sample .pbix: click a chip: the page filters. Again: clears. Ctrl+click: several.
+Keys: Tab, arrows, Enter, Esc, Shift+F10.
+2. Format > Accessibility > High contrast = On: chips black on white, active chip black.
+Focus color/width: Tab into the slicer, the ring changes.
+3. Minimum text size = 20 with Chip Style font 9: chips, header and values grow;
+taller chips, long labels end with "...", no overlap.
+4. Chip Style > Colors > Inactive background > fx > Rules on a measure: each chip takes
+its colour. Change Style template: the rule stays. Remove fx: fixed colour returns.
+5. Measure in Tooltips: hover a chip, the value is in the tooltip. Page tooltip
+(Format > General > Tooltips > Report page): shows the hovered chip's data.
+6. Windows high contrast: system colours win over rules.
+7. Remove the field: start screen. allowInteractions false: filter unchanged.
 
-CAPABILITIES CHANGES IN 1.6
-chipSettings.forceSelection, chipSettings.collapse (bool, new). style.template enum
-gains report (now the default), boardroom, ledger, editorial, signal, aurora, terrace.
+CAPABILITIES CHANGES IN 1.7
+dataRoles: tooltips (Measure, new). tooltips.roles = [tooltips].
+chipSettings defaultBg, defaultText, activeBg, activeText: rule (fx), selector
+createDataViewWildcardSelector(InstancesAndTotals), fixed colour general
+(altConstantValueSelector null): 1.6 reports keep colours.
+accessibility object (new): highContrast, focusColor, focusWidth, minTextSize.
 Nothing renamed or removed.
 
 FILTER
-BasicFilter "In" via applyJsonFilter on the Category column, original value types.
-Selection state comes from options.jsonFilters.
-Force selection applies it with applyJsonFilter (as Default selection does), at most
-once per empty state, never in format mode or without allowInteractions.
+BasicFilter "In" (applyJsonFilter) on Category. State from options.jsonFilters.
 
 PERSISTPROPERTIES
-Only on a click in the tips bar and once when the template is changed while editing.
-Never in a selection callback. +N state is local, never persisted.
+Only on a click in the tips bar and once when the template is changed while editing
+(general selector: fx rules are never removed). Never in a selection callback.
 
 PRIVACY
-No network, telemetry, cookies or storage. privileges: []. No innerHTML. Links only
-on click via host.launchUrl. ESLint clean; npm audit --omit=dev 0.
+No network, telemetry or storage. privileges: []. No innerHTML. Links only on click
+(host.launchUrl). ESLint clean; npm audit 0.
 
 LICENSING
 Free. No IVisualLicenseManager, no gating.
 
 RENDERING EVENTS 1:1
-One renderingStarted and one Finished/Failed per update(). The bookmark callback only
-repaints chips and raises none.
+One renderingStarted and one Finished/Failed per update(). The selection callback
+only repaints.
+Full notes: docs/CERTIFICATION-NOTES.md
 ```
 
-CAPABILITIES CHANGES IN 1.6
+CAPABILITIES CHANGES IN 1.7
+- dataRoles: new "tooltips" (Measure, no max). dataViewMappings.categorical.values.select also binds "tooltips";
+  tooltips.roles = ["tooltips"]. The visual finds the Value measure by role (roles.measure), never by position.
+- objects.chipSettings defaultBg, defaultText, activeBg, activeText: "rule" (inputRole measure, output selector
+  category). In the Format pane they are ConstantOrRule with the selector made by
+  dataViewWildcard.createDataViewWildcardSelector(InstancesAndTotals) (powerbi-visuals-utils-dataviewutils) and
+  altConstantValueSelector null, so the fixed colour is still saved at the general level (1.6 reports unchanged).
+  The rule colour is read per chip from categorical.categories[0].objects[i].chipSettings and wins over the fixed
+  colour and the template. High contrast wins over the rule. Borders have no fx.
+- objects.accessibility (new): highContrast (auto | on), focusColor, focusWidth (1-6), minTextSize (6-24).
+  "on" draws black on white without the Windows theme; Windows high contrast (colorPalette.isHighContrast) still wins.
+- Nothing renamed, moved or removed.
+
+PERSISTPROPERTIES IN 1.7
+Unchanged. When a template is chosen while editing, the remove uses selector null: fx rules are never removed.
+
+TOOLTIPS IN 1.7
+tooltipService.show/move with dataItems (category, Value, Tooltips measures formatted with the model's format) and
+identities: [the chip's selection id], so report page tooltips receive the chip.
+
+HISTORY: CAPABILITIES CHANGES IN 1.6
 - objects.chipSettings: new "forceSelection" (bool, default false) and "collapse" (bool, default true).
 - objects.style.template: the enumeration gains "report" (Report theme), which is now the default value, and
   "boardroom", "ledger", "editorial", "signal", "aurora", "terrace" (the TCViz collection styles; static colour sets
@@ -113,5 +136,4 @@ the visual itself also ship in src/strings.ts (generated by tools/i18n.py).
 
 BUILD
 powerbi-visuals-tools 7.2.1, API 5.11.1, TypeScript 5.9, ESLint 10 + eslint-plugin-powerbi-visuals (recommended),
-clean. npm audit: 0 in production dependencies; the remaining advisories are in the pbiviz dev server (braces), with
-no fixed version published.
+clean. npm audit: 0 vulnerabilities (1.7, after npm audit fix).

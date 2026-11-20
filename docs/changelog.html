@@ -23,11 +23,23 @@
 </head>
 <body>
   <h1>Changelog — Chip Slicer</h1>
-  <p class="meta">Current version <strong>1.6.0.0</strong> &nbsp;|&nbsp;
+  <p class="meta">Current version <strong>1.7.0.0</strong> &nbsp;|&nbsp;
     <a href="support.html">Support</a> &nbsp;|&nbsp;
     <a href="mailto:support@tcviz.com">support@tcviz.com</a></p>
 
   <p>All notable changes to this project will be documented in this file.</p>
+  <h2 id="v1.7.0.0">1.7.0.0 <span class="date">2026-11-20</span></h2>
+  <h3 class="kind kind-added">Added</h3>
+  <ul>
+  <li><strong>Accessibility card</strong>: <em>High contrast</em> (Automatic follows the Windows high-contrast theme; On draws the slicer black on white even when Windows is not in high contrast), <em>Focus color</em> and <em>Focus width</em> (1–6 px) for the keyboard focus ring, and <em>Minimum text size</em> (6–24) for the chips, the header, the values on the chips and the clear button. If the text no longer fits, the chip grows taller; long labels end with "…" and chips never overlap.</li>
+  <li><strong>Conditional formatting (fx)</strong> on Inactive background, Inactive text, Active background and Active text: rules, gradients and field values resolved per chip. A rule wins over the fixed colour and over the template; with a background rule and no text rule, the text switches to black or white if it could not be read. The "All" chip keeps the fixed colours.</li>
+  <li><strong>Tooltips well</strong>: measures shown in the chip tooltip. Report page tooltips work too and receive the chip under the mouse.</li>
+  </ul>
+  <h3 class="kind kind-changed">Changed</h3>
+  <ul>
+  <li>Fixed colours are still saved for the whole visual: reports made with 1.6 keep their colours.</li>
+  <li>High contrast now wins over fx rules and templates.</li>
+  </ul>
   <h2 id="v1.6.0.0">1.6.0.0 <span class="date">2026-11-06</span></h2>
   <h3 class="kind kind-added">Added</h3>
   <ul>

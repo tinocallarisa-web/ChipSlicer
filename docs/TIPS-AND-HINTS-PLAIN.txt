@@ -1,6 +1,20 @@
 CHIP SLICER — TIPS & HINTS
-Version 1.6.0.0 · Free for everyone · tcviz.com
+Version 1.7.0.0 · Free for everyone · tcviz.com
 ________________________________________
+
+WHAT'S NEW IN 1.7.0.0
+---------------------
+· Accessibility card — High contrast (Automatic follows Windows; On draws the slicer black on
+  white even without the Windows theme), Focus color and Focus width for the keyboard ring, and
+  Minimum text size for the chips, header, values and clear button. If the text no longer
+  fits, the chip grows taller; long labels end with "…".
+· Conditional formatting (fx) on Inactive background, Inactive text, Active background and
+  Active text: rules, gradient or field value, chip by chip. A rule wins over the fixed colour
+  and over the template.
+· Tooltips well — measures shown in the chip tooltip; report page tooltips receive the chip
+  under the mouse.
+
+Updating from 1.6: nothing changes until you use the new settings. Fixed colours are kept.
 
 WHAT'S NEW IN 1.6.0.0
 ---------------------
@@ -46,7 +60,8 @@ FIELD WELLS
 · Category ......... 1 column (text, number, date, true/false) or a hierarchy level
 · Limit ............ Up to 1,000 values
 · Value ............ Optional. 1 measure, shown on each chip with the model's format
-· Note ............. With a measure in Value, items for which the measure is blank are not shown.
+· Tooltips ......... Optional. Measures shown in the chip tooltip, not on the chip
+· Note ............. With a measure in Value (or Tooltips), items blank in every measure are not shown.
                      Remove the field from Category to see the start screen.
 
 ________________________________________
@@ -125,6 +140,11 @@ report theme. A colour set by hand always wins.)
 · Active background ......... #378ADD
 · Active border ............. #378ADD
 · Active text ............... #FFFFFF
+fx: Inactive background, Inactive text, Active background and Active text have the fx button
+(rules, gradient or field value, worked out for each chip). A rule wins over the fixed colour
+and the template. With a background rule and no text rule, the text turns black or white if
+yours could not be read; a border with the background's colour follows the rule. The "All"
+chip keeps the fixed colours. High contrast wins over rules.
 
 HEADER
 · Show header ............... Default: Off. Title above the chips.
@@ -135,6 +155,14 @@ HEADER
 VALUES (appears only when there is a measure in Value)
 · Show value on chips ....... Default: On
 · Color ..................... Default: automatic
+
+ACCESSIBILITY
+· High contrast ............. Default: Automatic (Windows setting). On: black on white always;
+                              the selected chip is black with white text.
+· Focus color ............... Default: #005A9E (in high contrast, the theme's colour)
+· Focus width ............... Default: 2 px (1 to 6)
+· Minimum text size ......... Default: 8 (6 to 24). Chips, header, values and clear button
+                              never go below it; the chip grows taller if needed.
 
 ON-OBJECT FORMATTING
 With Format on, click a chip, the header or a chip value to see its options next to it.
@@ -161,6 +189,10 @@ TIPS & BEST PRACTICES
 · Open on the current period — Put Year in Category and type it in Default selection;
   the ✕ goes back to all years.
 · Show sizes before clicking — Put a count measure in Value and Sort by value.
+· Colour by performance — fx on Inactive background with a rule on a margin or growth measure.
+· More detail on hover — Extra measures in Tooltips, or a report page tooltip.
+· Readable on a projector — Accessibility > Minimum text size 12 or more.
+· Accessibility review — Accessibility > High contrast = On: black on white without changing Windows.
 · Show items with no value — Wrap the measure as COALESCE([Measure], 0) so blank items still appear.
 · Long lists in small tiles — Grid with Columns = 0 and a smaller chip height.
 · One row with scrolling — Horizontal layout with Wrap to next line off.
@@ -218,7 +250,7 @@ TROUBLESHOOTING
   > Check Format > Edit interactions, and that the field is related to their tables in the model.
 
 · Some values are missing
-  > With a measure in Value, blank items are hidden. Other page filters also reduce values.
+  > With a measure in Value or Tooltips, items blank in every measure are hidden. Other page filters also reduce values.
     Beyond 1,000 values the rest are not loaded.
 
 · Default selection does not apply
@@ -226,7 +258,14 @@ TROUBLESHOOTING
     saved selection wins). The text must match the chip text. Separate values with commas.
 
 · A template did not change some colours
-  > A template changes only what it defines. Use Reset to default on a colour.
+  > A template changes only what it defines. Use Reset to default on a colour. An fx rule
+    also wins over the template: remove it with the fx button.
+
+· Chip colours ignore my fx rule
+  > High contrast is on (Windows, or Format > Accessibility > High contrast = On).
+
+· Chips got taller
+  > Accessibility > Minimum text size is larger than the chip font: the chip grows to fit.
 
 · The tips bar covers the chips
   > It only shows while editing. Close it with ✕ or turn off Setup guide.
@@ -251,7 +290,7 @@ TROUBLESHOOTING
 ________________________________________
 
 Chip Slicer is free for everyone: every feature, no Pro tier, no licence.
-Limits are technical and the same for all: 1 field in Category, 1 measure in Value, up to 1,000 values.
+Limits are technical and the same for all: 1 field in Category, 1 measure in Value, measures in Tooltips, up to 1,000 values.
 12 languages: English, Spanish, Portuguese (Brazil, Portugal), French, German, Italian, Dutch,
 Polish, Japanese, Chinese (Simplified), Korean.
 Support: https://tinocallarisa-web.github.io/ChipSlicer/support.html · support@tcviz.com

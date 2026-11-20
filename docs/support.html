@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Support — Chip Slicer | TCViz</title>
-  <meta name="description" content="Chip Slicer for Power BI, free: field wells, default selection, force selection, +N for chips that do not fit, clear button, values on chips, style templates, on-object formatting, keyboard, languages, troubleshooting and FAQ." />
+  <meta name="description" content="Chip Slicer for Power BI, free: field wells, accessibility, conditional formatting (fx), tooltips, default selection, force selection, +N for chips that do not fit, clear button, values on chips, style templates, on-object formatting, keyboard, languages, troubleshooting and FAQ." />
   <style>
     body { font-family: 'Segoe UI', Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 24px; color: #333; line-height: 1.7; }
     h1   { color: #0078D4; margin-bottom: 4px; }
@@ -35,9 +35,9 @@
   <h1>Support — Chip Slicer</h1>
   <p><strong>Publisher:</strong> TCViz &nbsp;|&nbsp;
      <strong>Email:</strong> <a href="mailto:support@tcviz.com">support@tcviz.com</a> &nbsp;|&nbsp;
-     <strong>Version:</strong> 1.6.0.0 &nbsp;|&nbsp;
+     <strong>Version:</strong> 1.7.0.0 &nbsp;|&nbsp;
      <strong>Price:</strong> free, no licence &nbsp;|&nbsp;
-     <span class="muted">docs updated 5 Nov 2026</span></p>
+     <span class="muted">docs updated 20 Nov 2026</span></p>
 
   <nav>
     <a href="#quick-start">Quick start</a>
@@ -67,7 +67,23 @@
   </div>
   <p class="muted">Also on YouTube: <a href="https://www.youtube.com/watch?v=cbJ_VHPA5Sk">https://www.youtube.com/watch?v=cbJ_VHPA5Sk</a></p>
 
-  <h2 id="whats-new">What's new in 1.6.0.0</h2>
+  <h2 id="whats-new">What's new in 1.7.0.0</h2>
+  <ul>
+    <li><strong>Accessibility card</strong> in the Format pane: <em>High contrast</em> (Automatic follows the Windows
+        high-contrast theme; On draws the slicer black on white even when Windows is not in high contrast),
+        <em>Focus color</em> and <em>Focus width</em> for the keyboard focus ring, and <em>Minimum text size</em>, applied to
+        the chips, the header, the values on the chips and the clear button. If the text no longer fits, the chip grows
+        taller; long labels end with “…” and chips never overlap.</li>
+    <li><strong>Conditional formatting (fx)</strong> on the chip colours: Inactive background, Inactive text, Active
+        background and Active text. Rules, gradients and field values are resolved chip by chip. A rule wins over the
+        fixed colour and over the template.</li>
+    <li><strong>Tooltips well</strong>: add measures to show them in the chip tooltip. Report page tooltips work too,
+        filtered to the chip under the mouse.</li>
+  </ul>
+  <p><strong>Updating from 1.6:</strong> nothing changes until you use the new settings. Fixed colours are kept and no
+     saved setting was renamed or moved.</p>
+
+  <h3>1.6.0.0</h3>
   <ul>
     <li><strong>Report theme template, now the default.</strong> The selected chip takes the first data colour of the
         report theme, with black or white text, whichever reads better; inactive chips, the header and the clear button
@@ -121,6 +137,7 @@
     <tr><th>Well</th><th>Accepts</th><th>What it does</th></tr>
     <tr><td><strong>Category</strong></td><td>1 column (text, number, date, true/false) or a hierarchy level</td><td>One chip per distinct value, up to 1,000 values.</td></tr>
     <tr><td><strong>Value</strong> (optional)</td><td>1 measure</td><td>Shown on each chip with the model's format. As in any Power BI visual with a measure, values for which the measure is blank are not shown.</td></tr>
+    <tr><td><strong>Tooltips</strong> (optional)</td><td>Measures</td><td>Shown in the chip tooltip, with the model's format, below the value. Not drawn on the chip. Values are hidden only when every measure (Value and Tooltips) is blank.</td></tr>
   </table></div>
 
   <!-- SELECTION -->
@@ -205,12 +222,30 @@
     <tr><td>Selection</td><td>Multi-select · Force selection (off) · Show 'All' button · 'All' button text · Show clear button · Default selection · Sort (data order, A to Z, Z to A, value largest first)</td></tr>
     <tr><td>Layout</td><td>Layout (horizontal, vertical, grid) · Columns (grid, 0 = automatic) · Wrap to next line (horizontal) · Group chips that don't fit (+N) (horizontal with wrap, on) · Stretch chips to fill · Alignment · Gap</td></tr>
     <tr><td>Chips</td><td>Height · Border radius · Horizontal padding · Font · Font size · Check mark on selected · Shadow</td></tr>
-    <tr><td>Colors</td><td>Inactive background, border and text · Active background, border and text</td></tr>
+    <tr><td>Colors</td><td>Inactive background, border and text · Active background, border and text. Backgrounds and texts have the <strong>fx</strong> button (see below).</td></tr>
   </table></div>
+  <h3 id="fx">Conditional formatting (fx) on chip colours</h3>
+  <p>Inactive background, Inactive text, Active background and Active text have the <strong>fx</strong> button: colour
+     each chip by rules, a gradient or a field value, as in native visuals. The rule is worked out for each chip's value.</p>
+  <ul>
+    <li>A rule wins over the fixed colour and over the template: changing the template does not remove it.</li>
+    <li>With a background rule and no text rule, the text turns black or white if your text colour could not be read on it.
+        A border that had the same colour as the background follows the rule.</li>
+    <li>The “All” chip has no value of its own and keeps the fixed colours.</li>
+    <li>High contrast (Windows or Accessibility → On) wins over rules.</li>
+  </ul>
   <h3>Header</h3>
   <p>Show header · Text (empty = field name) · Font · Font size · Bold · Color.</p>
   <h3>Values</h3>
   <p>Show value on chips · Color. Appears when a measure is in the Value well.</p>
+  <h3 id="accessibility">Accessibility</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Setting</th><th>What it does</th></tr>
+    <tr><td>High contrast</td><td><em>Automatic (Windows setting)</em>, the default: the chips take the colours of the Windows high-contrast theme when it is on. <em>On</em>: black on white even when Windows is not in high contrast; the selected chip is black with white text.</td></tr>
+    <tr><td>Focus color</td><td>Colour of the keyboard focus ring. In high contrast the ring takes the theme's colour.</td></tr>
+    <tr><td>Focus width</td><td>Thickness of the ring, 1 to 6 px (2 by default).</td></tr>
+    <tr><td>Minimum text size</td><td>6 to 24 (8 by default). No text in the chips, header, values or clear button is drawn smaller. If it no longer fits, the chip grows taller; long labels end with “…”.</td></tr>
+  </table></div>
 
   <h2 id="languages">Languages, number formats and accessibility</h2>
   <ul>
@@ -221,7 +256,9 @@
     <li><strong>Keyboard</strong>: one Tab stop for the whole slicer; arrow keys, Home and End move between chips;
         Enter or Space select (Ctrl adds); Escape clears (unless Force selection is on; with "+N" open, Escape first closes it); Shift+F10 opens the context menu.</li>
     <li><strong>Screen readers</strong>: announced as a list, with each chip's state (selected or not) and its value.</li>
-    <li><strong>High contrast</strong>: the chips take the colours of the Windows high-contrast theme.</li>
+    <li><strong>High contrast</strong>: the chips take the colours of the Windows high-contrast theme, or black on
+        white with Format → Accessibility → High contrast = On. Focus ring colour and width and a minimum text size
+        are in the same card (<a href="#accessibility">Accessibility</a>).</li>
     <li><strong>Themes</strong>: with the Report theme template (the default) the chips, header and clear button take
         the colours of the report theme, light or dark, and the header colour follows the theme where you leave it
         unset. Fonts do not change with the theme.</li>
@@ -258,7 +295,7 @@
   <details>
     <summary>Some values are missing</summary>
     <ul>
-      <li>With a measure in Value, values for which the measure is blank are not shown. Remove the measure, or wrap it
+      <li>With a measure in Value (or Tooltips), values for which every measure is blank are not shown. Remove the measure, or wrap it
           as <code>COALESCE([Measure], 0)</code> to show them with 0.</li>
       <li>Other filters on the page or report reduce the values, as with any slicer.</li>
       <li>Beyond 1,000 distinct values the rest are not loaded. Split the list with another slicer or use Chip Slicer Hierarchy.</li>
@@ -418,12 +455,12 @@
     <p>Questions, bugs or ideas: write to <a href="mailto:support@tcviz.com">support@tcviz.com</a>. A person answers —
        the developer of the visual, not a bot.</p>
     <p>Bug reports are also welcome on <a href="https://github.com/tinocallarisa-web/ChipSlicer/issues">GitHub Issues</a>.
-       Please include the visual version (1.6.0.0), Power BI Desktop or service, and a screenshot.</p>
+       Please include the visual version (1.7.0.0), Power BI Desktop or service, and a screenshot.</p>
     <p>Version history: <a href="changelog.html">Changelog</a>.</p>
   </div>
 
   <footer>
-    Chip Slicer 1.6.0.0 by TCViz &nbsp;|&nbsp;
+    Chip Slicer 1.7.0.0 by TCViz &nbsp;|&nbsp;
     <a href="https://tcviz.com/product/chip-slicer/">tcviz.com</a> &nbsp;|&nbsp;
     <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
     <a href="terms.html">Terms of Use</a>

@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.7.0.0] — 2026-11-20
+
+### Added
+- **Accessibility card** in the Format pane, as in the rest of the TCViz collection:
+  - **High contrast**: *Automatic (Windows setting)* follows the Windows high-contrast theme, as before; *On* draws
+    the slicer black on white even when Windows is not in high contrast.
+  - **Focus color** and **Focus width** (1–6 px) for the keyboard focus ring. In high contrast the ring takes the
+    theme's colour.
+  - **Minimum text size** (6–24, default 8): applied to the chips, the header, the values on the chips and the clear
+    button. If the text no longer fits, the chip grows taller; long labels end with "…" and chips never overlap.
+- **Conditional formatting (fx)** on the chip colours: Inactive background, Inactive text, Active background and
+  Active text. Rules, gradients and field values are resolved per chip. A rule wins over the fixed colour and over
+  the template; with a background rule and no text rule, the text switches to black or white if it could not be read.
+  A border that matched the fixed background follows the rule's colour. The "All" chip keeps the fixed colours.
+- **Tooltips well**: add measures to show them in the chip tooltip. Report page tooltips work too: the tooltip
+  receives the chip's value.
+
+### Changed
+- Fixed colours are still saved for the whole visual: reports made with 1.6 keep their colours.
+- High contrast now wins over fx rules and templates.
+- With a measure in Tooltips and none in Value, items are not hidden: Power BI hides only rows where every measure is blank.
+
 ## [1.6.0.0] — 2026-11-06
 
 ### Added

@@ -1,4 +1,4 @@
-# Chip Slicer — ficha de AppSource (1.6.0.0, borrador 05-11-2026, aún no enviada)
+# Chip Slicer — ficha de AppSource (1.7.0.0, borrador 20-11-2026, aún no enviada)
 
 Texto para pegar en Partner Center → oferta Chip Slicer → Offer listing. **Editar este fichero no cambia la oferta:**
 cada campo hay que pegarlo a mano en la consola.
@@ -37,7 +37,8 @@ WHAT IT ADDS TO A SLICER
   all, "Show less" closes. Selected chips are never hidden.
 • Clear button (✕) and an optional "All" chip.
 • Counts on the chips: put a measure in Value and each chip shows its count or total, with your model's format.
-  Items without a value are hidden.
+• Conditional formatting (fx) on chip backgrounds and text, active and inactive: rules, gradient or field value,
+  chip by chip.
 • Sort by data order, A to Z, Z to A or by value.
 • Horizontal, vertical or grid layout, with automatic or fixed columns, one scrolling row, stretch to fill and
   alignment. Long labels end with "…".
@@ -53,15 +54,17 @@ WORKS LIKE A SLICER
 • Single or multi-select; Ctrl+click adds.
 • Text, numbers, dates and hierarchy levels; codes keep their leading zeros.
 • On-object formatting: click a chip or the header to format it on the canvas.
-• Tooltips with the value and the measure. Right-click a chip for the Power BI context menu.
+• Tooltips with the value, the measure and any measures in the Tooltips well; report page tooltips too.
+• Right-click a chip for the Power BI context menu.
 • Chips dim when another visual on the page highlights part of the data.
-• Up to 1,000 values per slicer; one field in Category, one optional measure in Value.
+• Up to 1,000 values; one field in Category, one optional measure in Value.
 
 ACCESSIBLE AND IN YOUR LANGUAGE
 • Keyboard: one Tab stop, arrow keys, Enter or Space, Escape to clear (unless Force selection is on; with "+N" open,
   Escape first closes it), Shift+F10 for the context menu. "+N" opens with Enter or Space.
 • Screen readers hear a list with each chip's state.
-• High-contrast themes.
+• Accessibility card: high contrast (Windows theme, or black on white on demand), focus color and width, and a
+  minimum text size; chips grow so the text fits.
 • 12 languages: English, Spanish, Portuguese, French, German, Italian, Dutch, Polish, Japanese, Chinese, Korean.
 
 NEED SEVERAL LEVELS?
@@ -79,16 +82,13 @@ GETTING STARTED
 Documentation, FAQ and use cases: https://tinocallarisa-web.github.io/ChipSlicer/support.html
 Support: support@tcviz.com — a person answers.
 
-WHAT'S NEW IN 1.6
-Report theme template, now the default: the chips take your report theme's colors. "+N" groups the chips that do not
-fit. Force selection keeps one value always selected. Six TCViz collection styles join the templates (thirteen in all).
-The clear button follows the chip colors. Reports that never
-chose a template take Report theme after the update; choose Classic to keep the earlier look. Colors set by hand are
-kept.
+WHAT'S NEW IN 1.7.0.0
+Accessibility card (high contrast on demand, focus ring, minimum text size). Conditional formatting (fx) on chip
+colors. Tooltips well and report page tooltips. Reports made with 1.6 keep their look.
 
 ## Palabras clave (3)
 
-Se mantienen las de la 1.5: ninguna novedad de la 1.6 es una búsqueda con más volumen que estas.
+Se mantienen las de la 1.5: ninguna novedad de la 1.6 ni de la 1.7 es una búsqueda con más volumen que estas.
 
 1. `button slicer` — lo teclea quien quiere botones en vez de la lista desplegable del nativo: problema concreto.
 2. `default selection` — el nativo no la tiene y es una queja clásica de Power BI; quien la busca ya tiene el problema.
@@ -98,7 +98,7 @@ Se mantienen las de la 1.5: ninguna novedad de la 1.6 es una búsqueda con más 
 ## Vídeo
 
 URL canónica `https://www.youtube.com/watch?v=<id>` (nunca acortada). El vídeo sigue siendo el de la 1.5 (no muestra
-Report theme, +N ni Force selection; se puede dejar):
+Report theme, +N, Force selection ni lo de la 1.7; se puede dejar):
 `https://www.youtube.com/watch?v=cbJ_VHPA5Sk`.
 
 ## Notas para la certificación
@@ -112,12 +112,12 @@ Ver `docs/CERTIFICATION-NOTES-SHORT.txt` (el campo se vacía en cada reenvío: p
   La infografía cambia en la 1.6 (trece plantillas, +N, Force selection): volver a exportar el PNG desde
   `docs/infographic.html` antes de subirla.
 
-## Qué hay que pegar a mano en Partner Center (1.6.0.0)
+## Qué hay que pegar a mano en Partner Center (1.7.0.0)
 
-1. Offer listing → **Search results summary**: el resumen de arriba (cambia).
-2. Offer listing → **Description**: la descripción de arriba entera (cambia: Force selection, +N, trece plantillas,
-   WHAT'S NEW IN 1.6).
-3. Offer listing → **Screenshots**: la infografía re-exportada (cambia).
-4. Technical configuration / Submission → **Notes for certification**: `docs/CERTIFICATION-NOTES-SHORT.txt` (siempre).
-5. Package: el `.pbiviz` 1.6.0.0 y el `.pbix` de muestra.
-6. Sin cambios, solo comprobar: palabras clave, vídeo (URL canónica de arriba), enlace de soporte (`support.html`).
+1. Offer listing → **Description**: el HTML de `docs/APPSOURCE-DESCRIPTION.html` (generado con
+   `python C:/tcviz/utillaje/ficha_html.py`), nunca el texto de arriba (cambia: fx, Tooltips, Accessibility,
+   WHAT'S NEW IN 1.7.0.0).
+2. Technical configuration / Submission → **Notes for certification**: `docs/CERTIFICATION-NOTES-SHORT.txt` (siempre).
+3. Package: el `.pbiviz` 1.7.0.0 y el `.pbix` de muestra **guardado con la 1.7.0.0** (hoy lleva la 1.6.0.0).
+4. Sin cambios, solo comprobar: resumen de búsqueda, palabras clave, vídeo (URL canónica de arriba), enlace de
+   soporte (`support.html`), capturas.
