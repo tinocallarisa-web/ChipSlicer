@@ -177,6 +177,7 @@ When another visual on the page highlights part of the data, the chips without d
 - **Accessibility review** — Accessibility → High contrast = On shows the slicer black on white without changing Windows.
 - **Show items with no value** — Wrap the measure as `COALESCE([Measure], 0)` so blank items still appear.
 - **Long lists in small tiles** — Grid with Columns = 0 and a smaller chip height.
+- **Slicer in a thin strip** — Make the box as low as you like: below the height of the header plus one row, the text and chips shrink to fit (never below 8 px or your minimum text size).
 - **One row with scrolling** — Horizontal layout with Wrap to next line off.
 - **Status toggles** — Segmented template with Multi-select on reads like a switch.
 - **Header slicers** — Horizontal layout in a report header gives a navigation-bar look.

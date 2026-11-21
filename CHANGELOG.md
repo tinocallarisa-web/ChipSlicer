@@ -22,6 +22,9 @@ All notable changes to this project will be documented in this file.
   receives the chip's value.
 
 ### Changed
+- **Text and chips shrink with a short slicer**: when the box is too low for the header and one row of chips, the
+  text, the chips and the header shrink just enough to fit (down to 60 % of the chosen sizes, never below 8 px or the
+  minimum text size). With room to spare, the chosen sizes are used, so saved reports look the same.
 - Fixed colours are still saved for the whole visual: reports made with 1.6 keep their colours.
 - High contrast now wins over fx rules and templates.
 - With a measure in Tooltips and none in Value, items are not hidden: Power BI hides only rows where every measure is blank.
