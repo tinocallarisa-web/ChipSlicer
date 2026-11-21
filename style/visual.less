@@ -17,7 +17,8 @@
         gap: 6px;
     }
     // Sin cabecera, el botón de limpiar flota arriba a la derecha: se le reserva su hueco
-    .chip-root.reserve-clear .chip-slicer-inner { padding-right: 28px; }
+    // margin y no padding: así la barra de scroll queda a la izquierda del botón y no debajo
+    .chip-root.reserve-clear .chip-slicer-inner { margin-right: 28px; }
 
     .chip-header { display: flex; align-items: center; gap: 8px; min-height: 22px; }
     .chip-header-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

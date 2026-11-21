@@ -567,6 +567,22 @@ export class Visual implements IVisual {
 
     private lastLocale: string = null;
 
+    /**
+     * A chip too narrow for its label (grid columns in a thin slicer) first gives up its side padding and the check
+     * mark, so short values such as "10" stay whole. Selection is still shown by the colour, the bold text and
+     * aria-selected. Only chips whose label overflows are touched.
+     */
+    private fitNarrowChips(chips: HTMLElement[]): void {
+        for (const el of chips) {
+            const tx = el.querySelector(".chip-label") as HTMLElement;
+            if (!tx || tx.scrollWidth <= tx.clientWidth + 1) continue;
+            el.style.paddingLeft = el.style.paddingRight = "4px";
+            el.style.gap = "3px";
+            const chk = el.querySelector(".chip-check") as SVGElement;
+            if (chk && tx.scrollWidth > tx.clientWidth + 1) chk.style.display = "none";
+        }
+    }
+
     /** Pinta los chips en la lista ya montada (también desde el callback de marcadores, sin reconstruir lo demás). */
     private renderList(): void {
         const list = this.container.querySelector(".chip-slicer-inner") as HTMLElement;
@@ -605,6 +621,7 @@ export class Visual implements IVisual {
 
         while (list.firstChild) list.removeChild(list.firstChild);
         chips.forEach(c => list.appendChild(c));
+        this.fitNarrowChips(chips);
         const shown = this.collapseOverflow(list, chips, layout, hc);
         // Roving tabindex: una sola parada de Tab para todo el slicer
         const focusChip = shown.find(c => c.dataset.key === this.focusKey)
@@ -768,7 +785,7 @@ export class Visual implements IVisual {
         Object.assign(el.style, {
             height: `${this.chipH()}px`,
             borderRadius: `${c.chipRadius.value}px`,
-            padding: `0 ${c.chipPaddingH.value}px`,
+            padding: `0 ${Math.round(c.chipPaddingH.value * this.scale)}px`,
             fontSize: `${fs}px`,
             fontFamily: c.fontFamily.value,
             fontWeight: isActive ? "600" : "400",

@@ -27,6 +27,10 @@ All notable changes to this project will be documented in this file.
   minimum text size). With room to spare, the chosen sizes are used, so saved reports look the same.
 - Fixed colours are still saved for the whole visual: reports made with 1.6 keep their colours.
 - High contrast now wins over fx rules and templates.
+- **Narrow grids**: a chip too narrow for its label gives up its side padding first, then the check mark, so short
+  values such as "10" stay whole (selection is still shown by colour and bold text). Side padding also shrinks with a
+  short slicer.
+- Without the header, the floating **Clear** button no longer covers the chips or the scroll bar.
 - With a measure in Tooltips and none in Value, items are not hidden: Power BI hides only rows where every measure is blank.
 
 ## [1.6.0.0] — 2026-11-06

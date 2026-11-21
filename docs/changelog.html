@@ -31,15 +31,21 @@
   <h2 id="v1.7.0.0">1.7.0.0 <span class="date">2026-11-20</span></h2>
   <h3 class="kind kind-added">Added</h3>
   <ul>
-  <li><strong>Accessibility card</strong>: <em>High contrast</em> (Automatic follows the Windows high-contrast theme; On draws the slicer black on white even when Windows is not in high contrast), <em>Focus color</em> and <em>Focus width</em> (1–6 px) for the keyboard focus ring, and <em>Minimum text size</em> (6–24) for the chips, the header, the values on the chips and the clear button. If the text no longer fits, the chip grows taller; long labels end with "…" and chips never overlap.</li>
-  <li><strong>Conditional formatting (fx)</strong> on Inactive background, Inactive text, Active background and Active text: rules, gradients and field values resolved per chip. A rule wins over the fixed colour and over the template; with a background rule and no text rule, the text switches to black or white if it could not be read. The "All" chip keeps the fixed colours.</li>
-  <li><strong>Tooltips well</strong>: measures shown in the chip tooltip. Report page tooltips work too and receive the chip under the mouse.</li>
+  <li><strong>Accessibility card</strong> in the Format pane, as in the rest of the TCViz collection:</li>
+  <li><strong>High contrast</strong>: <em>Automatic (Windows setting)</em> follows the Windows high-contrast theme, as before; <em>On</em> draws the slicer black on white even when Windows is not in high contrast.</li>
+  <li><strong>Focus color</strong> and <strong>Focus width</strong> (1–6 px) for the keyboard focus ring. In high contrast the ring takes the theme's colour.</li>
+  <li><strong>Minimum text size</strong> (6–24, default 8): applied to the chips, the header, the values on the chips and the clear button. If the text no longer fits, the chip grows taller; long labels end with "…" and chips never overlap.</li>
+  <li><strong>Conditional formatting (fx)</strong> on the chip colours: Inactive background, Inactive text, Active background and Active text. Rules, gradients and field values are resolved per chip. A rule wins over the fixed colour and over the template; with a background rule and no text rule, the text switches to black or white if it could not be read. A border that matched the fixed background follows the rule's colour. The "All" chip keeps the fixed colours.</li>
+  <li><strong>Tooltips well</strong>: add measures to show them in the chip tooltip. Report page tooltips work too: the tooltip receives the chip's value.</li>
   </ul>
   <h3 class="kind kind-changed">Changed</h3>
   <ul>
-  <li><strong>Text and chips shrink with a short slicer</strong>: when the box is too low for the header and one row of chips, they shrink just enough to fit (down to 60 % of the chosen sizes, never below 8 px or the minimum text size). With room to spare, the chosen sizes are used.</li>
+  <li><strong>Text and chips shrink with a short slicer</strong>: when the box is too low for the header and one row of chips, the text, the chips and the header shrink just enough to fit (down to 60 % of the chosen sizes, never below 8 px or the minimum text size). With room to spare, the chosen sizes are used, so saved reports look the same.</li>
   <li>Fixed colours are still saved for the whole visual: reports made with 1.6 keep their colours.</li>
   <li>High contrast now wins over fx rules and templates.</li>
+  <li><strong>Narrow grids</strong>: a chip too narrow for its label gives up its side padding first, then the check mark, so short values such as "10" stay whole (selection is still shown by colour and bold text). Side padding also shrinks with a short slicer.</li>
+  <li>Without the header, the floating <strong>Clear</strong> button no longer covers the chips or the scroll bar.</li>
+  <li>With a measure in Tooltips and none in Value, items are not hidden: Power BI hides only rows where every measure is blank.</li>
   </ul>
   <h2 id="v1.6.0.0">1.6.0.0 <span class="date">2026-11-06</span></h2>
   <h3 class="kind kind-added">Added</h3>

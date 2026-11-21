@@ -265,6 +265,25 @@ async def main():
                 check(f"{W}×{H}: letra ≥ 8 px y sin cortar", bool(r) and r["fs"] >= 8 and not r["cortado"], str(r))
             await pg.close()
 
+        print("Slicer estrecho en cuadrícula sin cabecera (captura de Tino, 21-11)")
+        MESES = [str(i) for i in range(1, 13)]
+        obj = {"header": {"show": False}, "chipSettings": {"layout": "grid", "columns": 2, "showClear": True, "showSelectAll": False, "showCheck": True}}
+        for (W, H) in ((150, 200), (130, 160)):
+            pg = await page(b, dv(obj, measure=False, tips=False, productos=MESES), W=W, H=H,
+                            filters=[{"values": ["6", "8", "10"]}], name=f"11_estrecho_{W}x{H}")
+            r = await pg.evaluate(CHIPS)
+            cortados = [c["label"] for c in r if c["lsw"] > c["lw"] + 1]
+            check(f"{W}×{H}: '10', '11' y '12' enteros, también seleccionados", not cortados, f"cortados {cortados}")
+            o = await pg.evaluate("""() => { const x = document.querySelector('.chip-clear'); if (!x) return 'sin botón';
+                const a = x.getBoundingClientRect(); const l = document.querySelector('.chip-slicer-inner').getBoundingClientRect();
+                const pisa = Array.from(document.querySelectorAll('.chip-item')).filter(c => { const r = c.getBoundingClientRect();
+                    return r.left < a.right && r.right > a.left && r.top < a.bottom && r.bottom > a.top; }).length;
+                return { pisa, lista_der: l.right, boton_izq: a.left }; }""")
+            check(f"{W}×{H}: el botón de limpiar no tapa chips ni la barra de scroll",
+                  isinstance(o, dict) and o["pisa"] == 0 and o["lista_der"] <= o["boton_izq"] + 0.5, str(o))
+            await eventos(pg, f"estrecho {W}×{H}")
+            await pg.close()
+
         print("Textos en español (bundle)")
         pg = await page(b, None, locale="es-ES", W=640, H=360)
         t = await pg.evaluate("() => document.body.innerText")
