@@ -207,7 +207,22 @@ export class Visual implements IVisual {
     /** Text size with the Accessibility minimum. */
     private fsz(px: number): number {
         const min = Math.min(24, Math.max(6, Number(this.formattingSettings?.accessibilityCard?.minTextSize?.value) || 8));
-        return Math.max(min, Number(px) || min);
+        const v = Number(px) || min;
+        return Math.max(min, Math.min(v, Math.max(8, Math.round(v * this.scale * 2) / 2)));
+    }
+
+    /**
+     * 1.7: en un visual bajo, el texto y los chips encogen con él (norma de la colección, como Waterfall 1.3): la escala
+     * es lo que hace falta para que entren la cabecera y una fila de chips, entre el 60 % y el 100 %, y el texto nunca
+     * baja de 8 px ni del mínimo de Accesibilidad. Con sitio de sobra, los tamaños elegidos, como en 1.6.
+     */
+    private scale = 1;
+    private updateScale(viewH: number): void {
+        const s = this.formattingSettings;
+        const c = s.chipSettingsCard.chip;
+        const hd = s.headerCard.show.value ? Math.max(22, (Number(s.headerCard.fontSize.value) || 12) * 1.35) + 8 : 0;   // cabecera (mín. 22 px en el CSS) + separación
+        const need = hd + (Number(c.chipHeight.value) || 34);   // lo que encoge; el relleno del contenedor (8 + 8) y 2 px de aire, no
+        this.scale = Math.min(1, Math.max(0.6, ((Number(viewH) || need + 18) - 18) / need));
     }
 
     /**
@@ -216,8 +231,9 @@ export class Visual implements IVisual {
      */
     private chipH(): number {
         const c = this.formattingSettings.chipSettingsCard.chip;
-        const h = Number(c.chipHeight.value) || 34;
+        const h0 = Number(c.chipHeight.value) || 34;
         const fs = this.fsz(c.fontSize.value);
+        const h = this.scale < 1 ? Math.max(Math.ceil(fs * 1.3 + 6), Math.round(h0 * this.scale)) : h0;
         return fs > (Number(c.fontSize.value) || 0) ? Math.max(h, Math.ceil(fs * 1.3 + 8)) : h;
     }
 
@@ -490,6 +506,7 @@ export class Visual implements IVisual {
         }
 
         const hadFocus = this.container.contains(document.activeElement);
+        this.updateScale(options.viewport?.height);
 
         const root = document.createElement("div");
         root.className = "chip-root";
@@ -502,6 +519,7 @@ export class Visual implements IVisual {
         if (s.headerCard.show.value) {
             const hd = document.createElement("div");
             hd.className = "chip-header";
+            if (this.scale < 1) hd.style.minHeight = `${Math.round(22 * this.scale)}px`;
             const tx = document.createElement("div");
             tx.className = "chip-header-text";
             tx.setAttribute("data-o", "header");
@@ -740,7 +758,7 @@ export class Visual implements IVisual {
             b.className = "chip-badge";
             b.textContent = badge;
             b.setAttribute("data-o", "badge");
-            b.style.fontSize = `${this.fsz(Math.round(fs * 0.9))}px`;
+            b.style.fontSize = `${this.fsz(Math.round((Number(c.fontSize.value) || 12) * 0.9))}px`;
             const bc = s.badgeCard.color.value?.value;
             if (bc && !hc) { b.style.color = bc; b.style.opacity = "1"; }
             el.appendChild(b);

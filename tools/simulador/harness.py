@@ -250,6 +250,21 @@ async def main():
         check("registerOnSelectCallback no llama a persistProperties", n0 == n1, f"{n0} → {n1}")
         await pg.close()
 
+        print("Texto que encoge con el visual (1.7)")
+        for (W, H, hdr) in ((640, 220, True), (640, 44, False), (640, 60, True), (300, 36, False)):
+            pg = await page(b, dv({"header": {"show": hdr}}), W=W, H=H, name=f"10_escala_{W}x{H}")
+            r = await pg.evaluate("""() => { const c = Array.from(document.querySelectorAll('.chip-item')); if (!c.length) return null;
+                const fs = Math.max(...c.map(e => parseFloat(getComputedStyle(e).fontSize)));
+                const b = c[0].getBoundingClientRect(); const lbl = c[0].querySelector('.chip-label');
+                return { fs, alto: b.height, abajo: b.bottom, cabe: b.bottom <= innerHeight + 0.5,
+                         cortado: lbl ? lbl.scrollHeight > lbl.clientHeight + 1 : false }; }""")
+            if H >= 200:
+                check(f"{W}×{H}: con sitio, tamaños de siempre (sin encoger)", bool(r) and r["fs"] >= 12, str(r))
+            else:
+                check(f"{W}×{H}: la primera fila de chips entra en el alto", bool(r) and r["cabe"], str(r))
+                check(f"{W}×{H}: letra ≥ 8 px y sin cortar", bool(r) and r["fs"] >= 8 and not r["cortado"], str(r))
+            await pg.close()
+
         print("Textos en español (bundle)")
         pg = await page(b, None, locale="es-ES", W=640, H=360)
         t = await pg.evaluate("() => document.body.innerText")
